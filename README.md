@@ -40,6 +40,8 @@ break each of them down into ~2-5 smaller tasks! ○ This will help you divide u
 * Cards for different geographical areas, when pressed go to a filter by that location.
 * Styling 
 
-<img width="786" alt="Screen Shot 2022-05-27 at 10 12 02" src="https://user-images.githubusercontent.com/64231716/170759741-6bfcb6a2-1e1c-4272-bcd2-434f0d194a12.png">
+![LandingPageSketch](https://user-images.githubusercontent.com/64231716/170760439-13dde11f-048a-4141-adcb-16bdc0ebd61a.png)
 
+<img width="786" alt="NewStudySpaceSketch" src="https://user-images.githubusercontent.com/64231716/170759741-6bfcb6a2-1e1c-4272-bcd2-434f0d194a12.png">
 
+<img width="481" alt="NewReviewSketch" src="https://user-images.githubusercontent.com/64231716/170760869-c7904e58-16d6-4d98-b623-53bf455c4a35.png">
