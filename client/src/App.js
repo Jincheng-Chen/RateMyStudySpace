@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   const test = {
     test: "asdasd         ",
-    test2: "asd",
+    test2: "asd   ",
   };
   return (
     <div className="App">
