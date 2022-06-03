@@ -1,9 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import { Counter } from "./features/counter/Counter";
+import "./App.css";
 
 function App() {
+  const test = {
+    test: "asdasd "         ,
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -12,8 +15,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <span     >
-          
+        <span>
           <span>Learn </span>
           <a
             className="App-link"
