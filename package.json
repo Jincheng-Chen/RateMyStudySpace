@@ -1,0 +1,33 @@
+{
+  
+  "name": "ratemystudyspace",
+  "description": "Project Description:\r Our project proposal is RateMyStudySpace. This app will allow users to rate and search for study spaces, based on a variety of metrics. They can rate and search based on quietness, space, affordability, etc. In addition, they can leave rating descriptions for other users to read. This app will be targeted towards students, remote workers, freelancers; anybody who needs a space to study/work. In the backend, we plan to store information about study spaces (libraries, cafes, other types of establishments), as well as information about reviews. As a stretch, we could also store information about user data.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jincheng-Chen/RateMyStudySpace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jincheng-Chen/RateMyStudySpace/issues"
+  },
+  "homepage": "https://github.com/Jincheng-Chen/RateMyStudySpace#readme",
+  "lint-staged": {
+    "./**/*.{js,jsx}": [
+      "eslint . --fix", "git add"
+    ],
+    "./**/*.scss": [
+      "stylelint --syntax scss --fix", "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
