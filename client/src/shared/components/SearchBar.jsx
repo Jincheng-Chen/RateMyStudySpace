@@ -8,7 +8,7 @@ function SearchBar({options, propClass}) {
         sx = {{width: "40vw", background: "white"}}
         renderInput={(params) => <TextField {...params} label="Enter City" />}
         className = {
-            propClass            }
+            propClass                   }
     >
     </Autocomplete>
   )
