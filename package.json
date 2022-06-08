@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/Jincheng-Chen/RateMyStudySpace#readme",
   "lint-staged": {
-    "./**/*.{js,jsx}": [
+    "./**/*.js": [
+      "eslint . --fix",
+      "git add"
+    ],
+    "./**/*.jsx": [
       "eslint . --fix",
       "git add"
     ],

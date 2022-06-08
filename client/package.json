@@ -32,6 +32,16 @@
       "react-app/jest"
     ]
   },
+  "lint-staged": {
+    "./**/*.{js,jsx}": [
+      "eslint . --fix",
+      "git add"
+    ],
+    "./**/*.scss": [
+      "stylelint --syntax scss --fix",
+      "git add"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
