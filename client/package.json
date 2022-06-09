@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.8.3",
+    "@mui/material": "^5.8.2",
+    "@mui/styles": "^5.8.0",
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -25,6 +30,16 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx}": [
+      "eslint . --fix",
+      "git add"
+    ],
+    "./**/*.scss": [
+      "stylelint --syntax scss --fix",
+      "git add"
     ]
   },
   "browserslist": {
