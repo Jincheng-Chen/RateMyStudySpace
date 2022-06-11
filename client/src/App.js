@@ -9,6 +9,8 @@ import "./App.css";
 import Header from "./shared/components/Header";
 import { createTheme } from "@mui/material";
 import { ThemeProvider, useTheme } from "@mui/styles";
+import SearchPage from './screens/searchPage/SearchPage';
+import NewStudySpacePage from './screens/newStudySpacePage/NewStudySpacePage';
 function App() {
   const theme = createTheme();
   return (
@@ -19,10 +21,10 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route index element={<LandingPage></LandingPage>} />
-              <Route path="/search" element={<div>Search Page</div>} />
+              <Route path="/search" element={<SearchPage></SearchPage>} />
               <Route
                 path="/newStudySpace"
-                element={<div>New Study Space Page</div>}
+                element={<NewStudySpacePage></NewStudySpacePage>}
               />
               <Route path="/newReview" element={<NewReview />} />
             </Routes>
