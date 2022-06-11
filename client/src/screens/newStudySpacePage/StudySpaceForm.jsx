@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useState } from "react";
+import { makeStyles } from "@mui/styles";
 
 const defaultValues = {
   name: "",
@@ -19,8 +20,15 @@ const defaultValues = {
   type: "Library",
 };
 
+const useStyles = makeStyles({
+  card: {
+    padding: "3vw",
+  },
+});
+
 function StudySpaceForm() {
   const [formValues, setFormValues] = useState(defaultValues);
+  const classes = useStyles();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +46,7 @@ function StudySpaceForm() {
   return (
     <form onSubmit={handleSubmit}>
       <Card>
-        <Box>
+        <Box className={classes.card}>
           <FormControl>
             <InputLabel htmlFor="sp-name">Name</InputLabel>
             <Input

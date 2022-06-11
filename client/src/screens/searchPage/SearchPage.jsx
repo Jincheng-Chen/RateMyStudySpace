@@ -14,9 +14,12 @@ const useStyles = makeStyles({
     flexDirection: "column",
     width: "100%",
     minWidth: "100%",
+    alignItems: "center",
   },
   topContainer: {},
-  bottomContainer: {},
+  bottomContainer: {
+    width: "90%",
+  },
   grid: {},
 });
 
