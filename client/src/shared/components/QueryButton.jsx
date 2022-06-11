@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Box, Typography, CardActionArea } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
 const useStyles = makeStyles({
   button: {
     width: "100%",
@@ -9,10 +10,10 @@ const useStyles = makeStyles({
 });
 function QueryButton({ cityData }) {
   const classes = useStyles();
-
+  const navigate = useNavigate();
   return (
     <Card onClick={() => console.log("clicked")}>
-      <CardActionArea href={"review/" + cityData.label}>
+      <CardActionArea onClick={() => navigate("search")}>
         <Box
           sx={{ backgroundImage: `url(${cityData.url})` }}
           className={classes.button}

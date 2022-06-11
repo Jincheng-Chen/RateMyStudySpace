@@ -9,9 +9,10 @@ const useStyles = makeStyles({
     flexDirection: "column",
     width: "100%",
     minWidth: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   topContainer: {
-    width: "80%",
     alignItems: "center",
     justifyContent: "center",
   },

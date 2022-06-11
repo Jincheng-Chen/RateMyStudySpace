@@ -17,8 +17,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <header className="App-header">
+        <BrowserRouter>
           <Header></Header>
-          <BrowserRouter>
             <Routes>
               <Route index element={<LandingPage></LandingPage>} />
               <Route path="/search" element={<SearchPage></SearchPage>} />
