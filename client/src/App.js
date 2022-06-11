@@ -4,6 +4,7 @@ import { Counter } from "./features/counter/Counter";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./screens/landingPage/LandingPage";
+import NewReview from "./screens/ReviewPage/NewReview";
 import "./App.css";
 import Header from "./shared/components/Header";
 import { createTheme } from "@mui/material";
@@ -23,7 +24,7 @@ function App() {
                 path="/newStudySpace"
                 element={<div>New Study Space Page</div>}
               />
-              <Route path="/newReview" element={<div>New Review</div>} />
+              <Route path="/newReview" element={<NewReview />} />
             </Routes>
           </BrowserRouter>
         </header>
