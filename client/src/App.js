@@ -4,7 +4,7 @@ import { Counter } from "./features/counter/Counter";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./screens/landingPage/LandingPage";
-import NewReview from "./screens/ReviewPage/NewReview";
+import NewReview from "./screens/ReviewPage/ReviewForm/Components/NewReview";
 import "./App.css";
 import Header from "./shared/components/Header";
 import { createTheme } from "@mui/material";
