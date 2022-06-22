@@ -12,7 +12,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ flexGrow: 1, width: "100%" }}>
+    <Box sx={{ top: 0, height: "max-content", width: "100%" }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton

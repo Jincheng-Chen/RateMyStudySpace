@@ -10,6 +10,7 @@ import { createTheme } from "@mui/material";
 import { ThemeProvider, useTheme } from "@mui/styles";
 import SearchPage from "./screens/searchPage/SearchPage";
 import NewStudySpacePage from "./screens/newStudySpacePage/NewStudySpacePage";
+import IndividualStudySpacePage from "./screens/individualStudySpacePage/IndividualStudySpacePage";
 function App() {
   const theme = createTheme();
   return (
@@ -26,6 +27,10 @@ function App() {
                 element={<NewStudySpacePage></NewStudySpacePage>}
               />
               <Route path="/newReview" element={<NewReview />} />
+              <Route
+                path="/studySpace"
+                element={<IndividualStudySpacePage />}
+              />
             </Routes>
           </BrowserRouter>
         </header>

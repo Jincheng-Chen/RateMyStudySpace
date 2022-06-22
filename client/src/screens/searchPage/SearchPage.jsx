@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Typography, Grid, Card } from "@mui/material";
+import { Box, Typography, Grid, Card, CardActionArea } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import StudySpaceReview from "./StudySpaceReview";
 import IKB from "../../shared/images/IKB.jpg";
 import TheNest from "../../shared/images/TheNest.jpg";
 import Breka from "../../shared/images/Breka.jpeg";
 import TheBoulevard from "../../shared/images/TheBoulevard.webp";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   outerContainer: {
@@ -24,6 +25,7 @@ const useStyles = makeStyles({
 });
 
 function SearchPage() {
+  const navigate = useNavigate();
   const classes = useStyles();
   const studySpaceReviews = [
     {
@@ -79,7 +81,11 @@ function SearchPage() {
           {studySpaceReviews.map((space) => {
             return (
               <Grid item xs={3} key={space.id}>
-                <StudySpaceReview studySpace={space}></StudySpaceReview>
+                <CardActionArea
+                  onClick={() => navigate("/studySpace", { state: space })}
+                >
+                  <StudySpaceReview studySpace={space}></StudySpaceReview>
+                </CardActionArea>
               </Grid>
             );
           })}
