@@ -23,7 +23,7 @@ const defaultValues = {
   name: "",
   location: "",
   type: LOCATION_TYPES.LIBRARY,
-  url: null,
+  url: "",
   id: "",
 };
 
@@ -89,6 +89,21 @@ function StudySpaceForm() {
             />
             <FormHelperText id="helper-location">
               What is the address?
+            </FormHelperText>
+          </FormControl>
+        </Box>
+        <Box>
+          <FormControl>
+            <InputLabel htmlFor="sp-image">Image URL</InputLabel>
+            <Input
+              id="sp-image"
+              aria-describedby="helper-image"
+              name={"url"}
+              value={formValues.url}
+              onChange={handleInputChange}
+            />
+            <FormHelperText id="helper-image">
+              What is the url for the image?
             </FormHelperText>
           </FormControl>
         </Box>

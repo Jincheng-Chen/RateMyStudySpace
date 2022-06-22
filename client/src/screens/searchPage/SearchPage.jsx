@@ -2,11 +2,8 @@ import React from "react";
 import { Box, Typography, Grid, Card, CardActionArea } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import StudySpaceReview from "./StudySpaceReview";
-import IKB from "../../shared/images/IKB.jpg";
-import TheNest from "../../shared/images/TheNest.jpg";
-import Breka from "../../shared/images/Breka.jpeg";
-import TheBoulevard from "../../shared/images/TheBoulevard.webp";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   outerContainer: {
@@ -27,7 +24,7 @@ const useStyles = makeStyles({
 function SearchPage() {
   const navigate = useNavigate();
   const classes = useStyles();
-  const studySpaceReviews = [
+  /* const studySpaceReviews = [
     {
       id: 1001,
       name: "IKB",
@@ -64,7 +61,9 @@ function SearchPage() {
       timeLimit: 2.5,
       url: TheBoulevard,
     },
-  ];
+  ]; */
+  const studySpaces = useSelector((state) => state.reviews.studySpaces);
+
   return (
     <Box className={classes.outerContainer}>
       <Box className={classes.topContainer}>
@@ -78,7 +77,7 @@ function SearchPage() {
           Search Results
         </Typography>
         <Grid container className={classes.grid} columnSpacing="3vw">
-          {studySpaceReviews.map((space) => {
+          {studySpaces.map((space) => {
             return (
               <Grid item xs={3} key={space.id}>
                 <CardActionArea
