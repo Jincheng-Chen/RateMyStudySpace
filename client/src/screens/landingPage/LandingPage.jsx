@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Autocomplete,
-  Card,
-  Rating,
-  Grid,
-} from "@mui/material";
+import { Box, Typography, Card, Rating, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 // import image from '../../shared/images/LandingPageBackground'
 import image from "../../shared/images/LandingPageBackground.jpg";
@@ -99,14 +92,17 @@ function LandingPage() {
     {
       label: "Vancouver",
       url: Vancouver,
+      id: 1,
     },
     {
       label: "San Fransisco",
       url: SanFransisco,
+      id: 2,
     },
     {
       label: "Toronto",
       url: Toronto,
+      id: 3,
     },
   ];
 
@@ -176,7 +172,7 @@ function LandingPage() {
         <Grid container className={classes.grid} columnSpacing="3vw">
           {buttonCityArray.map((city) => {
             return (
-              <Grid item xs={4}>
+              <Grid item xs={4} key={city.id}>
                 <QueryButton cityData={city}></QueryButton>
               </Grid>
             );

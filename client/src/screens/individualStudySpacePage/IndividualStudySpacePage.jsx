@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Autocomplete,
-  Card,
-  Rating,
-  Grid,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import ReviewBox from "./ReviewBox";
 import { useLocation } from "react-router-dom";
@@ -45,7 +38,7 @@ function IndividualStudySpacePage(props) {
       <StudySpaceReview studySpace={studySpace}></StudySpaceReview>
       <Box className={classes.reviewsContainer}>
         {reviews.map((review) => {
-          return <ReviewBox review={review}></ReviewBox>;
+          return <ReviewBox review={review} key={review.id}></ReviewBox>;
         })}
       </Box>
     </Box>
