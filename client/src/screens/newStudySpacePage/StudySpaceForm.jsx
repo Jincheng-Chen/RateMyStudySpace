@@ -13,11 +13,18 @@ import {
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addNewSpace } from "../../features/reviewSlice";
+import { LOCATION_TYPES } from "../../shared/utils";
+import { v4 as uuidv4 } from "uuid";
 
 const defaultValues = {
   name: "",
   location: "",
-  type: "Library",
+  type: LOCATION_TYPES.LIBRARY,
+  url: null,
+  id: "",
 };
 
 const useStyles = makeStyles({
@@ -29,6 +36,8 @@ const useStyles = makeStyles({
 function StudySpaceForm() {
   const [formValues, setFormValues] = useState(defaultValues);
   const classes = useStyles();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +49,14 @@ function StudySpaceForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formValues);
+    const newId = uuidv4();
+    setFormValues({
+      ...formValues,
+      id: newId,
+    });
+    dispatch(addNewSpace(formValues));
+    setFormValues(defaultValues);
+    navigate("/newReview", { state: { id: newId } });
   };
 
   return (
@@ -88,15 +104,19 @@ function StudySpaceForm() {
             <RadioGroup
               aria-label="Study Space"
               id="sp-type-radio"
-              defaultValue="Library"
+              defaultValue={LOCATION_TYPES.LIBRARY}
               name="radio-buttons-group"
             >
               <FormControlLabel
-                value="Library"
+                value={LOCATION_TYPES.LIBRARY}
                 control={<Radio />}
                 label="Library"
               />
-              <FormControlLabel value="Cafe" control={<Radio />} label="Cafe" />
+              <FormControlLabel
+                value={LOCATION_TYPES.CAFE}
+                control={<Radio />}
+                label="Cafe"
+              />
             </RadioGroup>
           </FormControl>
           <Box>

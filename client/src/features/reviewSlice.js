@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import IKB from "../shared/images/IKB.jpg";
+import { LOCATION_TYPES } from "../shared/utils";
 const initialState = {
   //Study spaces should be object with
   // {
@@ -11,6 +12,8 @@ const initialState = {
       id: 1001,
       name: "IKB",
       url: IKB,
+      type: LOCATION_TYPES.LIBRARY,
+      location: "address at street, city, post code",
     },
   ],
   // Reviews should be object with
@@ -90,7 +93,7 @@ const reviewSlice = createSlice({
     addNewReview: (state, action) => {
       state.reviews.push(action.payload);
     },
-    //addes a new space to the space state array
+    //adds a new space to the space state array
     addNewSpace: (state, action) => {
       state.studySpaces.push(action.payload);
     },
