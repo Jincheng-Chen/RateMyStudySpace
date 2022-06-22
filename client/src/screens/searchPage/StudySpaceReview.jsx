@@ -4,6 +4,7 @@ import React from "react";
 import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import TableRestaurantIcon from "@mui/icons-material/TableRestaurant";
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   textIconBox: {
@@ -19,13 +20,14 @@ const useStyles = makeStyles({
 
 function StudySpaceReview({ studySpace }) {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
     <Card
       elevation={5}
-      onClick={() => {
-        console.log("clicked");
-      }}
+      // onClick={() => {
+      //   navigate('/studySpace', {state: studySpace})
+      // }}
     >
       <Box>
         <img
