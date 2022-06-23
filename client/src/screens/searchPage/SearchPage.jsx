@@ -4,6 +4,8 @@ import { makeStyles } from "@mui/styles";
 import StudySpaceReview from "./StudySpaceReview";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
 
 const useStyles = makeStyles({
   outerContainer: {
@@ -76,19 +78,28 @@ function SearchPage() {
         <Typography variant={"h5"} component={"h2"}>
           Search Results
         </Typography>
-        <Grid container className={classes.grid} columnSpacing="3vw">
+        <Splide
+          options={{
+            perPage: 4,
+            arrows: true,
+            pagination: false,
+            drag: "free",
+            gap: "5rem",
+            type: "loop",
+          }}
+        >
           {studySpaces.map((space) => {
             return (
-              <Grid item xs={3} key={space.id}>
+              <SplideSlide key={space.id}>
                 <CardActionArea
                   onClick={() => navigate("/studySpace", { state: space })}
                 >
                   <StudySpaceReview studySpace={space}></StudySpaceReview>
                 </CardActionArea>
-              </Grid>
+              </SplideSlide>
             );
           })}
-        </Grid>
+        </Splide>
       </Box>
     </Box>
   );

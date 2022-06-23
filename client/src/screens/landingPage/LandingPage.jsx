@@ -14,6 +14,10 @@ import TableRestaurantIcon from "@mui/icons-material/TableRestaurant";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import QueryButton from "../../shared/components/QueryButton";
 import { useNavigate } from "react-router-dom";
+
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
+
 const useStyles = makeStyles({
   outerContainer: {
     minHeight: "100vh",
@@ -169,15 +173,26 @@ function LandingPage() {
         <Typography variant="h4">
           Search study locations in popular cities!
         </Typography>
-        <Grid container className={classes.grid} columnSpacing="3vw">
+        <Splide
+          options={{
+            perPage: 3,
+            arrows: true,
+            pagination: false,
+            drag: "free",
+            gap: "5rem",
+            type: "loop",
+          }}
+        >
           {buttonCityArray.map((city) => {
             return (
-              <Grid item xs={4} key={city.id}>
-                <QueryButton cityData={city}></QueryButton>
-              </Grid>
+              <SplideSlide key={city.id}>
+                <Grid item xs={4} key={city.id}>
+                  <QueryButton cityData={city}></QueryButton>
+                </Grid>
+              </SplideSlide>
             );
           })}
-        </Grid>
+        </Splide>
       </Box>
     </Box>
   );
