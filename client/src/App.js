@@ -1,15 +1,13 @@
 import React from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./screens/landingPage/LandingPage";
 import NewReview from "./screens/ReviewPage/ReviewForm/Components/NewReview";
-import ReviewForm from "./screens/ReviewPage/ReviewForm/ReviewForm";
-import {Reviews} from "./screens/ReviewPage/ReviewForm";
 import "./App.css";
 import Header from "./shared/components/Header";
 import { createTheme } from "@mui/material";
-import { ThemeProvider, useTheme } from "@mui/styles";
+import { ThemeProvider } from "@mui/styles";
 import SearchPage from "./screens/searchPage/SearchPage";
 import NewStudySpacePage from "./screens/newStudySpacePage/NewStudySpacePage";
 import IndividualStudySpacePage from "./screens/individualStudySpacePage/IndividualStudySpacePage";
