@@ -7,14 +7,9 @@ import StarRating from "./StarRatings";
 
 function NewReview() {
   const value = 5;
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        minHeight: "100vh",
-        minWidth: "50vw",
-      }}
-    >
+    <Box sx={{ display: "flex", minHeight: "100vh", minWidth: "50vw" }}>
       <Stack spacing={2}>
         <br />
         <Typography variant="h6">New Review</Typography>
