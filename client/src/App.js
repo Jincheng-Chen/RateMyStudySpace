@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "./logo.svg";
-import { Counter } from "./features/counter/Counter";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./screens/landingPage/LandingPage";
@@ -11,16 +10,17 @@ import "./App.css";
 import Header from "./shared/components/Header";
 import { createTheme } from "@mui/material";
 import { ThemeProvider, useTheme } from "@mui/styles";
-import SearchPage from './screens/searchPage/SearchPage';
-import NewStudySpacePage from './screens/newStudySpacePage/NewStudySpacePage';
+import SearchPage from "./screens/searchPage/SearchPage";
+import NewStudySpacePage from "./screens/newStudySpacePage/NewStudySpacePage";
+import IndividualStudySpacePage from "./screens/individualStudySpacePage/IndividualStudySpacePage";
 function App() {
   const theme = createTheme();
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
         <header className="App-header">
-        <BrowserRouter>
-          <Header></Header>
+          <BrowserRouter>
+            <Header></Header>
             <Routes>
               <Route index element={<LandingPage></LandingPage>} />
               <Route path="/search" element={<SearchPage></SearchPage>} />
@@ -28,7 +28,11 @@ function App() {
                 path="/newStudySpace"
                 element={<NewStudySpacePage></NewStudySpacePage>}
               />
-              <Route path="/newReview" element={<Reviews />} />
+              <Route path="/newReview" element={<NewReview />} />
+              <Route
+                path="/studySpace"
+                element={<IndividualStudySpacePage />}
+              />
             </Routes>
           </BrowserRouter>
         </header>
