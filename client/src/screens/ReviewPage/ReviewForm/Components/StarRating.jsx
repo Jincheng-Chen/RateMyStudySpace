@@ -1,5 +1,4 @@
 import { Box, Stack, Typography, Rating } from "@mui/material";
-import { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { Field } from "react-final-form";
 
@@ -15,7 +14,7 @@ const useStyles = makeStyles({
 //Component
 const StarRating = (props) => {
   const classes = useStyles();
-  const [value, setValue] = useState(1);
+  // const [value, setValue] = useState(1);
 
   return (
     <Box>
