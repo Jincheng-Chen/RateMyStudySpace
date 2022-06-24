@@ -1,6 +1,7 @@
 import { Box, Stack, Typography, Rating } from "@mui/material";
 import { useState } from "react";
 import { makeStyles } from "@mui/styles";
+import { Field } from "react-final-form";
 
 //Styles
 const useStyles = makeStyles({
@@ -20,12 +21,18 @@ const StarRating = (props) => {
     <Box>
       <Stack direction="row" spacing={5} className={classes.starRating}>
         <Typography>{props.name}</Typography>
-        <Rating
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        ></Rating>
+        <Field name={props.name} type="radio">
+          {(props) => (
+            <div>
+              <Rating
+                name={props.input.name}
+                value={props.input.value}
+                onChange={props.input.onChange}
+                precision={0.5}
+              />
+            </div>
+          )}
+        </Field>
       </Stack>
     </Box>
   );

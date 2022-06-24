@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./screens/landingPage/LandingPage";
 import NewReview from "./screens/ReviewPage/ReviewForm/Components/NewReview";
+import ReviewForm from "./screens/ReviewPage/ReviewForm/ReviewForm";
 import "./App.css";
 import Header from "./shared/components/Header";
 import { createTheme } from "@mui/material";
