@@ -54,6 +54,8 @@ function NewReview() {
                 )}
               </Field>
               <button type="submit">Submit</button>
+              <br />
+              <br />
             </form>
           )}
         </Form>

@@ -5,6 +5,7 @@ import ReviewBox from "./ReviewBox";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import StudySpaceReview from "../searchPage/StudySpaceReview";
+import { PhotoGallary } from "./PhotoGallary";
 
 const useStyles = makeStyles({
   outerContainer: {
@@ -37,6 +38,7 @@ function IndividualStudySpacePage(props) {
     <Box className={classes.outerContainer}>
       <StudySpaceReview studySpace={studySpace}></StudySpaceReview>
       <Box className={classes.reviewsContainer}>
+        <PhotoGallary />
         {reviews.map((review) => {
           return <ReviewBox review={review} key={review.id}></ReviewBox>;
         })}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Grid, Card, CardActionArea } from "@mui/material";
+import { Box, Typography, Card, CardActionArea } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import StudySpaceReview from "./StudySpaceReview";
 import { useNavigate } from "react-router-dom";
@@ -96,6 +96,8 @@ function SearchPage() {
                 >
                   <StudySpaceReview studySpace={space}></StudySpaceReview>
                 </CardActionArea>
+                <br />
+                <br />
               </SplideSlide>
             );
           })}

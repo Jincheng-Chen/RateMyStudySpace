@@ -13,8 +13,6 @@ import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import TableRestaurantIcon from "@mui/icons-material/TableRestaurant";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import QueryButton from "../../shared/components/QueryButton";
-import { useNavigate } from "react-router-dom";
-
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
@@ -189,6 +187,7 @@ function LandingPage() {
                 <Grid item xs={4} key={city.id}>
                   <QueryButton cityData={city}></QueryButton>
                 </Grid>
+                <br />
               </SplideSlide>
             );
           })}
