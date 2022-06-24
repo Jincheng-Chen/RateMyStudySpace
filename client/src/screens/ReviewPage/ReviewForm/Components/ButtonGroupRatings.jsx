@@ -53,7 +53,7 @@ const ButtonGroupRatings = () => {
         {title("How regular do yo come here?")}
         <Radios
           label="Pick one..."
-          name="gender"
+          name="frequency"
           required={true}
           data={[
             { label: "Not often", value: "Not often" },
@@ -64,10 +64,9 @@ const ButtonGroupRatings = () => {
       </Stack>
       <Stack className={classes.btnGroup}>
         {title("Would you recommand this studyspce for other worker?")}
-
         <Radios
           label="Pick one..."
-          name="gender"
+          name="recommendation"
           required={true}
           data={[
             { label: "Not ☹️", value: "Not" },
