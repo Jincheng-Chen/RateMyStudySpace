@@ -5,14 +5,19 @@ import ButtonGroupRatings from "./ButtonGroupRatings";
 import CommentSection from "./CommentSection";
 import StarRating from "./StarRatings";
 import { Form, Field } from "react-final-form";
+import { useDispatch } from "react-redux";
+import { addNewReview } from "../../../../features/reviewSlice";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const showResults = async (values) => {
-  await sleep(500); // server latency
-  window.alert(JSON.stringify(values, undefined, 2));
-};
 
 function NewReview() {
+  const dispatch = useDispatch();
+  const showResults = async (values) => {
+    await sleep(500); // server latency
+    window.alert(JSON.stringify(values, undefined, 2));
+    dispatch(addNewReview(values));
+  };
+
   return (
     <Box
       sx={{
