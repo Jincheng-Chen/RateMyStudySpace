@@ -1,11 +1,12 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Button, Input, InputLabel } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import ReviewBox from "./ReviewBox";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import StudySpaceReview from "../searchPage/StudySpaceReview";
-import { PhotoGallary } from "./PhotoGallary";
+import { PhotoGallery } from "./PhotoGallery";
+import { addNewImage } from "../../features/reviewSlice";
 
 const useStyles = makeStyles({
   outerContainer: {
@@ -24,10 +25,29 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
 });
+
 function IndividualStudySpacePage(props) {
   const classes = useStyles();
   const location = useLocation();
   const studySpace = location.state;
+  const [picture, setPicture] = useState("");
+  const dispatch = useDispatch();
+
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    setPicture(value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(
+      addNewImage({
+        id: studySpace.id,
+        url: picture,
+      })
+    );
+    setPicture("");
+  };
 
   const reviews = useSelector((state) => {
     return state.reviews.reviews.filter((review) => {
@@ -36,9 +56,24 @@ function IndividualStudySpacePage(props) {
   });
   return (
     <Box className={classes.outerContainer}>
-      <StudySpaceReview studySpace={studySpace}></StudySpaceReview>
+      <Box className={classes.spaceContainer}>
+        <StudySpaceReview studySpace={studySpace}></StudySpaceReview>
+        <form onSubmit={handleSubmit}>
+          <InputLabel htmlFor="sp-image">Image URL</InputLabel>
+          <Input
+            id="sp-image"
+            aria-describedby="helper-image"
+            name={"url"}
+            value={picture}
+            onChange={handleInputChange}
+          />
+          <Button variant="contained" type={"submit"}>
+            Submit Picture
+          </Button>
+        </form>
+      </Box>
       <Box className={classes.reviewsContainer}>
-        <PhotoGallary />
+        <PhotoGallery studySpace={studySpace} />
         {reviews.map((review) => {
           return <ReviewBox review={review} key={review.id}></ReviewBox>;
         })}
