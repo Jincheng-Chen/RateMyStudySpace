@@ -1,8 +1,14 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
-export function PhotoGallary() {
+export function PhotoGallery({ studySpace }) {
+  const images = useSelector(
+    (state) =>
+      state.reviews.studySpaces.find((space) => space.id === studySpace.id)
+        .photos
+  );
   return (
     <Splide
       options={{
@@ -14,7 +20,16 @@ export function PhotoGallary() {
       }}
       aria-label="React Splide Example"
     >
-      <SplideSlide>
+      {images.map((photo, index) => {
+        return (
+          <SplideSlide key={index}>
+            <ImageHolder>
+              <img src={photo} alt="1" />
+            </ImageHolder>
+          </SplideSlide>
+        );
+      })}
+      {/* <SplideSlide>
         <ImageHolder>
           <img src={require("../../shared/images/cafe7.jpeg")} alt="1" />
         </ImageHolder>
@@ -48,7 +63,7 @@ export function PhotoGallary() {
         <ImageHolder>
           <img src={require("../../shared/images/cafe-study1.jpeg")} alt="2" />
         </ImageHolder>
-      </SplideSlide>
+      </SplideSlide> */}
     </Splide>
   );
 }

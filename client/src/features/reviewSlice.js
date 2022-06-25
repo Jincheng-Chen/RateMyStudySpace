@@ -4,6 +4,17 @@ import { LOCATION_TYPES } from "../shared/utils";
 import TheNest from "../shared/images/TheNest.jpg";
 import Breka from "../shared/images/Breka.jpeg";
 import TheBoulevard from "../shared/images/TheBoulevard.webp";
+import Cafe1 from "../shared/images/cafe1.jpeg";
+import Cafe2 from "../shared/images/cafe2.jpeg";
+import Cafe3 from "../shared/images/cafe3.jpeg";
+import Cafe4 from "../shared/images/cafe4.jpeg";
+import Cafe5 from "../shared/images/cafe5.jpeg";
+import Cafe6 from "../shared/images/cafe6.jpeg";
+import Cafe7 from "../shared/images/cafe7.jpeg";
+import Study1 from "../shared/images/cafe-study1.jpeg";
+import Study2 from "../shared/images/cafe-study2.webp";
+import Study3 from "../shared/images/cafe-study3.jpeg";
+
 const initialState = {
   //Study spaces should be object with
   // {
@@ -17,6 +28,7 @@ const initialState = {
       url: IKB,
       type: LOCATION_TYPES.LIBRARY,
       location: "address at street, city, post code",
+      photos: [Cafe1, Cafe2, Cafe3, Cafe4],
     },
     {
       id: 1002,
@@ -24,6 +36,7 @@ const initialState = {
       url: TheNest,
       type: LOCATION_TYPES.CAFE,
       location: "address at street, city, post code",
+      photos: [Cafe5, Cafe6, Cafe7, Study1],
     },
     {
       id: 1003,
@@ -31,6 +44,7 @@ const initialState = {
       url: Breka,
       type: LOCATION_TYPES.CAFE,
       location: "address at street, city, post code",
+      photos: [Study2, Study3, Cafe1, Cafe2],
     },
     {
       id: 1004,
@@ -38,6 +52,7 @@ const initialState = {
       url: TheBoulevard,
       type: LOCATION_TYPES.CAFE,
       location: "address at street, city, post code",
+      photos: [Cafe3, Cafe4, Cafe5, Cafe6],
     },
   ],
   // Reviews should be object with
@@ -181,9 +196,15 @@ const reviewSlice = createSlice({
     addNewSpace: (state, action) => {
       state.studySpaces.push(action.payload);
     },
+    // adds new url to study space url array
+    addNewImage: (state, action) => {
+      state.studySpaces
+        .find((space) => space.id === action.payload.id)
+        .photos.push(action.payload.url);
+    },
   },
 });
 
-export const { addNewReview, addNewSpace } = reviewSlice.actions;
+export const { addNewReview, addNewSpace, addNewImage } = reviewSlice.actions;
 
 export default reviewSlice.reducer;
