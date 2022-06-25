@@ -35,7 +35,7 @@ const ButtonGroupRatings = () => {
         {title("How long did you stay?")}
         <Radios
           label="Pick one..."
-          name="gender"
+          name="duration"
           required={true}
           data={[
             { label: "< 30mins", value: "<30mins" },
@@ -47,7 +47,7 @@ const ButtonGroupRatings = () => {
 
       <Stack className={classes.btnGroup}>
         {title("What type of task did you do?")}
-        <Checkboxes name="best" required={false} data={checkboxData} />
+        <Checkboxes name="tasks" required={false} data={checkboxData} />
       </Stack>
       <Stack className={classes.btnGroup}>
         {title("How regular do yo come here?")}
