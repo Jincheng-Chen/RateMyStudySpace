@@ -7,17 +7,21 @@ import StarRating from "./StarRatings";
 import { Form, Field } from "react-final-form";
 import { useDispatch } from "react-redux";
 import { addNewReview } from "../../../../features/reviewSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function NewReview() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const studySpace = location.state;
+
+  const id = studySpace ? studySpace.id : null;
   const showResults = async (values) => {
     await sleep(500); // server latency
     window.alert(JSON.stringify(values, undefined, 2));
-    dispatch(addNewReview(values));
+    dispatch(addNewReview({ ...values, spaceId: id }));
     navigate("/search");
   };
 
@@ -40,6 +44,7 @@ function NewReview() {
                 props.handleSubmit(event).then(reset);
               }}
             >
+              <></>
               <StarRating />
               <ButtonGroupRatings />
               <Field name="comment">

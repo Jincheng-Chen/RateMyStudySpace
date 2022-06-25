@@ -50,11 +50,11 @@ function StudySpaceForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newId = uuidv4();
-    setFormValues({
-      ...formValues,
-      id: newId,
-    });
-    dispatch(addNewSpace(formValues));
+    // setFormValues({
+    //   ...formValues,
+    //   id: newId,
+    // });
+    dispatch(addNewSpace({ ...formValues, id: newId }));
     setFormValues(defaultValues);
     navigate("/newReview", { state: { id: newId } });
   };

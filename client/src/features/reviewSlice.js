@@ -198,9 +198,13 @@ const reviewSlice = createSlice({
     },
     // adds new url to study space url array
     addNewImage: (state, action) => {
-      state.studySpaces
-        .find((space) => space.id === action.payload.id)
-        .photos.push(action.payload.url);
+      console.log(action.payload);
+      const index = state.studySpaces.findIndex(
+        (space) => space.id === action.payload.id
+      );
+      state.studySpaces[index].photos
+        ? state.studySpaces[index].photos.push(action.payload.url)
+        : (state.studySpaces[index].photos = [action.payload.url]);
     },
   },
 });

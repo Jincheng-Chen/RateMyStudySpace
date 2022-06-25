@@ -20,7 +20,7 @@ export function PhotoGallery({ studySpace }) {
       }}
       aria-label="React Splide Example"
     >
-      {images.map((photo, index) => {
+      {images?.map((photo, index) => {
         return (
           <SplideSlide key={index}>
             <ImageHolder>

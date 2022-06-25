@@ -26,18 +26,18 @@ const StarRatings = () => {
           Facility:
         </Typography>
         <StarRating name="WiFi Speed"></StarRating>
-        <StarRating name="Time limit"></StarRating>
+        <StarRating name="timeLimit"></StarRating>
 
         <Typography variant="h6" align="left">
           Seats and Table:
         </Typography>
-        <StarRating name="Table size"></StarRating>
+        <StarRating name="tableSpace"></StarRating>
         <StarRating name="Seats comfort"></StarRating>
 
         <Typography variant="h6" align="left">
           Vibe:
         </Typography>
-        <StarRating name="Quit level"></StarRating>
+        <StarRating name="noise"></StarRating>
         <StarRating name="BGM"></StarRating>
       </Stack>
     </Box>
