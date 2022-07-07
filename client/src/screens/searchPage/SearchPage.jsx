@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Typography, Card, CardActionArea } from "@mui/material";
+import { Box, Typography, CardActionArea } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import StudySpaceReview from "./StudySpaceReview";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import Filters from "./Filters";
 
 const useStyles = makeStyles({
   outerContainer: {
@@ -72,7 +73,7 @@ function SearchPage() {
         <Typography variant={"h5"} component={"h2"}>
           Filter Options
         </Typography>
-        <Card>Filters are currently under construction!</Card>
+        <Filters />
       </Box>
       <Box className={classes.bottomContainer}>
         <Typography variant={"h5"} component={"h2"}>
