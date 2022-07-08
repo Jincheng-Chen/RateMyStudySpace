@@ -7,8 +7,17 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  container: {
+    padding: "3vw",
+  },
+});
 
 function Filters() {
+  const classes = useStyles();
+
   const defaultValues = {
     filter: "none",
     operator: "none",
@@ -26,7 +35,7 @@ function Filters() {
   };
 
   return (
-    <Card>
+    <Card className={classes.container}>
       <FormControl>
         <InputLabel id={"filter-label"}>Filter</InputLabel>
         <Select
