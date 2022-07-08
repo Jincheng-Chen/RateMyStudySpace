@@ -2,10 +2,10 @@
   "name": "ratemystudyspace",
   "description": "Project Description:\r Our project proposal is RateMyStudySpace. This app will allow users to rate and search for study spaces, based on a variety of metrics. They can rate and search based on quietness, space, affordability, etc. In addition, they can leave rating descriptions for other users to read. This app will be targeted towards students, remote workers, freelancers; anybody who needs a space to study/work. In the backend, we plan to store information about study spaces (libraries, cafes, other types of establishments), as well as information about reviews. As a stretch, we could also store information about user data.",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon -r dotenv/config . dotenv_config_path=.env server.js"
   },
   "repository": {
     "type": "git",
@@ -53,11 +53,13 @@
     "@mui/x-date-pickers": "^5.0.0-alpha.6",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "final-form": "^4.20.7",
     "mongoose": "^6.4.3",
     "mui-rff": "^5.3.0",
     "mui-rff-template": "^2.3.6",
+    "nodemon": "^2.0.19",
     "prettier": "^2.6.2",
     "react-final-form": "^6.5.9",
     "typescript": "^4.7.4"
