@@ -16,7 +16,7 @@ app.use(cors({}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/review', reviewRouter);
+app.use('/reviews', reviewRouter);
 app.use('/studySpace', studySpaceRouter);
 
 mongoose.connect(DB).then(() => {

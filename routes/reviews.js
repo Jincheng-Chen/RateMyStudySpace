@@ -2,11 +2,31 @@ const express = require('express');
 
 const router = express.Router();
 
-const reviewController = require('../controllers/reviewController');
+const {
+  getReviews,
+  addNewImage,
+  addNewReview,
+  deleteReview,
+  getReviewsByStudySpaceId,
+  getReviewsByReviewId,
+} = require('../controllers/reviewController');
 
-router.get('/:cafeId', reviewController.getReviews);
-router.patch('/addNewImage/:reviewId', reviewController.addNewImage);
-router.post('/addNewReview', reviewController.addNewReview);
-router.delete('/deleteReview/:reviewId', reviewController.deleteReview);
+// GET all the reviews
+router.get('/', getReviews);
+
+// GET reviews by reviewId
+router.get('/:reviewID', getReviewsByReviewId);
+
+// Get all the reviews of a specific studySpaceId
+router.get('/studySpace/:studySpaceId', getReviewsByStudySpaceId);
+
+// POST a new Review to the collection
+router.post('/', addNewReview);
+
+// PATCH a new image to the specific review
+router.patch('/addNewImage/:reviewId', addNewImage);
+
+// DELETE a specific review by id
+router.delete('/deleteReview/:reviewId', deleteReview);
 
 module.exports = router;
