@@ -47,10 +47,6 @@ const getReviewsByStudySpaceId = async (req, res) => {
   res.status(200).json(review);
 };
 
-const addNewImage = (req, res) => {
-  console.log(req + res);
-};
-
 const addNewReview = async (req, res) => {
   const {
     user, spaceId, overall, quietness, tableSpace, timeLimit, comment,
@@ -68,12 +64,51 @@ const addNewReview = async (req, res) => {
   }
 };
 
-const deleteReview = (req, res) => {
-  console.log(req + res);
+// update a recipe
+const updateReview = async (req, res) => {
+  const { reviewID } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(reviewID)) {
+    return res
+      .status(404)
+      .json({ error: 'Invalid ID, no such document exist in DB' });
+  }
+
+  const review = await Review.findOneAndUpdate(
+    { _id: reviewID },
+    {
+      ...req.body,
+    },
+  );
+  if (!review) {
+    return res.status(404).json({ error: 'No such review' });
+  }
+  const reviews = await Review.find({}).sort({ createdAt: -1 });
+  res.status(200).json(reviews);
+};
+
+const deleteReview = async (req, res) => {
+  const { reviewID } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(reviewID)) {
+    return res
+      .status(404)
+      .json({ error: 'Invalid ID format' });
+  }
+  const review = await Review.findOneAndDelete({ _id: reviewID });
+  if (!review) {
+    return res.status(404).json({ error: '404 No such review' });
+  }
+  res.status(200).json(review);
+};
+
+// TODO: add updateReview
+const addNewImage = (req, res) => {
+  res.status(200).json({ message: 'Image added' });
 };
 
 module.exports = {
   getReviews,
+  updateReview,
   addNewImage,
   addNewReview,
   deleteReview,
