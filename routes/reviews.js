@@ -5,7 +5,6 @@ const router = express.Router();
 const {
   getReviews,
   updateReview,
-  addNewImage,
   addNewReview,
   deleteReview,
   getReviewsByStudySpaceId,
@@ -29,8 +28,5 @@ router.patch('/:reviewID', updateReview);
 
 // Get all the reviews of a specific studySpaceId
 router.get('/studySpace/:studySpaceId', getReviewsByStudySpaceId);
-
-// PATCH a new image to the specific review
-router.patch('/addNewImage/:reviewId', addNewImage);
 
 module.exports = router;
