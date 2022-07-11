@@ -1,10 +1,15 @@
 const StudySpace = require('../models/studySpace');
 
+// TODO get study space by id
 const getStudySpace = (req, res) => {
-  console.log(req + res);
-  res.status(200).json('getStudySpace');
+  StudySpace.findById(req.params.studySpaceId).then((response) => {
+    res.status(200).json(response);
+  }).catch((err) => {
+    res.status(400).json(err);
+  });
 };
 
+// TODO get study spaces using a query
 const getStudySpaceFiltered = (req, res) => {
   console.log(req + res);
 };
