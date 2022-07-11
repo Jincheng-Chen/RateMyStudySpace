@@ -27,9 +27,14 @@ const addNewStudySpace = (req, res) => {
   });
 };
 
-// TODO: add updateReview
 const addNewImage = (req, res) => {
-  res.status(200).json({ message: 'Image added' });
+  const id = req.params.studySpaceId;
+  const { image } = req.body;
+  StudySpace.findByIdAndUpdate(id, { $addToSet: { images: image } }).then(() => {
+    res.status(204).json('');
+  }).catch((err) => {
+    res.status(400).json(err);
+  });
 };
 
 module.exports = {
