@@ -1,6 +1,5 @@
 const StudySpace = require('../models/studySpace');
 
-// TODO get study space by id
 const getStudySpace = (req, res) => {
   StudySpace.findById(req.params.studySpaceId).then((response) => {
     res.status(200).json(response);
@@ -12,6 +11,7 @@ const getStudySpace = (req, res) => {
 // TODO get study spaces using a query
 const getStudySpaceFiltered = (req, res) => {
   console.log(req + res);
+  res.status(400).json('getStudySpaceFiltered');
 };
 
 const addNewStudySpace = (req, res) => {
@@ -27,8 +27,14 @@ const addNewStudySpace = (req, res) => {
   });
 };
 
+// TODO: add updateReview
+const addNewImage = (req, res) => {
+  res.status(200).json({ message: 'Image added' });
+};
+
 module.exports = {
   getStudySpace,
   getStudySpaceFiltered,
   addNewStudySpace,
+  addNewImage,
 };

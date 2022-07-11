@@ -101,15 +101,9 @@ const deleteReview = async (req, res) => {
   res.status(200).json(review);
 };
 
-// TODO: add updateReview
-const addNewImage = (req, res) => {
-  res.status(200).json({ message: 'Image added' });
-};
-
 module.exports = {
   getReviews,
   updateReview,
-  addNewImage,
   addNewReview,
   deleteReview,
   getReviewsByStudySpaceId,
