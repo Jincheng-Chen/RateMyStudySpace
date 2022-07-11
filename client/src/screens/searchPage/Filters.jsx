@@ -6,6 +6,8 @@ import {
   MenuItem,
   Select,
   TextField,
+  Button,
+  Grid,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -36,49 +38,67 @@ function Filters() {
 
   return (
     <Card className={classes.container}>
-      <FormControl>
-        <InputLabel id={"filter-label"}>Filter</InputLabel>
-        <Select
-          labelId={"filter-label"}
-          id={"filter-options"}
-          value={filter.filter}
-          label={"Filter"}
-          name={"filter"}
-          onChange={handleInputChange}
-        >
-          <MenuItem value={"none"}>None</MenuItem>
-          <MenuItem value={"overall"}>Overall</MenuItem>
-          <MenuItem value={"noise"}>Noise</MenuItem>
-          <MenuItem value={"space"}>Table Space</MenuItem>
-          <MenuItem value={"time"}>Time Limit</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl>
-        <InputLabel id={"operator-label"}>Operator</InputLabel>
-        <Select
-          labelId={"operator-label"}
-          id={"operator-options"}
-          value={filter.operator}
-          label={"Operator"}
-          name={"operator"}
-          onChange={handleInputChange}
-        >
-          <MenuItem value={"none"}>None</MenuItem>
-          <MenuItem value={"greater"}>></MenuItem>
-          <MenuItem value={"less"}>{"<"}</MenuItem>
-          <MenuItem value={"equal"}>=</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl>
-        <TextField
-          id={"value-options"}
-          value={filter.value}
-          name={"value"}
-          label={"Value"}
-          onChange={handleInputChange}
-          type={"number"}
-        />
-      </FormControl>
+      <Grid
+        container
+        spacing={3}
+        justifyContent={"space-evenly"}
+        alignItems={"center"}
+      >
+        <Grid item xs={3}>
+          <FormControl>
+            <InputLabel id={"filter-label"}>Filter</InputLabel>
+            <Select
+              labelId={"filter-label"}
+              id={"filter-options"}
+              value={filter.filter}
+              label={"Filter"}
+              name={"filter"}
+              onChange={handleInputChange}
+            >
+              <MenuItem value={"none"}>None</MenuItem>
+              <MenuItem value={"overall"}>Overall</MenuItem>
+              <MenuItem value={"noise"}>Noise</MenuItem>
+              <MenuItem value={"space"}>Table Space</MenuItem>
+              <MenuItem value={"time"}>Time Limit</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={3}>
+          <FormControl>
+            <InputLabel id={"operator-label"}>Operator</InputLabel>
+            <Select
+              labelId={"operator-label"}
+              id={"operator-options"}
+              value={filter.operator}
+              label={"Operator"}
+              name={"operator"}
+              onChange={handleInputChange}
+            >
+              <MenuItem value={"none"}>None</MenuItem>
+              <MenuItem value={"greater"}>></MenuItem>
+              <MenuItem value={"less"}>{"<"}</MenuItem>
+              <MenuItem value={"equal"}>=</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={3}>
+          <FormControl>
+            <TextField
+              id={"value-options"}
+              value={filter.value}
+              name={"value"}
+              label={"Value"}
+              onChange={handleInputChange}
+              type={"number"}
+            />
+          </FormControl>
+        </Grid>
+        <Grid item xs={3}>
+          <Button id={"apply-filter"} variant={"contained"} size={"large"}>
+            Apply Filter
+          </Button>
+        </Grid>
+      </Grid>
     </Card>
   );
 }
