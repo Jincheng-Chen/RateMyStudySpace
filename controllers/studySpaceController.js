@@ -1,4 +1,5 @@
 const StudySpace = require('../models/studySpace');
+const Reviews = require('../models/review');
 
 const getStudySpace = (req, res) => {
   StudySpace.findById(req.params.studySpaceId).then((response) => {
@@ -8,20 +9,64 @@ const getStudySpace = (req, res) => {
   });
 };
 
-// TODO get study spaces using a query
 const getStudySpaceFiltered = (req, res) => {
-  console.log(req + res);
-  res.status(400).json('getStudySpaceFiltered');
+  const { filter, operator, value } = req.params;
+  const avgKey = `$${filter}`;
+  const operatorKey = `$${operator}`;
+  const query = { average: {} };
+  query.average[operatorKey] = Number(value);
+  if (filter === 'none' || operator === 'none' || value === '') {
+    StudySpace.find().then((found) => {
+      res.status(200).json(found);
+    }).catch((err) => {
+      res.status(400).json(err);
+    });
+  } else {
+    Reviews.aggregate([
+      {
+        $group: {
+          _id: '$spaceId',
+          average: { $avg: avgKey },
+        },
+      },
+      {
+        $match: query,
+      },
+      {
+        $project: {
+          _id: {
+            $toObjectId: '$_id',
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: 'studyspaces',
+          localField: '_id',
+          foreignField: '_id',
+          as: 'space',
+        },
+      },
+      {
+        $unwind: '$space',
+      },
+      {
+        $replaceRoot: { newRoot: '$space' },
+      },
+    ]).then((found) => {
+      res.status(200).json(found);
+    }).catch((err) => {
+      res.status(400).json(err);
+    });
+  }
 };
 
 const addNewStudySpace = (req, res) => {
-  console.log(req.body);
   const studySpace = req.body;
   const newStudySpace = new StudySpace(studySpace);
 
-  newStudySpace.save().then((response) => {
-    console.log(response);
-    res.status(204).json('');
+  newStudySpace.save().then(() => {
+    res.status(204).json();
   }).catch((err) => {
     res.status(400).json(err);
   });
