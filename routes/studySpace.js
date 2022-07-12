@@ -8,7 +8,7 @@ const studySpaceController = require('../controllers/studySpaceController');
 router.get('/:studySpaceId', studySpaceController.getStudySpace);
 
 // GET an array of study spaces that fit a certain filter
-router.get('/filter', studySpaceController.getStudySpaceFiltered);
+router.get('/:filter/:operator/:value', studySpaceController.getStudySpaceFiltered);
 
 // POST new study space
 router.post('/addNewStudySpace', studySpaceController.addNewStudySpace);

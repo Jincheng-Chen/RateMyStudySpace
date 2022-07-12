@@ -10,7 +10,7 @@ const getStudySpace = (req, res) => {
 
 // TODO get study spaces using a query
 const getStudySpaceFiltered = (req, res) => {
-  console.log(req + res);
+  console.log(req.body);
   res.status(400).json('getStudySpaceFiltered');
 };
 
