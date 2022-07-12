@@ -57,9 +57,9 @@ function Filters() {
             >
               <MenuItem value={"none"}>None</MenuItem>
               <MenuItem value={"overall"}>Overall</MenuItem>
-              <MenuItem value={"noise"}>Noise</MenuItem>
-              <MenuItem value={"space"}>Table Space</MenuItem>
-              <MenuItem value={"time"}>Time Limit</MenuItem>
+              <MenuItem value={"quietness"}>Noise</MenuItem>
+              <MenuItem value={"tableSpace"}>Table Space</MenuItem>
+              <MenuItem value={"timeLimit"}>Time Limit</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -75,9 +75,9 @@ function Filters() {
               onChange={handleInputChange}
             >
               <MenuItem value={"none"}>None</MenuItem>
-              <MenuItem value={"greater"}>></MenuItem>
-              <MenuItem value={"less"}>{"<"}</MenuItem>
-              <MenuItem value={"equal"}>=</MenuItem>
+              <MenuItem value={"gt"}>></MenuItem>
+              <MenuItem value={"lt"}>{"<"}</MenuItem>
+              <MenuItem value={"eq"}>=</MenuItem>
             </Select>
           </FormControl>
         </Grid>
