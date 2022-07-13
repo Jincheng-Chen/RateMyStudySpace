@@ -37,7 +37,6 @@ function NewReview() {
     >
       <Stack spacing={2}>
         <br />
-        <AllReviews />
         <Typography variant="h6">New Review</Typography>
         <Form onSubmit={showResults}>
           {(props, reset) => (
@@ -66,6 +65,7 @@ function NewReview() {
             </form>
           )}
         </Form>
+        <AllReviews />
       </Stack>
     </Box>
   );
