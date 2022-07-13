@@ -8,6 +8,7 @@ import { Form, Field } from "react-final-form";
 import { useDispatch } from "react-redux";
 import { addNewReview } from "../../../../features/reviewSlice";
 import { useNavigate, useLocation } from "react-router-dom";
+import AllReviews from "./AllReviews";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -36,6 +37,7 @@ function NewReview() {
     >
       <Stack spacing={2}>
         <br />
+        <AllReviews />
         <Typography variant="h6">New Review</Typography>
         <Form onSubmit={showResults}>
           {(props, reset) => (
