@@ -1,44 +1,22 @@
-import { Grid, TextField, Rating } from "@mui/material";
-import { Box } from "@mui/system";
-import React, { useState } from "react";
+import { TextField, Rating, Button } from "@mui/material";
+import React from "react";
 import { Form, Field } from "react-final-form";
 import { Radios } from "mui-rff";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import AdapterDateFns from "@date-io/date-fns";
-
 import { DatePicker } from "mui-rff";
-
 import "date-fns";
-import DateFnsUtils from "@date-io/date-fns";
+import { Switches } from "mui-rff";
 
-import { Switches, SwitchData } from "mui-rff";
-
-import { Checkboxes } from "mui-rff";
-
-// const initalState = {
-//   reviewId: 0,
-//   starRatings: {
-//     wifi: 0,
-//     timeLimit: 0,
-//     food: 0,
-//     service: 0,
-//   },
-//   questionnire: {
-//     timeStayed: 0,
-//     taskType: 0,
-//     frequency: 0,
-//   },
-//   comments: "",
-//   createdAt: new Date(),
-//   updatedAt: new Date(),
-// };
+import { useAddReviewMutation } from "../../../features/api/apiSlice";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const showResults = async (values) => {
-  await sleep(500); // server latency
-  window.alert(JSON.stringify(values, undefined, 2));
-};
 
 const ReviewForm = () => {
+  const [addReview] = useAddReviewMutation();
+  const showResults = async (values) => {
+    await sleep(10); // server latency
+    await addReview(values);
+    window.alert(JSON.stringify(values, undefined, 2));
+  };
   return (
     <>
       <h1>REACT Final form</h1>
@@ -104,7 +82,7 @@ const ReviewForm = () => {
             </LocalizationProvider>
 
             <br />
-            <button type="submit">Post</button>
+            <Button type="submit">Post</Button>
           </form>
         )}
       </Form>
