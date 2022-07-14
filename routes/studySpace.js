@@ -16,4 +16,5 @@ router.post('/addNewStudySpace', studySpaceController.addNewStudySpace);
 // PATCH a new image to the specific study space
 router.patch('/addNewImage/:studySpaceId', studySpaceController.addNewImage);
 
+router.get('/getStudySpacesByLocation/:location', studySpaceController.getStudySpaceByLocation);
 module.exports = router;

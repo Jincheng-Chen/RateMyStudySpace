@@ -21,13 +21,13 @@ const NewReview = (props) => {
   const studySpace = location.state;
   const [addReview] = useAddReviewMutation();
   console.log(studySpace);
-  const id = studySpace ? studySpace.id : null;
+  const id = studySpace ? studySpace._id : null;
   const showResults = async (values) => {
     // window.alert(JSON.stringify(values, undefined, 2));
     console.log(values);
     addReview({ ...values, spaceId: id });
-    navigate("/studySpace", { state: { id: id } });
-    // navigate("/search");
+
+    navigate("/studySpace", { state: studySpace });
   };
 
   return (

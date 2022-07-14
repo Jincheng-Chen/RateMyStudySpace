@@ -22,6 +22,20 @@ export const studySpaceApiSlice = createApi({
       }),
       invalidatesTags: ["StudySpace"],
     }),
+    getStudySpacesByLocation: builder.query({
+      query: (location) => `studySpace/getStudySpacesByLocation/${location}`,
+      providesTags: ["StudySpace"],
+    }),
+    addImage: builder.mutation({
+      query: ({ studySpaceId, imageUrl }) => ({
+        url: `/studySpace/addNewImage/${studySpaceId}`,
+        method: "PATCH",
+        body: {
+          image: imageUrl,
+        },
+      }),
+      invalidatesTags: ["StudySpace"],
+    }),
   }),
 });
 
@@ -29,4 +43,6 @@ export const {
   useGetStudySpaceQuery,
   useGetStudySpaceFilteredQuery,
   useAddStudySpaceMutation,
+  useGetStudySpacesByLocationQuery,
+  useAddImageMutation,
 } = studySpaceApiSlice;

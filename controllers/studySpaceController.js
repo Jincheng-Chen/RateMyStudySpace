@@ -61,6 +61,17 @@ const getStudySpaceFiltered = (req, res) => {
   }
 };
 
+const getStudySpaceByLocation = (req, res) => {
+  const { location } = req.params;
+
+  StudySpace.find({ location })
+    .then((response) => {
+      res.status(200).json(response);
+    }).catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
 const addNewStudySpace = (req, res) => {
   const studySpace = req.body;
   const newStudySpace = new StudySpace(studySpace);
@@ -74,7 +85,9 @@ const addNewStudySpace = (req, res) => {
 
 const addNewImage = (req, res) => {
   const id = req.params.studySpaceId;
+  console.log(id);
   const { image } = req.body;
+  console.log(req.body);
   StudySpace.findByIdAndUpdate(id, { $addToSet: { images: image } }).then(() => {
     res.status(204).json('');
   }).catch((err) => {
@@ -87,4 +100,5 @@ module.exports = {
   getStudySpaceFiltered,
   addNewStudySpace,
   addNewImage,
+  getStudySpaceByLocation,
 };

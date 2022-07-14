@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Box, Button, Input, InputLabel } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import ReviewBox from "./ReviewBox";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import StudySpaceReview from "../searchPage/StudySpaceReview";
 import { PhotoGallery } from "./PhotoGallery";
 import { addNewImage } from "../../features/reviewSlice";
 import { useGetReviewsBySpaceIdQuery } from "../../features/api/apiSlice";
+import { useAddImageMutation } from "../../features/api/studySpaceApiSlice";
 const useStyles = makeStyles({
   outerContainer: {
     display: "flex",
@@ -28,28 +29,33 @@ const useStyles = makeStyles({
 
 function IndividualStudySpacePage(props) {
   const classes = useStyles();
+  const navigate = useNavigate();
   const location = useLocation();
   const studySpace = location.state;
+  console.log(studySpace);
 
   const [picture, setPicture] = useState("");
-  const [reviews, setReviews] = useState([]);
   const dispatch = useDispatch();
+  const [addImage] = useAddImageMutation();
+  console.log(studySpace._id);
   const { data, isLoading } = useGetReviewsBySpaceIdQuery(
-    studySpace ? studySpace.id : "null"
+    studySpace ? studySpace._id : "null"
   );
   const handleInputChange = (e) => {
     const { value } = e.target;
     setPicture(value);
   };
-
+  let reviews = [];
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(
-      addNewImage({
-        id: studySpace.id,
-        url: picture,
-      })
-    );
+    // dispatch(
+    //   addNewImage({
+    //     id: studySpace.id,
+    //     url: picture,
+    //   })
+    // );
+    console.log(picture);
+    addImage({ studySpaceId: studySpace._id, imageUrl: picture });
     setPicture("");
   };
 
@@ -58,38 +64,42 @@ function IndividualStudySpacePage(props) {
   //     return review.spaceId === studySpace.id;
   //   });
   // });
-
-  // useEffect(() => {
-  //   getReviewsBySpaceId(studySpace.id).unwind.then(data => {
-  //     console.log(data)
-  //   })
-  // },[])
-  return (
-    <Box className={classes.outerContainer}>
-      <Box className={classes.spaceContainer}>
-        <StudySpaceReview studySpace={studySpace}></StudySpaceReview>
-        <form onSubmit={handleSubmit}>
-          <InputLabel htmlFor="sp-image">Image URL</InputLabel>
-          <Input
-            id="sp-image"
-            aria-describedby="helper-image"
-            name={"url"}
-            value={picture}
-            onChange={handleInputChange}
-          />
-          <Button variant="contained" type={"submit"}>
-            Submit Picture
+  if (!isLoading) {
+    console.log(data);
+    reviews = data;
+    return (
+      <Box className={classes.outerContainer}>
+        <Box className={classes.spaceContainer}>
+          <StudySpaceReview studySpace={studySpace}></StudySpaceReview>
+          <form onSubmit={handleSubmit}>
+            <InputLabel htmlFor="sp-image">Image URL</InputLabel>
+            <Input
+              id="sp-image"
+              aria-describedby="helper-image"
+              name={"url"}
+              value={picture}
+              onChange={handleInputChange}
+            />
+            <Button variant="contained" type={"submit"}>
+              Submit Picture
+            </Button>
+          </form>
+          <Button
+            variant="contained"
+            onClick={() => navigate("/newReview", { state: studySpace })}
+          >
+            Submit a review
           </Button>
-        </form>
+        </Box>
+        <Box className={classes.reviewsContainer}>
+          <PhotoGallery studySpace={studySpace} />
+          {reviews.map((review) => {
+            return <ReviewBox review={review} key={review.id}></ReviewBox>;
+          })}
+        </Box>
       </Box>
-      <Box className={classes.reviewsContainer}>
-        {/* <PhotoGallery studySpace={studySpace} /> */}
-        {reviews.map((review) => {
-          return <ReviewBox review={review} key={review.id}></ReviewBox>;
-        })}
-      </Box>
-    </Box>
-  );
+    );
+  } else return <div>loading</div>;
 }
 
 export default IndividualStudySpacePage;
