@@ -4,11 +4,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 export function PhotoGallery({ studySpace }) {
-  const images = useSelector(
-    (state) =>
-      state.reviews.studySpaces.find((space) => space.id === studySpace.id)
-        .photos
-  );
+  const images = studySpace.images;
   return (
     <Splide
       options={{

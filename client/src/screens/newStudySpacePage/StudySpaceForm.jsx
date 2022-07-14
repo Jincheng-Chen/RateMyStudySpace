@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { addNewSpace } from "../../features/reviewSlice";
 import { LOCATION_TYPES } from "../../shared/utils";
 import { v4 as uuidv4 } from "uuid";
+import { useAddStudySpaceMutation } from "./../../features/api/studySpaceApiSlice";
 
 const defaultValues = {
   name: "",
@@ -35,9 +36,19 @@ const useStyles = makeStyles({
 
 function StudySpaceForm() {
   const [formValues, setFormValues] = useState(defaultValues);
+
+  const [addStudySpace] = useAddStudySpaceMutation();
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const addStudySpaceApiRequest = (studySpace) => {
+    addStudySpace(studySpace)
+      .unwrap()
+      .then((data) => {
+        navigate("/newReview", { state: { id: data.id } });
+      });
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,9 +65,10 @@ function StudySpaceForm() {
     //   ...formValues,
     //   id: newId,
     // });
-    dispatch(addNewSpace({ ...formValues, id: newId }));
-    setFormValues(defaultValues);
-    navigate("/newReview", { state: { id: newId } });
+    addStudySpaceApiRequest(formValues);
+
+    // dispatch(addNewSpace({ ...formValues, id: newId }));
+    // setFormValues(defaultValues);
   };
 
   return (

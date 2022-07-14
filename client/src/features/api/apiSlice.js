@@ -33,6 +33,10 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Review"],
     }),
+    getReviewsBySpaceId: builder.query({
+      query: (id) => `/reviews/studySpace/${id}`,
+      providesTags: ["Review"],
+    }),
   }),
 });
 
@@ -41,4 +45,5 @@ export const {
   useAddReviewMutation,
   useDeleteReviewMutation,
   useUpdateReviewMutation,
+  useGetReviewsBySpaceIdQuery,
 } = apiSlice;

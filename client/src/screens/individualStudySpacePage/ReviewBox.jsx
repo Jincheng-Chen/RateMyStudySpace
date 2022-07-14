@@ -66,7 +66,7 @@ function ReviewBox({ review }) {
         style={{ marginLeft: "2vw", marginTop: "2vh" }}
         className={classes.pText}
       >
-        {review.review}
+        {review.comments}
       </Typography>
       <Box className={classes.ratingContainer}>
         <Box className={classes.rating}>
