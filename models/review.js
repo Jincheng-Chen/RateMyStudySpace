@@ -10,32 +10,62 @@ const reviewSchema = new mongoose.Schema(
     // },
     spaceId: {
       type: String,
+      default: 'spaceID',
       required: false,
     },
     overall: {
-      type: Number,
-      required: false,
-
-    },
-    quietness: {
-      type: Number,
-      required: false,
-
-    },
-    tableSpace: {
-      type: Number,
-      required: false,
-
-    },
-    timeLimit: {
-      type: Number,
-      required: false,
-
-    },
-    comment: {
       type: String,
-      required: false,
+      required: true,
 
+    },
+    wifispeed: {
+      type: String,
+      required: true,
+
+    },
+    noise: {
+      type: String,
+      required: true,
+
+    },
+    bgm: {
+      type: String,
+      required: true,
+    },
+    tablespace: {
+      type: String,
+      required: true,
+
+    },
+    timelimit: {
+      type: String,
+      required: true,
+
+    },
+    seatscomfort: {
+      type: String,
+      required: true,
+    },
+    recommendation: {
+      type: String,
+      required: true,
+    },
+    tasks: {
+      type: Array,
+      required: true,
+    },
+    comments: {
+      type: String,
+      required: true,
+
+    },
+    duration: {
+      type: String,
+      required: true,
+    },
+    frequency: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true },

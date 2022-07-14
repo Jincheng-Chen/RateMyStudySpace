@@ -16,11 +16,16 @@ const StarRating = (props) => {
   const classes = useStyles();
   // const [value, setValue] = useState(1);
 
+  // funtions that convert a string to lower case and removes all spaces
+  const convertToLowerCase = (str) => {
+    return str.toLowerCase().replace(/\s/g, "");
+  };
+
   return (
     <Box>
       <Stack direction="row" spacing={5} className={classes.starRating}>
         <Typography>{props.name}</Typography>
-        <Field name={props.name} type="radio">
+        <Field name={convertToLowerCase(props.name)} type="radio">
           {(props) => (
             <div>
               <Rating

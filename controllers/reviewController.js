@@ -48,15 +48,9 @@ const getReviewsByStudySpaceId = async (req, res) => {
 };
 
 const addNewReview = async (req, res) => {
-  const {
-    user, spaceId, overall, quietness, tableSpace, timeLimit, comment,
-  } = req.body;
-
   // add to DB
   try {
-    await Review.create({
-      user, quietness, spaceId, overall, tableSpace, timeLimit, comment,
-    });
+    await Review.create(req.body);
     const reviews = await Review.find({}).sort({ createdAt: -1 });
     res.status(200).json(reviews);
   } catch (error) {

@@ -9,21 +9,23 @@ import { useDispatch } from "react-redux";
 import { addNewReview } from "../../../../features/reviewSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 import AllReviews from "./AllReviews";
+import { useAddReviewMutation } from "../../../../features/api/apiSlice";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function NewReview() {
+const NewReview = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const studySpace = location.state;
+  const [addReview] = useAddReviewMutation();
 
   const id = studySpace ? studySpace.id : null;
   const showResults = async (values) => {
-    await sleep(500); // server latency
-    window.alert(JSON.stringify(values, undefined, 2));
-    dispatch(addNewReview({ ...values, spaceId: id }));
-    navigate("/search");
+    // window.alert(JSON.stringify(values, undefined, 2));
+    console.log(values);
+    addReview(values);
+    // navigate("/search");
   };
 
   return (
@@ -37,7 +39,7 @@ function NewReview() {
     >
       <Stack spacing={2}>
         <br />
-        <Typography variant="h6">New Review</Typography>
+        <Typography variant="h6">New Review for :"SpaceID"</Typography>
         <Form onSubmit={showResults}>
           {(props, reset) => (
             <form
@@ -69,6 +71,6 @@ function NewReview() {
       </Stack>
     </Box>
   );
-}
+};
 
 export default NewReview;

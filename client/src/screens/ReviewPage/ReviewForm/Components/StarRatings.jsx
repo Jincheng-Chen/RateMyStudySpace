@@ -22,22 +22,23 @@ const StarRatings = () => {
           justifyContent: "space-around",
         }}
       >
+        <StarRating name="Overall"></StarRating>
         <Typography variant="h6" align="left">
           Facility:
         </Typography>
         <StarRating name="WiFi Speed"></StarRating>
-        <StarRating name="timeLimit"></StarRating>
+        <StarRating name="Time Limit"></StarRating>
 
         <Typography variant="h6" align="left">
           Seats and Table:
         </Typography>
-        <StarRating name="tableSpace"></StarRating>
+        <StarRating name="Table space"></StarRating>
         <StarRating name="Seats comfort"></StarRating>
 
         <Typography variant="h6" align="left">
           Vibe:
         </Typography>
-        <StarRating name="noise"></StarRating>
+        <StarRating name="Noise"></StarRating>
         <StarRating name="BGM"></StarRating>
       </Stack>
     </Box>

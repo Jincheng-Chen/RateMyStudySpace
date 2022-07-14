@@ -18,6 +18,7 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(express.json());
 app.use('/reviews', reviewRouter);
 app.use('/studySpace', studySpaceRouter);
 

@@ -1,6 +1,9 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
-import { useGetReviewsQuery } from "../../../../features/api/apiSlice";
+import {
+  useAddReviewMutation,
+  useGetReviewsQuery,
+} from "../../../../features/api/apiSlice";
 
 const AllReviews = () => {
   const { data, isloading, isSuccess, isError, error } = useGetReviewsQuery();
@@ -15,13 +18,14 @@ const AllReviews = () => {
   return (
     <>
       <Typography
+        variant="body1"
+        align="center"
         sx={{
-          display: "flex",
-          minHeight: "100vh",
+          minwidth: "50vw",
           maxWidth: "50vw",
         }}
       >
-        all reviews: {content}
+        All reviews: {content}
       </Typography>
     </>
   );

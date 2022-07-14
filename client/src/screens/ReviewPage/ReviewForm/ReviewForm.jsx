@@ -8,19 +8,17 @@ import "date-fns";
 import { Switches } from "mui-rff";
 
 import { useAddReviewMutation } from "../../../features/api/apiSlice";
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const ReviewForm = () => {
   const [addReview] = useAddReviewMutation();
-  const showResults = async (values) => {
-    await sleep(10); // server latency
-    await addReview(values);
-    window.alert(JSON.stringify(values, undefined, 2));
+
+  const addReviewToDB = (values) => {
+    addReview(values);
   };
   return (
     <>
       <h1>REACT Final form</h1>
-      <Form onSubmit={showResults}>
+      <Form onSubmit={addReviewToDB}>
         {(props) => (
           <form onSubmit={props.handleSubmit}>
             <label>First Name</label>
