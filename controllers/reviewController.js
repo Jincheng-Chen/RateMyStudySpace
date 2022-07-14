@@ -25,6 +25,7 @@ const getReviewsByReviewId = async (req, res) => {
 };
 
 const getReviewsByStudySpaceId = async (req, res) => {
+  console.log(req.params);
   const { studySpaceId } = req.params;
 
   // if (!mongoose.Types.ObjectId.isValid(spaceId)) {
@@ -38,7 +39,7 @@ const getReviewsByStudySpaceId = async (req, res) => {
   }
 
   const review = await Review.find({
-    'spaceId': studySpaceId,
+    'spaceId': mongoose.Types.ObjectId(studySpaceId),
   });
 
   if (!review) {
@@ -50,7 +51,7 @@ const getReviewsByStudySpaceId = async (req, res) => {
 const addNewReview = async (req, res) => {
   // add to DB
   try {
-    await Review.create(req.body);
+    await Review.create({ ...req.body, spaceId: mongoose.Types.ObjectId(req.body.spaceId) });
     const reviews = await Review.find({}).sort({ createdAt: -1 });
     res.status(200).json(reviews);
   } catch (error) {

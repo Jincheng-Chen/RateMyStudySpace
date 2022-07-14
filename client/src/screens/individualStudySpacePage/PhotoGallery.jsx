@@ -7,7 +7,7 @@ export function PhotoGallery({ studySpace }) {
   const images = useSelector(
     (state) =>
       state.reviews.studySpaces.find((space) => space.id === studySpace.id)
-        .photos
+        ?.photos
   );
   return (
     <Splide

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Input, InputLabel } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import ReviewBox from "./ReviewBox";
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import StudySpaceReview from "../searchPage/StudySpaceReview";
 import { PhotoGallery } from "./PhotoGallery";
 import { addNewImage } from "../../features/reviewSlice";
-
+import { useGetReviewsBySpaceIdQuery } from "../../features/api/apiSlice";
 const useStyles = makeStyles({
   outerContainer: {
     display: "flex",
@@ -30,9 +30,13 @@ function IndividualStudySpacePage(props) {
   const classes = useStyles();
   const location = useLocation();
   const studySpace = location.state;
-  const [picture, setPicture] = useState("");
-  const dispatch = useDispatch();
 
+  const [picture, setPicture] = useState("");
+  const [reviews, setReviews] = useState([]);
+  const dispatch = useDispatch();
+  const { data, isLoading } = useGetReviewsBySpaceIdQuery(
+    studySpace ? studySpace.id : "null"
+  );
   const handleInputChange = (e) => {
     const { value } = e.target;
     setPicture(value);
@@ -49,11 +53,17 @@ function IndividualStudySpacePage(props) {
     setPicture("");
   };
 
-  const reviews = useSelector((state) => {
-    return state.reviews.reviews.filter((review) => {
-      return review.spaceId === studySpace.id;
-    });
-  });
+  // const reviews = useSelector((state) => {
+  //   return state.reviews.reviews.filter((review) => {
+  //     return review.spaceId === studySpace.id;
+  //   });
+  // });
+
+  // useEffect(() => {
+  //   getReviewsBySpaceId(studySpace.id).unwind.then(data => {
+  //     console.log(data)
+  //   })
+  // },[])
   return (
     <Box className={classes.outerContainer}>
       <Box className={classes.spaceContainer}>
@@ -73,7 +83,7 @@ function IndividualStudySpacePage(props) {
         </form>
       </Box>
       <Box className={classes.reviewsContainer}>
-        <PhotoGallery studySpace={studySpace} />
+        {/* <PhotoGallery studySpace={studySpace} /> */}
         {reviews.map((review) => {
           return <ReviewBox review={review} key={review.id}></ReviewBox>;
         })}

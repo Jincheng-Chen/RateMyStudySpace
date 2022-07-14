@@ -9,7 +9,7 @@ const reviewSchema = new mongoose.Schema(
     //   required: false,
     // },
     spaceId: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       default: 'spaceID',
       required: false,
     },

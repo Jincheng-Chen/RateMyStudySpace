@@ -1,9 +1,10 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Input } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import ButtonGroupRatings from "./ButtonGroupRatings";
 import CommentSection from "./CommentSection";
 import StarRating from "./StarRatings";
+
 import { Form, Field } from "react-final-form";
 import { useDispatch } from "react-redux";
 import { addNewReview } from "../../../../features/reviewSlice";
@@ -19,12 +20,13 @@ const NewReview = (props) => {
   const location = useLocation();
   const studySpace = location.state;
   const [addReview] = useAddReviewMutation();
-
+  console.log(studySpace);
   const id = studySpace ? studySpace.id : null;
   const showResults = async (values) => {
     // window.alert(JSON.stringify(values, undefined, 2));
     console.log(values);
-    addReview(values);
+    addReview({ ...values, spaceId: id });
+    navigate("/studySpace", { state: { id: id } });
     // navigate("/search");
   };
 
@@ -39,7 +41,7 @@ const NewReview = (props) => {
     >
       <Stack spacing={2}>
         <br />
-        <Typography variant="h6">New Review for :"SpaceID"</Typography>
+        <Typography variant="h6">New Review for : {id}</Typography>
         <Form onSubmit={showResults}>
           {(props, reset) => (
             <form
@@ -62,6 +64,7 @@ const NewReview = (props) => {
                 )}
               </Field>
               <button type="submit">Submit</button>
+
               <br />
               <br />
             </form>

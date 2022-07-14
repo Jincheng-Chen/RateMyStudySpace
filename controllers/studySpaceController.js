@@ -65,8 +65,8 @@ const addNewStudySpace = (req, res) => {
   const studySpace = req.body;
   const newStudySpace = new StudySpace(studySpace);
 
-  newStudySpace.save().then(() => {
-    res.status(204).json();
+  newStudySpace.save().then((result) => {
+    res.status(200).json({id: result._id}); // eslint-disable-line 
   }).catch((err) => {
     res.status(400).json(err);
   });
