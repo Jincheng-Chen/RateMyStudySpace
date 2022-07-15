@@ -47,7 +47,7 @@ function StudySpaceReview({ studySpace }) {
       <Box>
         <img
           className={classes.img}
-          src={studySpace.url}
+          src={studySpace.images[0]}
           alt={studySpace.name}
         />
       </Box>

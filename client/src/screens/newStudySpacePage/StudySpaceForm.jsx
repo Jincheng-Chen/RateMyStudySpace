@@ -14,11 +14,8 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addNewSpace } from "../../features/reviewSlice";
 import { LOCATION_TYPES } from "../../shared/utils";
-import { v4 as uuidv4 } from "uuid";
-import { useAddStudySpaceMutation } from "./../../features/api/studySpaceApiSlice";
+import { useAddStudySpaceMutation } from "../../features/api/studySpaceApiSlice";
 
 const defaultValues = {
   name: "",
@@ -40,7 +37,6 @@ function StudySpaceForm() {
   const [addStudySpace] = useAddStudySpaceMutation();
   const classes = useStyles();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const addStudySpaceApiRequest = (studySpace) => {
     addStudySpace(studySpace)
@@ -60,12 +56,11 @@ function StudySpaceForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newId = uuidv4();
     // setFormValues({
     //   ...formValues,
     //   id: newId,
     // });
-    addStudySpaceApiRequest(formValues);
+    addStudySpaceApiRequest({ ...formValues, images: [formValues.url] });
 
     // dispatch(addNewSpace({ ...formValues, id: newId }));
     // setFormValues(defaultValues);
