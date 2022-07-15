@@ -7,22 +7,47 @@ Our project proposal is RateMyStudySpace. This app will allow users to rate and 
 
 ## Project task requirements:
 ### 3-5 minimal requirements (will definitely complete)
-  * Setting up(Schema, connection from frontend) MangoDB for the database.
-  * Landing page
-  * Post a review page
-  * Register a new study space page
-  * View/Filter study spaces page
+  * Setting up(Schema, connection from frontend) MangoDB for the database. (Done)
+  * Landing page (done)
+  * Post a review page (done, maybe just stylistic stuff)
+  * Register a new study space page (done)
+  * View/Filter study spaces page left to complete: hook up
 ### 3-7 "standard" requirements (will most likely complete)
-  * Rest Endpoints(for registering new reviews, study spaces, and filtering)
-  * Queries(search, filter) for endpoints to execute in the database
-  * Styling to make a modern user interface
-  * Aggregation component for study space (average star rating, quietness, average of all reviews)
-  * Photo gallery of study space
-  * Thumbs up functionality for reviews.
+  * Rest Endpoints(for registering new reviews, study spaces, and filtering) (done)
+  * Queries(search, filter) for endpoints to execute in the database (done, just filter last changes)
+  * Styling to make a modern user interface (needs more work)
+  * Aggregation component for study space (average star rating, quietness, average of all reviews) (Work on next sprint)
+  * Photo gallery of study space (done, reliability testing)
+  * Thumbs up functionality for reviews. (work on in next sprint, maybe)
 ### 2-3 stretch requirements (plan to complete at least 1!)
-  * Map view of study spaces, using pins
-  * Users will have their personal account (Profile setup) and recommendations.
-  * ML model to extract key info from reviews.
+  * Map view of study spaces, using pins (1)
+  * Users will have their personal account (Profile setup) and recommendations. (2)
+  * ML model to extract key info from reviews. (3)
+
+
+For Design Review July 15, 2022
+  * Map view of study spaces, using pins (1)
+     * allows for search radius
+     * map on search page, with pinpoints of fed studySpaces
+     * schema change, to allow for coordinates(lat, lon) of studySpace or addresss
+     * new query + endpoint to query by distance
+     * Google autocomplete search bar, autocompletes address
+     
+ * Aggregation component for study space (average star rating, quietness, average of all reviews) (Work on next sprint)
+    * whenever user posts new review, recalculate aggregate statistics for the study space, stores in studySpace.
+    * some kind of hook.
+    * mongodb script to run.
+ 
+ * Stylistic enchancements
+    * make the forms (new review, studyspace) look consistent, material ui card
+    * buttons on the individual study space page
+    * reformat the review boxes
+ * Bug Fix
+    * cacheing issue after posting new review, new review doesnt show up in studySpace page unless you refresh
+    * make the landing page buttons on bottom function
+    * make "Vancouver" not hard coded location
+    * more error handling for failed networks request
+    * remove the all reviews on bottom of new review page
 
 ## Pick 2 of your minimal requirements:
 break each of them down into ~2-5 smaller tasks! ○ This will help you divide up work among your teammates
