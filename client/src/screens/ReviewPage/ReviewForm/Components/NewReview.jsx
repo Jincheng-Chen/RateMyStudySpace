@@ -14,6 +14,11 @@ import { useAddReviewMutation } from "../../../../features/api/apiSlice";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// convet a string to number
+// const toNumber = (str) => {
+//   return Number(str);
+// }
+
 const NewReview = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,9 +28,19 @@ const NewReview = (props) => {
   console.log(studySpace);
   const id = studySpace ? studySpace._id : null;
   const showResults = async (values) => {
-    // window.alert(JSON.stringify(values, undefined, 2));
-    console.log(values);
-    addReview({ ...values, spaceId: id });
+    const newReview = { ...values, spaceId: id };
+    newReview.overall = Number(newReview.overall);
+    newReview.wifiSpeed = Number(newReview.wifiSpeed);
+    newReview.noise = Number(newReview.noise);
+    newReview.bgm = Number(newReview.bgm);
+    newReview.tableSpace = Number(newReview.tableSpace);
+    newReview.timeLimit = Number(newReview.timeLimit);
+    newReview.seatsComfort = Number(newReview.seatsComfort);
+    newReview.duration = Number(newReview.duration);
+
+    window.alert(JSON.stringify(newReview, undefined, 2));
+
+    addReview(newReview);
 
     navigate("/studySpace", { state: studySpace });
   };

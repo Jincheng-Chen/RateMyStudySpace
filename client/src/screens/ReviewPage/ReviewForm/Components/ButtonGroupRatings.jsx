@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Checkboxes } from "mui-rff";
-import { Radios } from "mui-rff";
+import { Radios, TextField } from "mui-rff";
 
 const checkboxData = [
   { label: "Work", value: "work" },
@@ -33,16 +33,7 @@ const ButtonGroupRatings = () => {
     <Box>
       <Stack className={classes.btnGroup}>
         {title("How long did you stay?")}
-        <Radios
-          label="Pick one..."
-          name="duration"
-          required={true}
-          data={[
-            { label: "< 30mins", value: "<30mins" },
-            { label: "1~2hr", value: "1~2hr" },
-            { label: "> 2hr", value: ">2hr" },
-          ]}
-        />
+        <TextField label="In hours" name="duration" required={true} />
       </Stack>
 
       <Stack className={classes.btnGroup}>
