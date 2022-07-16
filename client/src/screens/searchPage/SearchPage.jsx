@@ -3,11 +3,9 @@ import { Box, Typography, CardActionArea } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import StudySpaceReview from "./StudySpaceReview";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import Filters from "./Filters";
-import { useGetStudySpacesByLocationQuery } from "../../features/api/studySpaceApiSlice";
 const useStyles = makeStyles({
   outerContainer: {
     minHeight: "100vh",
@@ -25,11 +23,12 @@ const useStyles = makeStyles({
 });
 
 function SearchPage() {
+  const location = "Vancouver";
   const navigate = useNavigate();
   const classes = useStyles();
-  // const [studySpaces, setStudySpaces] = useState([])
-  const { data, isLoading, isError } =
-    useGetStudySpacesByLocationQuery("Vancouver");
+  const [studySpaces, setStudySpaces] = useState([]);
+  /* const { data, isLoading, isError } =
+    useGetStudySpacesByLocationQuery(location);
   let studySpaces = [];
   console.log(data);
   // const studySpaceReviews = [
@@ -69,12 +68,13 @@ function SearchPage() {
   //     timeLimit: 2.5,
   //     url: TheBoulevard,
   //   },
-  // ]; */
+  // ]; *!/
   if (!isLoading) {
     console.log(isError);
     console.log(data);
     studySpaces = data;
-  }
+  } */
+  console.log(studySpaces);
   // const studySpaces = useSelector((state) => state.reviews.studySpaces);
 
   return (
@@ -83,7 +83,7 @@ function SearchPage() {
         <Typography variant={"h5"} component={"h2"}>
           Filter Options
         </Typography>
-        <Filters />
+        <Filters stateChanger={setStudySpaces} location={location} />
       </Box>
       <Box className={classes.bottomContainer}>
         <Typography variant={"h5"} component={"h2"}>

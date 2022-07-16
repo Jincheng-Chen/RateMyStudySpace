@@ -10,6 +10,7 @@ import {
   Grid,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useGetStudySpaceFilteredQuery } from "../../features/api/studySpaceApiSlice";
 
 const useStyles = makeStyles({
   container: {
@@ -17,16 +18,26 @@ const useStyles = makeStyles({
   },
 });
 
-function Filters() {
+function Filters({ stateChanger, location }) {
   const classes = useStyles();
 
   const defaultValues = {
+    location: location,
     filter: "none",
     operator: "none",
-    value: "",
+    value: "0",
   };
 
   const [filter, setFilter] = useState(defaultValues);
+  const [filterQuery, setFilterQuery] = useState(defaultValues);
+  const { data, isLoading, isError } =
+    useGetStudySpaceFilteredQuery(filterQuery);
+  console.log(data);
+  if (!isLoading) {
+    console.log(isError);
+    console.log(data);
+    stateChanger(data);
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +45,11 @@ function Filters() {
       ...filter,
       [name]: value,
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFilterQuery(filter);
   };
 
   return (
@@ -57,7 +73,7 @@ function Filters() {
             >
               <MenuItem value={"none"}>None</MenuItem>
               <MenuItem value={"overall"}>Overall</MenuItem>
-              <MenuItem value={"quietness"}>Noise</MenuItem>
+              <MenuItem value={"noise"}>Noise</MenuItem>
               <MenuItem value={"tableSpace"}>Table Space</MenuItem>
               <MenuItem value={"timeLimit"}>Time Limit</MenuItem>
             </Select>
@@ -94,7 +110,13 @@ function Filters() {
           </FormControl>
         </Grid>
         <Grid item xs={3}>
-          <Button id={"apply-filter"} variant={"contained"} size={"large"}>
+          <Button
+            type={"submit"}
+            id={"apply-filter"}
+            variant={"contained"}
+            size={"large"}
+            onClick={handleSubmit}
+          >
             Apply Filter
           </Button>
         </Grid>

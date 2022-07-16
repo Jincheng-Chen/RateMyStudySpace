@@ -10,8 +10,8 @@ export const studySpaceApiSlice = createApi({
       providesTags: ["StudySpace"],
     }),
     getStudySpaceFiltered: builder.query({
-      query: (filter, operator, value) =>
-        `/studySpace/${filter}/${operator}/${value}`,
+      query: (filter) =>
+        `/studySpace/${filter.filter}/${filter.operator}/${filter.value}`,
       providesTags: ["StudySpace"],
     }),
     addStudySpace: builder.mutation({
