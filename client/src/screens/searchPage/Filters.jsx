@@ -32,10 +32,7 @@ function Filters({ stateChanger, location }) {
   const [filterQuery, setFilterQuery] = useState(defaultValues);
   const { data, isLoading, isError } =
     useGetStudySpaceFilteredQuery(filterQuery);
-  console.log(data);
   if (!isLoading) {
-    console.log(isError);
-    console.log(data);
     stateChanger(data);
   }
 
