@@ -10,13 +10,19 @@ const getStudySpace = (req, res) => {
 };
 
 const getStudySpaceFiltered = (req, res) => {
-  const { filter, operator, value } = req.params;
+  const {
+    location, filter, operator, value,
+  } = req.params;
+
   const avgKey = `$${filter}`;
   const operatorKey = `$${operator}`;
   const query = { average: {} };
   query.average[operatorKey] = Number(value);
+
+  const locationQuery = { location };
+
   if (filter === 'none' || operator === 'none' || value === '') {
-    StudySpace.find().then((found) => {
+    StudySpace.find(locationQuery).then((found) => {
       res.status(200).json(found);
     }).catch((err) => {
       res.status(400).json(err);
@@ -53,6 +59,9 @@ const getStudySpaceFiltered = (req, res) => {
       {
         $replaceRoot: { newRoot: '$space' },
       },
+      {
+        $match: locationQuery,
+      },
     ]).then((found) => {
       res.status(200).json(found);
     }).catch((err) => {
@@ -77,7 +86,7 @@ const addNewStudySpace = (req, res) => {
   const newStudySpace = new StudySpace(studySpace);
 
   newStudySpace.save().then((result) => {
-    res.status(200).json({id: result._id}); // eslint-disable-line 
+    res.status(200).json({id: result._id}); // eslint-disable-line
   }).catch((err) => {
     res.status(400).json(err);
   });
@@ -85,9 +94,7 @@ const addNewStudySpace = (req, res) => {
 
 const addNewImage = (req, res) => {
   const id = req.params.studySpaceId;
-  console.log(id);
   const { image } = req.body;
-  console.log(req.body);
   StudySpace.findByIdAndUpdate(id, { $addToSet: { images: image } }).then(() => {
     res.status(204).json('');
   }).catch((err) => {
