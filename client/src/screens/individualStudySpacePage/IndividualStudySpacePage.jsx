@@ -32,12 +32,12 @@ function IndividualStudySpacePage(props) {
   const navigate = useNavigate();
   const location = useLocation();
   const studySpace = location.state;
-  console.log(studySpace);
+  console.log("studySpace", studySpace);
 
   const [picture, setPicture] = useState("");
   const dispatch = useDispatch();
   const [addImage] = useAddImageMutation();
-  console.log(studySpace._id);
+  console.log("studySpace._id", studySpace._id);
   const { data, isLoading } = useGetReviewsBySpaceIdQuery(
     studySpace ? studySpace._id : "null"
   );
@@ -54,7 +54,7 @@ function IndividualStudySpacePage(props) {
     //     url: picture,
     //   })
     // );
-    console.log(picture);
+    console.log("picture", picture);
     addImage({ studySpaceId: studySpace._id, imageUrl: picture });
     setPicture("");
   };
@@ -65,7 +65,7 @@ function IndividualStudySpacePage(props) {
   //   });
   // });
   if (!isLoading) {
-    console.log(data);
+    console.log("data", data);
     reviews = data;
     return (
       <Box className={classes.outerContainer}>

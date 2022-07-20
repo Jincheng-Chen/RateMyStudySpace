@@ -85,7 +85,6 @@ const NewReview = (props) => {
             </form>
           )}
         </Form>
-        <AllReviews />
       </Stack>
     </Box>
   );

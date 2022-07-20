@@ -40,7 +40,7 @@ const getReviewsByStudySpaceId = async (req, res) => {
 
   const review = await Review.find({
     'spaceId': mongoose.Types.ObjectId(studySpaceId),
-  });
+  }).sort({ createdAt: -1 });
 
   if (!review) {
     return res.status(404).json({ error: 'Sorry, no such review exist.' });

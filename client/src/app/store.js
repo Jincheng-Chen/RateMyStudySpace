@@ -9,5 +9,7 @@ export const store = configureStore({
     reviews: reviewReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware),
+    getDefaultMiddleware()
+      .concat(apiSlice.middleware)
+      .concat(studySpaceApiSlice.middleware),
 });
