@@ -35,7 +35,7 @@ For Design Review July 15, 2022
      
  * Aggregation component for study space (average star rating, quietness, average of all reviews) (Work on next sprint)
     * whenever user posts new review, recalculate aggregate statistics for the study space, stores in studySpace.
-    * some kind of hook.
+    * some kind of trigger.
     * mongodb script to run.
  
  * Stylistic enchancements

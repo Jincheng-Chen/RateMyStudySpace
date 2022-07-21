@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
-  tagTypes: ["Review"],
+  tagTypes: ["Review", "StudySpaceReviews"],
   endpoints: (builder) => ({
     getReviews: builder.query({
       query: () => "/reviews",
@@ -15,7 +15,16 @@ export const apiSlice = createApi({
         method: "POST",
         body: review,
       }),
-      invalidatesTags: ["Review"],
+      invalidatesTags: (result, error, arg) =>
+        result
+          ? [
+              ...result.map(
+                ({ id }) => (
+                  { type: "StudySpaceReviews", id }, "StudySpaceReviews"
+                )
+              ),
+            ]
+          : ["StudySpaceReviews"],
     }),
     updateReview: builder.mutation({
       query: (review) => ({
@@ -35,7 +44,16 @@ export const apiSlice = createApi({
     }),
     getReviewsBySpaceId: builder.query({
       query: (id) => `/reviews/studySpace/${id}`,
-      providesTags: ["Review"],
+      providesTags: (result, error, arg) =>
+        result
+          ? [
+              ...result.map(
+                ({ id }) => (
+                  { type: "StudySpaceReviews", id }, "StudySpaceReviews"
+                )
+              ),
+            ]
+          : ["StudySpaceReviews"],
     }),
   }),
 });

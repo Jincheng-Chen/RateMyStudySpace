@@ -42,7 +42,7 @@ function StudySpaceForm() {
     addStudySpace(studySpace)
       .unwrap()
       .then((data) => {
-        navigate("/newReview", { state: { id: data.id } });
+        navigate("/newReview", { state: studySpace });
       });
   };
 

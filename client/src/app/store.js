@@ -8,4 +8,8 @@ export const store = configureStore({
     [studySpaceApiSlice.reducerPath]: studySpaceApiSlice.reducer,
     reviews: reviewReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(apiSlice.middleware)
+      .concat(studySpaceApiSlice.middleware),
 });
