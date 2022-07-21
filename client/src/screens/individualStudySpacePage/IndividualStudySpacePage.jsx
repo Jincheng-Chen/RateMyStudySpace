@@ -50,7 +50,7 @@ function IndividualStudySpacePage(props) {
     const { value } = e.target;
     setPicture(value);
   };
-  const reviews = data;
+  let reviews = data;
   const handleSubmit = (event) => {
     event.preventDefault();
     // dispatch(
@@ -70,7 +70,6 @@ function IndividualStudySpacePage(props) {
   //   });
   // });
   if (!isLoading) {
-    console.log("data", data);
     reviews = data;
     return (
       <Box className={classes.outerContainer}>

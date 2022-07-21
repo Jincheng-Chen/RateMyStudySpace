@@ -10,7 +10,9 @@ function SearchBar({ options, propClass }) {
       sx={{ width: "40vw", background: "white" }}
       renderInput={(params) => <TextField {...params} label="Enter City" />}
       className={propClass}
-      onChange={() => navigate("/search")}
+      onChange={(event) => {
+        navigate("/search", { state: event.target.textContent });
+      }}
     ></Autocomplete>
   );
 }

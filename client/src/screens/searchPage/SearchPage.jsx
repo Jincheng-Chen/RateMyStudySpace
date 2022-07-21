@@ -29,8 +29,6 @@ function SearchPage() {
   const navigate = useNavigate();
   const classes = useStyles();
   const [studySpaces, setStudySpaces] = useState([]);
-
-  console.log(locToSearch);
   useEffect(() => {
     if (locToSearch === null) {
       return navigate("/");
