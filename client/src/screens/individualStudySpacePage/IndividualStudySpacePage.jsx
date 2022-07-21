@@ -32,20 +32,26 @@ function IndividualStudySpacePage(props) {
   const navigate = useNavigate();
   const location = useLocation();
   const studySpace = location.state;
-  console.log(studySpace);
+
+  useEffect(() => {
+    if (studySpace === null) {
+      return navigate("/");
+    }
+  }, [location]);
 
   const [picture, setPicture] = useState("");
   const dispatch = useDispatch();
   const [addImage] = useAddImageMutation();
-  console.log(studySpace._id);
+
   const { data, isLoading } = useGetReviewsBySpaceIdQuery(
     studySpace ? studySpace._id : "null"
   );
+
   const handleInputChange = (e) => {
     const { value } = e.target;
     setPicture(value);
   };
-  let reviews = [];
+  const reviews = data;
   const handleSubmit = (event) => {
     event.preventDefault();
     // dispatch(
@@ -65,8 +71,6 @@ function IndividualStudySpacePage(props) {
   //   });
   // });
   if (!isLoading) {
-    console.log(data);
-    reviews = data;
     return (
       <Box className={classes.outerContainer}>
         <Box className={classes.spaceContainer}>
@@ -93,7 +97,7 @@ function IndividualStudySpacePage(props) {
         </Box>
         <Box className={classes.reviewsContainer}>
           <PhotoGallery studySpace={studySpace} />
-          {reviews.map((review) => {
+          {data.map((review) => {
             return <ReviewBox review={review} key={review.id}></ReviewBox>;
           })}
         </Box>

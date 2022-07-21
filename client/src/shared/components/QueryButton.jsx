@@ -13,7 +13,9 @@ function QueryButton({ cityData }) {
   const navigate = useNavigate();
   return (
     <Card onClick={() => console.log("clicked")}>
-      <CardActionArea onClick={() => navigate("search")}>
+      <CardActionArea
+        onClick={() => navigate("search", { state: cityData.label })}
+      >
         <Box
           sx={{ backgroundImage: `url(${cityData.url})` }}
           className={classes.button}
