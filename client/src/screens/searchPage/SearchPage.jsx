@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Typography, CardActionArea } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import StudySpaceReview from "./StudySpaceReview";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import Filters from "./Filters";
@@ -23,10 +23,19 @@ const useStyles = makeStyles({
 });
 
 function SearchPage() {
-  const location = "Vancouver";
+  const location = useLocation();
+  const locToSearch = location.state;
+
   const navigate = useNavigate();
   const classes = useStyles();
   const [studySpaces, setStudySpaces] = useState([]);
+
+  console.log(locToSearch);
+  useEffect(() => {
+    if (locToSearch === null) {
+      return navigate("/");
+    }
+  }, [location]);
 
   return (
     <Box className={classes.outerContainer}>
@@ -34,7 +43,7 @@ function SearchPage() {
         <Typography variant={"h5"} component={"h2"}>
           Filter Options
         </Typography>
-        <Filters stateChanger={setStudySpaces} location={location} />
+        <Filters stateChanger={setStudySpaces} location={locToSearch} />
       </Box>
       <Box className={classes.bottomContainer}>
         <Typography variant={"h5"} component={"h2"}>
