@@ -45,6 +45,7 @@ const NewReview = (props) => {
   const [progress, setProgress] = useState(33);
   console.log(studySpace);
   const id = studySpace ? studySpace._id : null;
+  const name = studySpace ? studySpace.name : null;
   const showResults = async (values) => {
     const newReview = { ...values, spaceId: id };
     newReview.overall = Number(newReview.overall);
@@ -68,13 +69,13 @@ const NewReview = (props) => {
       sx={{
         display: "flex",
         minHeight: "100vh",
-        minWidth: "50vw",
+        minWidth: "75vw",
         justifyContent: "center",
       }}
     >
       <Stack spacing={2}>
         <br />
-        <Typography variant="h6">New Review for : {studySpace.name}</Typography>
+        <Typography variant="h6">New Review for : {name}</Typography>
         <LinearProgress variant="determinate" value={progress} />
 
         <Form onSubmit={showResults}>

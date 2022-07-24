@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
@@ -29,6 +29,17 @@ const LocationSearcher = () => {
   }, []);
   return isLoaded ? (
     <>
+      <Stack
+        direction="row"
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "2rem 10rem 2rem 10rem",
+        }}
+      >
+        <TextField variant="outlined" label="Lat" />
+        <TextField variant="outlined" label="Lon" />
+      </Stack>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

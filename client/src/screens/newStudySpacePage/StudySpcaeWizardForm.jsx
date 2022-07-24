@@ -41,10 +41,13 @@ const StudySpcaeWizardForm = () => {
     >
       <Typography variant="h2">New Study Space</Typography>
       <LinearProgress variant="determinate" value={progress} />
+      <br />
       <Typography variant="h6">Step 1: Location</Typography>
       <LocationSearcher />
+      <br />
       <Typography variant="h6">Step 2: Details</Typography>
       <StudySpaceDetails />
+      <br />
       <Typography variant="h6">Step 3: Images</Typography>
       <ImagePreview />
       <Button variant="contained" type="submit">
