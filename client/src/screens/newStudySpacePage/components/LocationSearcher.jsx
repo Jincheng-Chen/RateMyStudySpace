@@ -7,8 +7,8 @@ const center = {
   lng: -38.523,
 };
 const containerStyle = {
-  width: "800px",
-  height: "500px",
+  width: "100%",
+  height: "35vh",
 };
 const LocationSearcher = () => {
   console.log("LocationSearcher", process.env.REACT_APP_MAP_API_KEY);
@@ -28,18 +28,8 @@ const LocationSearcher = () => {
     setMap(null);
   }, []);
   return isLoaded ? (
-    <>
-      <Stack
-        direction="row"
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "2rem 10rem 2rem 10rem",
-        }}
-      >
-        <TextField variant="outlined" label="Lat" />
-        <TextField variant="outlined" label="Lon" />
-      </Stack>
+    <Box>
+      <Typography variant="h6">Step 1: Location</Typography>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -50,7 +40,19 @@ const LocationSearcher = () => {
         {/* Child components, such as markers, info windows, etc. */}
         <></>
       </GoogleMap>
-    </>
+      <Stack
+        direction="row"
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "2rem  2rem ",
+        }}
+      >
+        <TextField variant="outlined" label="City" />
+        <TextField variant="outlined" label="Lat" />
+        <TextField variant="outlined" label="Lon" />
+      </Stack>
+    </Box>
   ) : (
     <></>
   );

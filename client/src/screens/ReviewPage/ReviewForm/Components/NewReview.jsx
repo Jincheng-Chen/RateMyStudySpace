@@ -23,9 +23,8 @@ import { useState } from "react";
 const useStyles = makeStyles({
   FromCard: {
     border: "2px solid #e0e0e0",
-    borderRadius: "5px",
     padding: "2rem",
-    width: "100%",
+    width: "89%",
   },
   stepButtons: {
     display: "flex",
@@ -45,7 +44,7 @@ const NewReview = (props) => {
   const [progress, setProgress] = useState(33);
   console.log(studySpace);
   const id = studySpace ? studySpace._id : null;
-  const name = studySpace ? studySpace.name : null;
+  const name = studySpace ? studySpace.name : "StudySpace";
   const showResults = async (values) => {
     const newReview = { ...values, spaceId: id };
     newReview.overall = Number(newReview.overall);
@@ -68,14 +67,16 @@ const NewReview = (props) => {
     <Box
       sx={{
         display: "flex",
-        minHeight: "100vh",
-        minWidth: "75vw",
+        flexDirection: "column",
         justifyContent: "center",
+        width: "50%",
+        maxWidth: "50%",
+        margin: "auto",
       }}
     >
       <Stack spacing={2}>
         <br />
-        <Typography variant="h6">New Review for : {name}</Typography>
+        <Typography variant="h5">New Review for : {name}</Typography>
         <LinearProgress variant="determinate" value={progress} />
 
         <Form onSubmit={showResults}>
@@ -102,21 +103,23 @@ const NewReview = (props) => {
                   </Field>
                 ) : null}
               </Card>
-              <Stack
-                direction="row"
-                className={classes.stepButtons}
-                spacing={5}
+              <Button
+                variant="contained"
+                type="submit"
+                onClick={() => {
+                  setProgress(progress + 33);
+                }}
+                sx={{
+                  width: "25%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "auto",
+                  marginTop: "1.5rem",
+                  marginBottom: "1rem",
+                }}
               >
-                <Button
-                  variant="contained"
-                  type="submit"
-                  onClick={() => {
-                    setProgress(progress + 33);
-                  }}
-                >
-                  Next
-                </Button>
-              </Stack>
+                Next
+              </Button>
               <br />
               <br />
             </form>

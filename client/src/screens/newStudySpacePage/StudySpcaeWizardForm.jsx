@@ -14,6 +14,7 @@ import LocationSearcher from "./components/LocationSearcher";
 import StudySpaceDetails from "./components/StudySpaceDetails";
 import ImagePreview from "./components/ImagePreview";
 import { makeStyles } from "@mui/styles";
+import { Form, Field } from "react-final-form";
 
 //Styles
 const classes = makeStyles({
@@ -23,6 +24,16 @@ const classes = makeStyles({
     maxWidth: "50%",
     margin: "auto",
     backgroundColor: "#b50000",
+  },
+  FormCard: {
+    border: "2px solid #e0e0e0",
+    padding: "2rem",
+    width: "100%",
+    margin: "auto",
+    backgroundColor: "#f5f5f5",
+  },
+  stepButtons: {
+    width: "500px",
   },
 });
 
@@ -39,21 +50,36 @@ const StudySpcaeWizardForm = () => {
         margin: "auto",
       }}
     >
-      <Typography variant="h2">New Study Space</Typography>
+      <br />
+      <Typography variant="h5">New Study Space</Typography>
+      <br />
       <LinearProgress variant="determinate" value={progress} />
       <br />
-      <Typography variant="h6">Step 1: Location</Typography>
-      <LocationSearcher />
-      <br />
-      <Typography variant="h6">Step 2: Details</Typography>
-      <StudySpaceDetails />
-      <br />
-      <Typography variant="h6">Step 3: Images</Typography>
-      <ImagePreview />
-      <Button variant="contained" type="submit">
-        {" "}
+      <Card className={classes.FormCard}>
+        {progress === 33 ? <LocationSearcher /> : null}
+        {progress === 66 ? <StudySpaceDetails /> : null}
+        {progress === 99 ? <ImagePreview /> : null}
+      </Card>
+      <Button
+        variant="contained"
+        type="submit"
+        className={classes.stepButtons}
+        sx={{
+          width: "25%",
+          display: "flex",
+          justifyContent: "center",
+          margin: "auto",
+          marginTop: "1.5rem",
+          marginBottom: "1rem",
+        }}
+        onClick={() => {
+          setProgress(progress + 33);
+        }}
+      >
         Next
       </Button>
+      <br />
+      <br />
     </Box>
   );
 };
