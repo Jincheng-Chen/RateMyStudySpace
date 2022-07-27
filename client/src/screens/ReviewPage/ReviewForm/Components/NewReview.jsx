@@ -1,32 +1,50 @@
-import { Stack, Typography, Input } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  Input,
+  Card,
+  LinearProgress,
+  Button,
+} from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import { makeStyles } from "@mui/styles";
+
 import ButtonGroupRatings from "./ButtonGroupRatings";
 import CommentSection from "./CommentSection";
 import StarRating from "./StarRatings";
 
 import { Form, Field } from "react-final-form";
 import { useDispatch } from "react-redux";
-import { addNewReview } from "../../../../features/reviewSlice";
-import { useNavigate, useLocation } from "react-router-dom";
-import AllReviews from "./AllReviews";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAddReviewMutation } from "../../../../features/api/apiSlice";
+import { useState } from "react";
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// convet a string to number
-// const toNumber = (str) => {
-//   return Number(str);
-// }
+//Styles
+const useStyles = makeStyles({
+  FromCard: {
+    border: "2px solid #e0e0e0",
+    padding: "2rem",
+    width: "89%",
+  },
+  stepButtons: {
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center",
+    margin: "2rem",
+  },
+});
 
 const NewReview = (props) => {
+  const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const studySpace = location.state;
   const [addReview] = useAddReviewMutation();
+  const [progress, setProgress] = useState(33);
   console.log(studySpace);
   const id = studySpace ? studySpace._id : null;
+  const name = studySpace ? studySpace.name : "StudySpace";
   const showResults = async (values) => {
     const newReview = { ...values, spaceId: id };
     newReview.overall = Number(newReview.overall);
@@ -49,14 +67,18 @@ const NewReview = (props) => {
     <Box
       sx={{
         display: "flex",
-        minHeight: "100vh",
-        minWidth: "50vw",
+        flexDirection: "column",
         justifyContent: "center",
+        width: "50%",
+        maxWidth: "50%",
+        margin: "auto",
       }}
     >
       <Stack spacing={2}>
         <br />
-        <Typography variant="h6">New Review for : {id}</Typography>
+        <Typography variant="h5">New Review for : {name}</Typography>
+        <LinearProgress variant="determinate" value={progress} />
+
         <Form onSubmit={showResults}>
           {(props, reset) => (
             <form
@@ -64,22 +86,40 @@ const NewReview = (props) => {
                 props.handleSubmit(event).then(reset);
               }}
             >
-              <></>
-              <StarRating />
-              <ButtonGroupRatings />
-              <Field name="comment">
-                {(props) => (
-                  <div>
-                    <CommentSection
-                      name={props.input.name}
-                      value={props.input.value}
-                      onChange={props.input.onChange}
-                    />
-                  </div>
-                )}
-              </Field>
-              <button type="submit">Submit</button>
-
+              <Card className={classes.FromCard}>
+                {progress === 33 ? <StarRating /> : null}
+                {progress === 66 ? <ButtonGroupRatings /> : null}
+                {progress === 99 ? (
+                  <Field name="comment">
+                    {(props) => (
+                      <div>
+                        <CommentSection
+                          name={props.input.name}
+                          value={props.input.value}
+                          onChange={props.input.onChange}
+                        />
+                      </div>
+                    )}
+                  </Field>
+                ) : null}
+              </Card>
+              <Button
+                variant="contained"
+                type="submit"
+                onClick={() => {
+                  setProgress(progress + 33);
+                }}
+                sx={{
+                  width: "25%",
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "auto",
+                  marginTop: "1.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                Next
+              </Button>
               <br />
               <br />
             </form>
