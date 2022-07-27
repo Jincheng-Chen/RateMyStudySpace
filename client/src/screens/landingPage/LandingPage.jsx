@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography, Card, Rating, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 // import image from '../../shared/images/LandingPageBackground'
+import { useNavigate } from "react-router-dom";
 import image from "../../shared/images/LandingPageBackground.jpg";
 import SanFransisco from "../../shared/images/SanFransisco.jpg";
 import Vancouver from "../../shared/images/vancouver.jpg";
@@ -111,12 +112,20 @@ function LandingPage() {
   const cities = ["Vancouver", "San Fransisco", "Toronto"];
 
   const classes = useStyles();
+  const navigate = useNavigate();
+
+  const navigateCallBack = (city, description, lat, lng) => {
+    navigate("/search", {
+      state: { city: city, address: description, lat: lat, lon: lng },
+    });
+  };
   return (
     <Box className={classes.outerContainer}>
       <Box className={classes.topContainer}>
         <SearchBar
           options={cities}
           propClass={classes.searchBarPos}
+          callBack={navigateCallBack}
         ></SearchBar>
       </Box>
       <Box className={classes.bottomContainer}>
