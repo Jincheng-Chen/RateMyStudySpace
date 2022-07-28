@@ -1,5 +1,4 @@
 const StudySpace = require('../models/studySpace');
-const Reviews = require('../models/review');
 
 const getStudySpace = (req, res) => {
   StudySpace.findById(req.params.studySpaceId).then((response) => {
@@ -14,60 +13,24 @@ const getStudySpaceFiltered = (req, res) => {
     location, filter, operator, value,
   } = req.params;
 
-  const avgKey = `$${filter}`;
-  const operatorKey = `$${operator}`;
-  const query = { average: {} };
-  query.average[operatorKey] = Number(value);
-
-  const locationQuery = { location };
-
-  if (filter === 'none' || operator === 'none' || value === '') {
-    StudySpace.find(locationQuery).then((found) => {
-      res.status(200).json(found);
-    }).catch((err) => {
-      res.status(400).json(err);
-    });
-  } else {
-    Reviews.aggregate([
-      {
-        $group: {
-          _id: '$spaceId',
-          average: { $avg: avgKey },
-        },
-      },
-      {
-        $match: query,
-      },
-      {
-        $project: {
-          _id: {
-            $toObjectId: '$_id',
-          },
-        },
-      },
-      {
-        $lookup: {
-          from: 'studyspaces',
-          localField: '_id',
-          foreignField: '_id',
-          as: 'space',
-        },
-      },
-      {
-        $unwind: '$space',
-      },
-      {
-        $replaceRoot: { newRoot: '$space' },
-      },
-      {
-        $match: locationQuery,
-      },
-    ]).then((found) => {
-      res.status(200).json(found);
-    }).catch((err) => {
-      res.status(400).json(err);
-    });
+  const query = { };
+  if (filter !== 'none' && operator !== 'none' && value !== '') {
+    const filterKey = `${filter}`;
+    const operatorKey = `$${operator}`;
+    const filterOperation = { };
+    filterOperation[operatorKey] = Number(value);
+    query[filterKey] = filterOperation;
   }
+  StudySpace.aggregate([{
+    $match: { location },
+  },
+  {
+    $match: query,
+  }]).then((found) => {
+    res.status(200).json(found);
+  }).catch((err) => {
+    res.status(400).json(err);
+  });
 };
 
 const getStudySpaceByLocation = (req, res) => {
