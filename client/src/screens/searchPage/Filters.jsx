@@ -88,7 +88,7 @@ function Filters({ stateChanger, location }) {
               onChange={handleInputChange}
             >
               <MenuItem value={"none"}>None</MenuItem>
-              <MenuItem value={"gt"}>></MenuItem>
+              <MenuItem value={"gt"}>{">"}</MenuItem>
               <MenuItem value={"lt"}>{"<"}</MenuItem>
               <MenuItem value={"eq"}>=</MenuItem>
             </Select>
