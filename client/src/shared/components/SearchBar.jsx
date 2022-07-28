@@ -7,7 +7,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 
-const PlacesAutocomplete = ({ callBack }) => {
+const PlacesAutocomplete = ({ callBack, width }) => {
   const {
     ready,
     value,
@@ -30,11 +30,12 @@ const PlacesAutocomplete = ({ callBack }) => {
     }
   };
 
-  const handleSelect = (e) => {
+  const handleSelect = (e, value) => {
     // When user selects a place, we can replace the keyword without request data from API
     // by setting the second parameter to "false"
     let description = e.target.textContent;
     setValue(description, false);
+    setVal(value);
     clearSuggestions();
     console.log("here");
     // Get latitude and longitude via utility functions
@@ -53,7 +54,7 @@ const PlacesAutocomplete = ({ callBack }) => {
   return (
     <Autocomplete
       options={data}
-      sx={{ width: "40vw", background: "white" }}
+      sx={{ width: width, background: "white" }}
       renderInput={(params) => <TextField {...params} label="Enter City" />}
       onInputChange={handleInput}
       onChange={handleSelect}
@@ -61,6 +62,9 @@ const PlacesAutocomplete = ({ callBack }) => {
       getOptionLabel={(option) => {
         return option.description || "";
       }}
+      isOptionEqualToValue={(option, value) =>
+        option == value?.description || value
+      }
     ></Autocomplete>
   );
 };

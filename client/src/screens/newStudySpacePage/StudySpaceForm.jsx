@@ -16,6 +16,7 @@ import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import { LOCATION_TYPES } from "../../shared/utils";
 import { useAddStudySpaceMutation } from "../../features/api/studySpaceApiSlice";
+import SearchBar from "../../shared/components/SearchBar";
 
 const defaultValues = {
   name: "",
@@ -66,6 +67,15 @@ function StudySpaceForm() {
     // setFormValues(defaultValues);
   };
 
+  const handleLocationChange = (city, address, lat, lng) => {
+    setFormValues({
+      ...formValues,
+      location: address,
+      lat: lat,
+      lon: lng,
+    });
+    console.log(formValues);
+  };
   return (
     <form onSubmit={handleSubmit}>
       <Card>
@@ -85,7 +95,7 @@ function StudySpaceForm() {
           </FormControl>
         </Box>
         <Box>
-          <FormControl>
+          {/* <FormControl>
             <InputLabel htmlFor="sp-location">Location</InputLabel>
             <Input
               id="sp-location"
@@ -94,10 +104,12 @@ function StudySpaceForm() {
               value={formValues.location}
               onChange={handleInputChange}
             />
-            <FormHelperText id="helper-location">
+            {/* <FormHelperText id="helper-location">
               What is the address?
-            </FormHelperText>
-          </FormControl>
+            </FormHelperText> */}
+
+          {/* </FormControl> */}
+          <SearchBar callBack={handleLocationChange}></SearchBar>
         </Box>
         <Box>
           <FormControl>

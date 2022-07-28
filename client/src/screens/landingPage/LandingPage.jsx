@@ -126,6 +126,7 @@ function LandingPage() {
           options={cities}
           propClass={classes.searchBarPos}
           callBack={navigateCallBack}
+          width="40vw"
         ></SearchBar>
       </Box>
       <Box className={classes.bottomContainer}>
