@@ -37,14 +37,13 @@ const PlacesAutocomplete = ({ callBack, width }) => {
     setValue(description, false);
     setVal(value);
     clearSuggestions();
-    console.log("here");
+
     // Get latitude and longitude via utility functions
-    console.log(description);
+
     getGeocode({ address: description })
       .then((results) => {
         const { lat, lng } = getLatLng(results[0]);
         callBack("Vancouver", description, lat, lng);
-        console.log("📍 Coordinates: ", { lat, lng });
       })
       .catch((err) => {
         console.log(err);

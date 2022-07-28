@@ -12,7 +12,6 @@ const containerStyle = {
 };
 
 const MapComponent = ({ markers }) => {
-  console.log("LocationSearcher", process.env.REACT_APP_MAP_API_KEY);
   const navigate = useNavigate();
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -29,7 +28,6 @@ const MapComponent = ({ markers }) => {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null);
   }, []);
-  console.log(markers);
   return isLoaded ? (
     <Box>
       <GoogleMap

@@ -37,7 +37,6 @@ function SearchPage() {
   const [studySpaces, setStudySpaces] = useState([]);
   const [markers, setMarkers] = useState([]);
   const locToSearch = "Vancouver";
-  console.log(locToSearch);
   useEffect(() => {
     if (locToSearch === null) {
       return navigate("/");
