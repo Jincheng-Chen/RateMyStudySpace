@@ -41,7 +41,7 @@ const ButtonGroupRatings = () => {
         <Checkboxes name="tasks" required={false} data={checkboxData} />
       </Stack>
       <Stack className={classes.btnGroup}>
-        {title("How regular do yo come here?")}
+        {title("How often do you come here?")}
         <Radios
           label="Pick one..."
           name="frequency"
@@ -54,13 +54,13 @@ const ButtonGroupRatings = () => {
         />
       </Stack>
       <Stack className={classes.btnGroup}>
-        {title("Would you recommand this studyspce for other worker?")}
+        {title("Would you recommend this study space for other workers?")}
         <Radios
           label="Pick one..."
           name="recommendation"
           required={true}
           data={[
-            { label: "Not ☹️", value: "Not" },
+            { label: "No ☹️", value: "Not" },
             { label: "Great spot 🙂", value: "Great spot" },
             { label: "Come study! 🤗", value: "Come study!" },
           ]}
