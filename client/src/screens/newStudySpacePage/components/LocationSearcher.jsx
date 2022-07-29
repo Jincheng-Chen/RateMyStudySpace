@@ -6,6 +6,8 @@ import { makeStyles } from "@mui/styles";
 import { useState } from "react";
 import { TextField } from "mui-rff";
 import { Field } from "react-final-form";
+import Autocomplete from "@mui/material/Autocomplete";
+
 const useStyles = makeStyles({
   searchBarPos: {
     display: "flex",
@@ -66,6 +68,21 @@ const LocationSearcher = () => {
     setZoom(13);
   };
 
+  // Conditoal render component
+  let cityName = city ? <Typography>{city}</Typography> : null;
+  let latValue = lat ? <Typography>{lat}</Typography> : null;
+  let logValue = log ? <Typography>{log}</Typography> : null;
+
+  const top100Films = [
+    { label: "The Shawshank Redemption", year: 1994 },
+    { label: "The Godfather", year: 1972 },
+    { label: "The Godfather: Part II", year: 1974 },
+    { label: "The Dark Knight", year: 2008 },
+    { label: "12 Angry Men", year: 1957 },
+    { label: "Schindler's List", year: 1993 },
+    { label: "Pulp Fiction", year: 1994 },
+  ];
+
   return isLoaded ? (
     <Box>
       <Typography variant="h6">Step 1: Location</Typography>
@@ -95,27 +112,9 @@ const LocationSearcher = () => {
           margin: "2rem  2rem ",
         }}
       >
-        <TextField
-          variant="filled"
-          name="city"
-          label="City"
-          required={true}
-          value={city}
-        />
-        <TextField
-          variant="filled"
-          name="lat"
-          label="Lat"
-          required={true}
-          value={lat}
-        />
-        <TextField
-          variant="filled"
-          name="lon"
-          label="Lon"
-          required={true}
-          value={log}
-        />
+        {cityName}
+        {latValue}
+        {logValue}
       </Stack>
     </Box>
   ) : (

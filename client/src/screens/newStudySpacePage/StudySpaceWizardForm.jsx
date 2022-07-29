@@ -15,6 +15,7 @@ import StudySpaceDetails from "./components/StudySpaceDetails";
 import ImagePreview from "./components/ImagePreview";
 import { makeStyles } from "@mui/styles";
 import { Form, Field } from "react-final-form";
+import { useAddStudySpaceMutation } from "../../features/api/studySpaceApiSlice";
 
 //Styles
 const classes = makeStyles({
@@ -36,13 +37,35 @@ const classes = makeStyles({
     width: "500px",
   },
 });
-const handleSubmit = async (values) => {
-  console.log(values);
-  window.alert(JSON.stringify(values, undefined, 2));
-};
 
 const StudySpaceWizardForm = () => {
   const [progress, setProgress] = useState(50);
+  const [addStudySpace] = useAddStudySpaceMutation();
+
+  const handleSubmit = async (values) => {
+    const name = values.studySpaceName ? values.studySpaceName : "StudySpace";
+    const type = values.studySpaceType ? values.studySpaceType : "Library";
+    const location = values.city ? values.city : "Vancouver";
+    const lat = values.lat ? values.lat : "49.2827";
+    const lon = values.lng ? values.lng : "-123.1207";
+    const images = [values.imgLink1, values.imgLink2];
+
+    const newStudySpace = {
+      name: name,
+      type: type,
+      location: location,
+      lat: lat,
+      lon: lon,
+      images: images,
+    };
+
+    addStudySpace(newStudySpace);
+
+    console.log(values);
+
+    window.alert(JSON.stringify(values, undefined, 2));
+  };
+
   return (
     <Box
       sx={{

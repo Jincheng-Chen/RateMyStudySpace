@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const studySpaceApiSlice = createApi({
   reducerPath: "studySpaceApi",
-  baseQuery: fetchBaseQuery(),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
   tagTypes: ["StudySpace"],
   endpoints: (builder) => ({
     getStudySpace: builder.query({

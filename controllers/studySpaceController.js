@@ -44,15 +44,24 @@ const getStudySpaceByLocation = (req, res) => {
     });
 };
 
-const addNewStudySpace = (req, res) => {
-  const studySpace = req.body;
-  const newStudySpace = new StudySpace(studySpace);
+const addNewStudySpace = async (req, res) => {
+  // const studySpace = req.body;
+  // const newStudySpace = new StudySpace(studySpace);
 
-  newStudySpace.save().then((result) => {
-    res.status(200).json({id: result._id}); // eslint-disable-line
-  }).catch((err) => {
-    res.status(400).json(err);
-  });
+  // newStudySpace.save().then((result) => {
+  //   res.status(200).json({id: result._id}); // eslint-disable-line
+  // }).catch((err) => {
+  //   res.status(400).json(err);
+  // });
+  try {
+    await StudySpace.create({ ...req.body });
+    const AllstudySpace = await StudySpace.find({}).sort({ createdAt: -1 });
+    console.log(AllstudySpace);
+    res.status(200).json(AllstudySpace);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ error: error.message });
+  }
 };
 
 const addNewImage = (req, res) => {
