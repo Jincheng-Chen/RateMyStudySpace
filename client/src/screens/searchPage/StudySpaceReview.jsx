@@ -4,6 +4,7 @@ import React from "react";
 import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import TableRestaurantIcon from "@mui/icons-material/TableRestaurant";
 import { makeStyles } from "@mui/styles";
+import placeHolder from "../../shared/images/placeholderLibrary.jpg";
 
 const useStyles = makeStyles({
   textIconBox: {
@@ -25,7 +26,7 @@ function StudySpaceReview({ studySpace }) {
       <Box>
         <img
           className={classes.img}
-          src={studySpace.images[0]}
+          src={studySpace.images[0] ? studySpace.images[0] : placeHolder}
           alt={studySpace.name}
         />
       </Box>
