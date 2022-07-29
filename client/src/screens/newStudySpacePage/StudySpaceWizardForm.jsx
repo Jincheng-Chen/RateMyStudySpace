@@ -41,7 +41,7 @@ const handleSubmit = async (values) => {
   window.alert(JSON.stringify(values, undefined, 2));
 };
 
-const StudySpcaeWizardForm = () => {
+const StudySpaceWizardForm = () => {
   const [progress, setProgress] = useState(50);
   return (
     <Box
@@ -97,4 +97,4 @@ const StudySpcaeWizardForm = () => {
   );
 };
 
-export default StudySpcaeWizardForm;
+export default StudySpaceWizardForm;

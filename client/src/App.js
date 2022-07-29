@@ -11,7 +11,7 @@ import { ThemeProvider } from "@mui/styles";
 import SearchPage from "./screens/searchPage/SearchPage";
 import NewStudySpacePage from "./screens/newStudySpacePage/NewStudySpacePage";
 import IndividualStudySpacePage from "./screens/individualStudySpacePage/IndividualStudySpacePage";
-import StudySpcaeWizardForm from "./screens/newStudySpacePage/StudySpcaeWizardForm";
+import StudySpaceWizardForm from "./screens/newStudySpacePage/StudySpaceWizardForm";
 
 function App() {
   const theme = createTheme();
@@ -35,7 +35,7 @@ function App() {
               />
               <Route
                 path="/newStudySpace/wizardForm"
-                element={<StudySpcaeWizardForm />}
+                element={<StudySpaceWizardForm />}
               />
             </Routes>
           </BrowserRouter>
