@@ -35,7 +35,7 @@ const LocationSearcher = () => {
   //Load the Map API
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyAyNUKellTWMOLjMPb-khQob6xSTkAgeac",
+    googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY,
   });
 
   const onLoad = React.useCallback(function callback(map) {
