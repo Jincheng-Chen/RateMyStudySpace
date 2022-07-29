@@ -36,9 +36,13 @@ const classes = makeStyles({
     width: "500px",
   },
 });
+const handleSubmit = async (values) => {
+  console.log(values);
+  window.alert(JSON.stringify(values, undefined, 2));
+};
 
 const StudySpcaeWizardForm = () => {
-  const [progress, setProgress] = useState(33);
+  const [progress, setProgress] = useState(50);
   return (
     <Box
       sx={{
@@ -55,29 +59,38 @@ const StudySpcaeWizardForm = () => {
       <br />
       <LinearProgress variant="determinate" value={progress} />
       <br />
-      <Card className={classes.FormCard}>
-        {progress === 33 ? <LocationSearcher /> : null}
-        {progress === 66 ? <StudySpaceDetails /> : null}
-        {progress === 99 ? <ImagePreview /> : null}
-      </Card>
-      <Button
-        variant="contained"
-        type="submit"
-        className={classes.stepButtons}
-        sx={{
-          width: "25%",
-          display: "flex",
-          justifyContent: "center",
-          margin: "auto",
-          marginTop: "1.5rem",
-          marginBottom: "1rem",
-        }}
-        onClick={() => {
-          setProgress(progress + 33);
-        }}
-      >
-        Next
-      </Button>
+      <Form onSubmit={handleSubmit}>
+        {(props, reset) => (
+          <form
+            onSubmit={(event) => {
+              props.handleSubmit(event).then(reset);
+            }}
+          >
+            <Card className={classes.FormCard}>
+              {progress === 50 ? <LocationSearcher /> : null}
+              {progress === 99 ? <StudySpaceDetails /> : null}
+            </Card>
+            <Button
+              variant="contained"
+              type="submit"
+              className={classes.stepButtons}
+              sx={{
+                width: "25%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "auto",
+                marginTop: "1.5rem",
+                marginBottom: "1rem",
+              }}
+              onClick={() => {
+                setProgress(progress + 49);
+              }}
+            >
+              Next
+            </Button>
+          </form>
+        )}
+      </Form>
       <br />
       <br />
     </Box>
