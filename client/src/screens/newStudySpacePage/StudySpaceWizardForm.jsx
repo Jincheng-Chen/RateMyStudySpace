@@ -16,6 +16,7 @@ import ImagePreview from "./components/ImagePreview";
 import { makeStyles } from "@mui/styles";
 import { Form, Field } from "react-final-form";
 import { useAddStudySpaceMutation } from "../../features/api/studySpaceApiSlice";
+import { useNavigate } from "react-router-dom";
 
 //Styles
 const classes = makeStyles({
@@ -29,8 +30,7 @@ const classes = makeStyles({
   FormCard: {
     border: "2px solid #e0e0e0",
     padding: "2rem",
-    width: "100%",
-    margin: "auto",
+    width: "89%",
     backgroundColor: "#f5f5f5",
   },
   stepButtons: {
@@ -41,6 +41,7 @@ const classes = makeStyles({
 const StudySpaceWizardForm = () => {
   const [progress, setProgress] = useState(50);
   const [addStudySpace] = useAddStudySpaceMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     const name = values.studySpaceName ? values.studySpaceName : null;
@@ -59,11 +60,12 @@ const StudySpaceWizardForm = () => {
       images: images,
     };
 
-    addStudySpace(newStudySpace);
+    await addStudySpace(newStudySpace);
 
-    console.log(newStudySpace);
+    navigate("/search");
 
-    window.alert(JSON.stringify(newStudySpace, undefined, 2));
+    // console.log(newStudySpace);
+    // window.alert(JSON.stringify(newStudySpace, undefined, 2));
   };
 
   return (
@@ -72,9 +74,10 @@ const StudySpaceWizardForm = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        width: "50%",
-        maxWidth: "50%",
+        width: "60%",
+        maxWidth: "60%",
         margin: "auto",
+        padding: "2rem",
       }}
     >
       <br />

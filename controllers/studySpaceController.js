@@ -33,31 +33,24 @@ const getStudySpaceFiltered = (req, res) => {
   });
 };
 
-const getStudySpaceByLocation = (req, res) => {
+const getStudySpaceByLocation = async (req, res) => {
   const { location } = req.params;
 
-  StudySpace.find({ location })
-    .then((response) => {
-      res.status(200).json(response);
-    }).catch((err) => {
-      res.status(400).json(err);
-    });
+  try {
+    const AllstudySpace = await StudySpace.find({ location }).sort({ createdAt: -1 });
+    res.status(200).json(AllstudySpace);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ error: error.message });
+  }
 };
 
 const addNewStudySpace = async (req, res) => {
-  // const studySpace = req.body;
-  // const newStudySpace = new StudySpace(studySpace);
-
-  // newStudySpace.save().then((result) => {
-  //   res.status(200).json({id: result._id}); // eslint-disable-line
-  // }).catch((err) => {
-  //   res.status(400).json(err);
-  // });
   try {
     await StudySpace.create({ ...req.body });
     const AllstudySpace = await StudySpace.find({}).sort({ createdAt: -1 });
-    console.log(AllstudySpace);
-    res.status(200).json(AllstudySpace);
+    console.log(AllstudySpace[0]);
+    res.status(200).json(AllstudySpace[0]);
   } catch (error) {
     console.log(error.message);
     res.status(400).json({ error: error.message });

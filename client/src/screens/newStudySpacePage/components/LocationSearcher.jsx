@@ -33,8 +33,8 @@ const LocationSearcher = () => {
   //States
   const [studydSpaceInfo, setStudySpaceInfo] = useState(null);
   const [map, setMap] = useState(null);
-  const [center, setCenter] = useState({ lat: 49.2606, lng: 123.246 });
-  const [zoom, setZoom] = useState(13);
+  const [center, setCenter] = useState({ lat: 49.2606, lng: -123.246 });
+  const [zoom, setZoom] = useState(10);
   //Load the Map API
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -42,8 +42,8 @@ const LocationSearcher = () => {
   });
 
   const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
+    // const bounds = new window.google.maps.LatLngBounds(center);
+    // map.fitBounds(bounds);
     setMap(map);
   }, []);
 
@@ -58,10 +58,6 @@ const LocationSearcher = () => {
   // Set up the makers and info windows when hover on a marker
   const SearchResultCallBack = (city, description, lat, lng) => {
     setStudySpaceInfo({ city: city, address: description, lat: lat, lng: lng });
-    window.alert(
-      JSON.stringify({ city: city, address: description, lat: lat, lng: lng })
-    );
-    console.log(studydSpaceInfo);
     setCenter({ lat: lat, lng: lng });
     setCitiesAuto([city]);
     setLatAuto([lat]);

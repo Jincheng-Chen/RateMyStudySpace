@@ -24,18 +24,15 @@ function App() {
             <Routes>
               <Route index element={<LandingPage></LandingPage>} />
               <Route path="/search" element={<SearchPage></SearchPage>} />
-              <Route
-                path="/newStudySpace"
-                element={<NewStudySpacePage></NewStudySpacePage>}
-              />
+              <Route path="/newStudySpace" element={<StudySpaceWizardForm />} />
               <Route path="/newReview" element={<NewReview />} />
               <Route
                 path="/studySpace"
                 element={<IndividualStudySpacePage />}
               />
               <Route
-                path="/newStudySpace/wizardForm"
-                element={<StudySpaceWizardForm />}
+                path="/newStudySpace/oldFrom"
+                element={<NewStudySpacePage />}
               />
             </Routes>
           </BrowserRouter>

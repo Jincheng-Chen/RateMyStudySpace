@@ -8,7 +8,18 @@ const StudySpaceDetails = () => {
   const [img1, setImg1] = useState(null);
   const [img2, setImg2] = useState(null);
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        minWidth: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: "3vh",
+        marginBottom: "3vh",
+      }}
+    >
       <Typography variant="h6">Step 2: Details</Typography>
       <Stack>
         <TextField

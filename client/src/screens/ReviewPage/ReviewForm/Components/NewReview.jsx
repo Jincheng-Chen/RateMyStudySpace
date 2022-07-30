@@ -56,7 +56,7 @@ const NewReview = (props) => {
     newReview.seatsComfort = Number(newReview.seatsComfort);
     newReview.duration = Number(newReview.duration);
 
-    window.alert(JSON.stringify(newReview, undefined, 2));
+    // window.alert(JSON.stringify(newReview, undefined, 2));
 
     addReview(newReview);
 
