@@ -43,11 +43,11 @@ const StudySpaceWizardForm = () => {
   const [addStudySpace] = useAddStudySpaceMutation();
 
   const handleSubmit = async (values) => {
-    const name = values.studySpaceName ? values.studySpaceName : "StudySpace";
-    const type = values.studySpaceType ? values.studySpaceType : "Library";
-    const location = values.city ? values.city : "Vancouver";
-    const lat = values.lat ? values.lat : "49.2827";
-    const lon = values.lng ? values.lng : "-123.1207";
+    const name = values.studySpaceName ? values.studySpaceName : null;
+    const type = values.studySpaceType ? values.studySpaceType : null;
+    const location = values.city ? values.city : null;
+    const lat = values.lat ? values.lat : null;
+    const lon = values.lon ? values.lon : null;
     const images = [values.imgLink1, values.imgLink2];
 
     const newStudySpace = {
@@ -61,9 +61,9 @@ const StudySpaceWizardForm = () => {
 
     addStudySpace(newStudySpace);
 
-    console.log(values);
+    console.log(newStudySpace);
 
-    window.alert(JSON.stringify(values, undefined, 2));
+    window.alert(JSON.stringify(newStudySpace, undefined, 2));
   };
 
   return (

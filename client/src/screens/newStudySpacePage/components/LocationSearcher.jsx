@@ -1,12 +1,16 @@
-import { Box, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Typography,
+  TextField as MUITextField,
+} from "@mui/material";
 import React from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import SearchBar from "../../../shared/components/SearchBar";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
-import { TextField } from "mui-rff";
+import { TextField, Autocomplete } from "mui-rff";
 import { Field } from "react-final-form";
-import Autocomplete from "@mui/material/Autocomplete";
 
 const useStyles = makeStyles({
   searchBarPos: {
@@ -30,9 +34,6 @@ const LocationSearcher = () => {
   const [studydSpaceInfo, setStudySpaceInfo] = useState(null);
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState({ lat: 49.2606, lng: 123.246 });
-  const [city, setCity] = useState(null);
-  const [lat, setLat] = useState(null);
-  const [log, setLog] = useState(null);
   const [zoom, setZoom] = useState(13);
   //Load the Map API
   const { isLoaded } = useJsApiLoader({
@@ -62,26 +63,16 @@ const LocationSearcher = () => {
     );
     console.log(studydSpaceInfo);
     setCenter({ lat: lat, lng: lng });
-    setCity(city);
-    setLat(lat);
-    setLog(lng);
+    setCitiesAuto([city]);
+    setLatAuto([lat]);
+    setLogAuto([lng]);
     setZoom(13);
   };
 
   // Conditoal render component
-  let cityName = city ? <Typography>{city}</Typography> : null;
-  let latValue = lat ? <Typography>{lat}</Typography> : null;
-  let logValue = log ? <Typography>{log}</Typography> : null;
-
-  const top100Films = [
-    { label: "The Shawshank Redemption", year: 1994 },
-    { label: "The Godfather", year: 1972 },
-    { label: "The Godfather: Part II", year: 1974 },
-    { label: "The Dark Knight", year: 2008 },
-    { label: "12 Angry Men", year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: "Pulp Fiction", year: 1994 },
-  ];
+  const [citiesAuto, setCitiesAuto] = useState([]);
+  const [latAuto, setLatAuto] = useState([]);
+  const [logAuto, setLogAuto] = useState([]);
 
   return isLoaded ? (
     <Box>
@@ -112,9 +103,37 @@ const LocationSearcher = () => {
           margin: "2rem  2rem ",
         }}
       >
-        {cityName}
-        {latValue}
-        {logValue}
+        <Autocomplete
+          required={true}
+          disablePortal
+          id="combo-box-demo"
+          name="city"
+          options={citiesAuto}
+          sx={{ width: 300 }}
+          renderInput={(params) => <MUITextField {...params} label="City" />}
+        />
+        <Autocomplete
+          required={true}
+          disablePortal
+          id="combo-box-demo"
+          name="lat"
+          options={latAuto}
+          sx={{ width: 300 }}
+          renderInput={(params) => (
+            <MUITextField {...params} label="Latitude" />
+          )}
+        />
+        <Autocomplete
+          required={true}
+          disablePortal
+          id="combo-box-demo"
+          name="lon"
+          options={logAuto}
+          sx={{ width: 300 }}
+          renderInput={(params) => (
+            <MUITextField {...params} label="Longitude" />
+          )}
+        />
       </Stack>
     </Box>
   ) : (
