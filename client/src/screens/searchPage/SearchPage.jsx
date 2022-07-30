@@ -45,16 +45,18 @@ function SearchPage() {
 
   useEffect(() => {
     let markerArr = [];
-    studySpaces.forEach((studySpace) => {
-      if (studySpace.lat && studySpace.lon) {
-        markerArr.push({
-          lat: studySpace.lat,
-          lng: studySpace.lon,
-          text: studySpace.name,
-          studySpace: studySpace,
-        });
-      }
-    });
+    if (studySpaces) {
+      studySpaces.forEach((studySpace) => {
+        if (studySpace.lat && studySpace.lon) {
+          markerArr.push({
+            lat: studySpace.lat,
+            lng: studySpace.lon,
+            text: studySpace.name,
+            studySpace: studySpace,
+          });
+        }
+      });
+    }
     setMarkers(markerArr);
   }, [studySpaces]);
 

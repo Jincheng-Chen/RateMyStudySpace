@@ -15,6 +15,8 @@ import StudySpaceDetails from "./components/StudySpaceDetails";
 import ImagePreview from "./components/ImagePreview";
 import { makeStyles } from "@mui/styles";
 import { Form, Field } from "react-final-form";
+import { useAddStudySpaceMutation } from "../../features/api/studySpaceApiSlice";
+import { useNavigate } from "react-router-dom";
 
 //Styles
 const classes = makeStyles({
@@ -28,30 +30,54 @@ const classes = makeStyles({
   FormCard: {
     border: "2px solid #e0e0e0",
     padding: "2rem",
-    width: "100%",
-    margin: "auto",
+    width: "89%",
     backgroundColor: "#f5f5f5",
   },
   stepButtons: {
     width: "500px",
   },
 });
-const handleSubmit = async (values) => {
-  console.log(values);
-  window.alert(JSON.stringify(values, undefined, 2));
-};
 
 const StudySpaceWizardForm = () => {
   const [progress, setProgress] = useState(50);
+  const [addStudySpace] = useAddStudySpaceMutation();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values) => {
+    const name = values.studySpaceName ? values.studySpaceName : null;
+    const type = values.studySpaceType ? values.studySpaceType : null;
+    const location = values.city ? values.city : null;
+    const lat = values.lat ? values.lat : null;
+    const lon = values.lon ? values.lon : null;
+    const images = [values.imgLink1, values.imgLink2];
+
+    const newStudySpace = {
+      name: name,
+      type: type,
+      location: location,
+      lat: lat,
+      lon: lon,
+      images: images,
+    };
+
+    await addStudySpace(newStudySpace);
+
+    navigate("/search");
+
+    // console.log(newStudySpace);
+    // window.alert(JSON.stringify(newStudySpace, undefined, 2));
+  };
+
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        width: "50%",
-        maxWidth: "50%",
+        width: "60%",
+        maxWidth: "60%",
         margin: "auto",
+        padding: "2rem",
       }}
     >
       <br />
