@@ -35,6 +35,7 @@ const useStyles = makeStyles({
   pText: {
     marginLeft: "3vw",
     marginTop: "2vh",
+    marginRight: "3vw",
   },
   ratingContainer: {
     display: "flex",
@@ -55,15 +56,15 @@ function ReviewBox({ review }) {
       <Box className={classes.topContainer}>
         <Box className={classes.topLeftContainer}>
           <Typography align="left">{review.user}</Typography>
-          <Typography align="left">{review.date}</Typography>
           <Rating value={review.overall} readOnly />
+          <Typography>{new Date(review.createdAt).toDateString()}</Typography>
         </Box>
       </Box>
 
       <Typography
         variant="body1"
         align="left"
-        style={{ marginLeft: "2vw", marginTop: "2vh" }}
+        style={{ marginLeft: "2vw", marginTop: "2vh", marginRight: "2vw" }}
         className={classes.pText}
       >
         {review.comments}

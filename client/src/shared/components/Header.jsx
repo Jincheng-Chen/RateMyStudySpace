@@ -32,9 +32,6 @@ export default function Header() {
           >
             Rate My Study Space
           </Typography>
-          <Button onClick={() => navigate("/newReview")} color="inherit">
-            Post Review
-          </Button>
           <Button onClick={() => navigate("/newStudySpace")} color="inherit">
             New Study Space
           </Button>
