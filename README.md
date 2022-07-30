@@ -1,7 +1,7 @@
 # RateStudySpace
 
 Project Description:
-Our project proposal is RateMyStudySpace. This app will allow users to rate and search for study spaces, based on a variety of metrics. They can rate and search based on quietness, space, affordability, etc. In addition, they can leave rating descriptions for other users to read. This app will be targeted towards students, remote workers, freelancers; anybody who needs a space to study/work. In the backend, we plan to store information about study spaces (libraries, cafes, other types of establishments), as well as information about reviews. As a stretch, we could also store information about user data. 
+Our project proposal is RateMyStudySpace. This app will allow users to rate and search for study spaces, based on a variety of metrics. They can rate and search based on quietness, space, affordability, etc. with a map to represent the locations of the study spaces. In addition, they can leave rating descriptions for other users to read. This app will be targeted towards students, remote workers, freelancers; anybody who needs a space to study/work. In the backend, we plan to store information about study spaces (libraries, cafes, other types of establishments), as well as information about reviews.
 
 
 
