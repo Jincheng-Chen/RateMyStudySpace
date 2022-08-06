@@ -33,12 +33,16 @@ const StudySpaceDetails = () => {
           name="imgLink1"
           margin="normal"
           required={true}
+          onChange={(e) => setImg1(e.target.value)}
+          value={img1}
         />
         <TextField
           label="Study Space Image Link 2"
           name="imgLink2"
           margin="normal"
           required={true}
+          onChange={(e) => setImg2(e.target.value)}
+          value={img2}
         />
         <Typography variant="h6">Sudy Space Type</Typography>
         <Radios
@@ -50,7 +54,7 @@ const StudySpaceDetails = () => {
             { label: "Cafe", value: "Cafe" },
           ]}
         />
-        <ImagePreview images="https://picsum.photos/333" />
+        <ImagePreview images={{ img1: img1, img2: img2 }} />
       </Stack>
     </Box>
   );
