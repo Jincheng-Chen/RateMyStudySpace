@@ -11,7 +11,7 @@ const containerStyle = {
   height: "50vh",
 };
 
-const MapComponent = ({ markers }) => {
+const MapComponent = ({ markers, lat, lon }) => {
   const navigate = useNavigate();
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -20,8 +20,6 @@ const MapComponent = ({ markers }) => {
   const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
-    // const bounds = new window.google.maps.LatLngBounds(center);
-    // map.fitBounds(bounds);
     setMap(map);
   }, []);
 
@@ -32,7 +30,7 @@ const MapComponent = ({ markers }) => {
     <Box>
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={markers ? markers[0] : center}
+        center={{ lat: lat, lng: lon }}
         zoom={13}
         onLoad={onLoad}
         onUnmount={onUnmount}

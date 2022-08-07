@@ -1,5 +1,13 @@
-import React from "react";
-import { Box, Typography, Card, Rating, Grid } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  Card,
+  Rating,
+  Grid,
+  TextField,
+  Button,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 // import image from '../../shared/images/LandingPageBackground'
 import { useNavigate } from "react-router-dom";
@@ -90,6 +98,11 @@ const useStyles = makeStyles({
     marginTop: "3vh",
     marginBottom: "5vh",
   },
+  searchContainer: {
+    display: "flex",
+    flexDirection: "row",
+    padding: "10px",
+  },
 });
 function LandingPage() {
   const buttonCityArray = [
@@ -114,21 +127,55 @@ function LandingPage() {
 
   const classes = useStyles();
   const navigate = useNavigate();
+  const [radius, setRadius] = useState(5);
+  const [city, setCity] = useState("");
+  const [description, setDescription] = useState("");
+  const [lat, setLat] = useState(0);
+  const [lon, setLon] = useState(0);
 
-  const navigateCallBack = (city, description, lat, lng) => {
+  const navigateCallBack = (cityP, descriptionP, latP, lngP) => {
+    setCity(cityP);
+    setDescription(descriptionP);
+    setLat(latP);
+    setLon(lngP);
+  };
+
+  const onSubmit = () => {
     navigate("/search", {
-      state: { city: city, address: description, lat: lat, lon: lng },
+      state: {
+        city: city,
+        address: description,
+        lat: lat,
+        lon: lon,
+        radius: radius,
+      },
     });
   };
+
   return (
     <Box className={classes.outerContainer}>
       <Box className={classes.topContainer}>
-        <SearchBar
-          options={cities}
-          propClass={classes.searchBarPos}
-          callBack={navigateCallBack}
-          width="40vw"
-        ></SearchBar>
+        <Card className={classes.searchContainer}>
+          <SearchBar
+            options={cities}
+            propClass={classes.searchBarPos}
+            callBack={navigateCallBack}
+            width="40vw"
+          ></SearchBar>
+          <TextField
+            id="outlined-number"
+            label="Radius (km)"
+            type="number"
+            value={radius}
+            onChange={(event) => setRadius(event.target.value)}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <Button variant="contained" onClick={onSubmit}>
+            Search
+          </Button>
+        </Card>
       </Box>
       <Box className={classes.bottomContainer}>
         <Box className={classes.infoBox}>

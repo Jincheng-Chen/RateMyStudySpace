@@ -21,11 +21,19 @@ const useStyles = makeStyles({
 function Filters({ stateChanger, location }) {
   const classes = useStyles();
 
+  const lat = location.lat;
+  const lon = location.lon;
+  const radius = location.radius;
+  console.log(lat);
+  console.log(lon);
   const defaultValues = {
     location: location,
     filter: "none",
     operator: "none",
     value: "0",
+    lat: lat,
+    lon: lon,
+    radius: radius,
   };
 
   const [filter, setFilter] = useState(defaultValues);
