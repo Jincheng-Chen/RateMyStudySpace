@@ -10,7 +10,7 @@ const getStudySpace = (req, res) => {
 
 const getStudySpaceFiltered = (req, res) => {
   const {
-    location, filter, operator, value,
+    filter, operator, value, lat, lon, radius,
   } = req.params;
 
   const query = { };
@@ -21,14 +21,27 @@ const getStudySpaceFiltered = (req, res) => {
     filterOperation[operatorKey] = Number(value);
     query[filterKey] = filterOperation;
   }
-  StudySpace.aggregate([{
-    $match: { location },
-  },
-  {
-    $match: query,
-  }]).then((found) => {
+  StudySpace.aggregate([
+    {
+      $geoNear: {
+        near: {
+          type: 'Point',
+          coordinates: [parseFloat(lon),
+            parseFloat(lat)],
+        },
+        maxDistance: Number(radius) * 1000,
+        distanceField: 'distance',
+        includeLocs: 'coordinates',
+        spherical: true,
+      },
+    },
+    {
+      $match: query,
+    },
+  ]).then((found) => {
     res.status(200).json(found);
   }).catch((err) => {
+    console.log(err);
     res.status(400).json(err);
   });
 };
@@ -45,6 +58,30 @@ const getStudySpaceByLocation = async (req, res) => {
   }
 };
 
+const getStudySpacesByRadialLocation = async (req, res) => {
+  const { lat, lon, radius } = req.params;
+
+  try {
+    const studySpaces = await StudySpace.find({
+      coordinates: {
+        $near: {
+          $maxDistance: parseInt(radius * 1000, 10),
+          $geometry: {
+            type: 'Point',
+            /*eslint-disable */
+          coordinates: [parseFloat(lon, 10), parseFloat(lat, 10)]
+          /* eslint-enable */
+          },
+        },
+      },
+    });
+    res.status(200).json(studySpaces);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const addNewStudySpace = async (req, res) => {
   try {
     await StudySpace.create({ ...req.body });
@@ -52,7 +89,6 @@ const addNewStudySpace = async (req, res) => {
     console.log(AllstudySpace[0]);
     res.status(200).json(AllstudySpace[0]);
   } catch (error) {
-    console.log(error.message);
     res.status(400).json({ error: error.message });
   }
 };
@@ -73,4 +109,5 @@ module.exports = {
   addNewStudySpace,
   addNewImage,
   getStudySpaceByLocation,
+  getStudySpacesByRadialLocation,
 };

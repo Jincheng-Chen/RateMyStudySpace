@@ -14,13 +14,13 @@ const studySpaceSchema = new mongoose.Schema({
     required: true,
 
   },
-  lat: {
-    type: Number,
-    required: true,
-  },
-  lon: {
-    type: Number,
-    required: true,
+  coordinates: {
+    type: { type: String, required: true },
+    coordinates: [
+      {
+        type: Number,
+      },
+    ],
   },
   images: [
     {
@@ -28,5 +28,5 @@ const studySpaceSchema = new mongoose.Schema({
     },
   ],
 });
-
+studySpaceSchema.index({ coordinates: '2dsphere' });
 module.exports = mongoose.model('StudySpace', studySpaceSchema);

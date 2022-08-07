@@ -47,10 +47,13 @@ function SearchPage() {
     let markerArr = [];
     if (studySpaces) {
       studySpaces.forEach((studySpace) => {
-        if (studySpace.lat && studySpace.lon) {
+        if (
+          studySpace.coordinates.coordinates[1] &&
+          studySpace.coordinates.coordinates[0]
+        ) {
           markerArr.push({
-            lat: studySpace.lat,
-            lng: studySpace.lon,
+            lat: studySpace.coordinates.coordinates[1],
+            lng: studySpace.coordinates.coordinates[0],
             text: studySpace.name,
             studySpace: studySpace,
           });
@@ -66,39 +69,54 @@ function SearchPage() {
         <Typography variant={"h5"} component={"h2"}>
           Filter Options
         </Typography>
-        <Filters stateChanger={setStudySpaces} location={locToSearch} />
+        <Filters
+          stateChanger={setStudySpaces}
+          location={{
+            lat: location.state.lat,
+            lon: location.state.lon,
+            radius: location.state.radius,
+          }}
+        />
       </Box>
       <Box className={classes.bottomContainer}>
         <Typography variant={"h5"} component={"h2"}>
           Search Results
         </Typography>
         <Card className={classes.mapContainer}>
-          <MapComponent markers={markers}></MapComponent>
+          <MapComponent
+            markers={markers}
+            lat={location.state.lat}
+            lon={location.state.lon}
+          ></MapComponent>
         </Card>
-        <Splide
-          options={{
-            perPage: 4,
-            arrows: true,
-            pagination: false,
-            drag: "free",
-            gap: "5rem",
-            type: "loop",
-          }}
-        >
-          {studySpaces?.map((space) => {
-            return (
-              <SplideSlide key={space._id}>
-                <CardActionArea
-                  onClick={() => navigate("/studySpace", { state: space })}
-                >
-                  <StudySpaceReview studySpace={space}></StudySpaceReview>
-                </CardActionArea>
-                <br />
-                <br />
-              </SplideSlide>
-            );
-          })}
-        </Splide>
+        {studySpaces.length > 0 ? (
+          <Splide
+            options={{
+              perPage: 4,
+              arrows: true,
+              pagination: false,
+              drag: "free",
+              gap: "5rem",
+              type: "loop",
+            }}
+          >
+            {studySpaces?.map((space) => {
+              return (
+                <SplideSlide key={space._id}>
+                  <CardActionArea
+                    onClick={() => navigate("/studySpace", { state: space })}
+                  >
+                    <StudySpaceReview studySpace={space}></StudySpaceReview>
+                  </CardActionArea>
+                  <br />
+                  <br />
+                </SplideSlide>
+              );
+            })}
+          </Splide>
+        ) : (
+          <Box>No Study Spaces in this area</Box>
+        )}
       </Box>
     </Box>
   );

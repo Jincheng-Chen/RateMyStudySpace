@@ -55,17 +55,16 @@ const StudySpaceWizardForm = () => {
       name: name,
       type: type,
       location: location,
-      lat: lat,
-      lon: lon,
+      coordinates: {
+        type: "Point",
+        coordinates: [lon, lat],
+      },
       images: images,
     };
 
     await addStudySpace(newStudySpace);
 
-    navigate("/search");
-
-    // console.log(newStudySpace);
-    // window.alert(JSON.stringify(newStudySpace, undefined, 2));
+    navigate("/search", { state: { lat: lat, lon: lon, radius: 5 } });
   };
 
   return (
