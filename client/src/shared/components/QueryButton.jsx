@@ -20,7 +20,7 @@ function QueryButton({ cityData }) {
           sx={{ backgroundImage: `url(${cityData.url})` }}
           className={classes.button}
         ></Box>
-        <Typography variant="h4">{cityData.label}</Typography>
+        <Typography variant="h5">{cityData.label}</Typography>
       </CardActionArea>
     </Card>
   );
