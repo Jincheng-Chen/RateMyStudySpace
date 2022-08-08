@@ -47,7 +47,6 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
   },
-
   bottomContainer: {
     height: "50%",
     minWidth: "100%",
@@ -81,7 +80,15 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
   infoBox: {
+    width: "70%",
     marginLeft: "5vw",
+  },
+  infoCard: {
+    width: "30%",
+    marginLeft: "10vw",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   textIconBox: {
     display: "flex",
@@ -201,26 +208,26 @@ function LandingPage() {
             </Typography>
           </Box>
         </Box>
-        <Card className={classes.card}>
-          <Typography variant="h4" sx={{ marginTop: "2vh" }}>
+        <Card className={classes.infoCard}>
+          <Typography variant="h5" sx={{ marginTop: "2vh" }}>
             What can you rate by?
           </Typography>
           <Box className={classes.textIconBox}>
             <VolumeDownIcon fontSize="large"></VolumeDownIcon>
-            <Typography variant="h5">Noise levels</Typography>
+            <Typography variant="h6">Noise levels</Typography>
           </Box>
           <Rating name="read-only" value={3} readOnly />
           <Box className={classes.textIconBox}>
             <TableRestaurantIcon fontSize="large"></TableRestaurantIcon>
-            <Typography variant="h5">Table Space</Typography>
+            <Typography variant="h6">Table Space</Typography>
           </Box>
           <Rating name="read-only" value={5} readOnly />
           <Box className={classes.textIconBox}>
             <AccessTimeIcon fontSize="large"></AccessTimeIcon>
-            <Typography variant="h5">Time limit</Typography>
+            <Typography variant="h6">Time limit</Typography>
           </Box>
           <Rating name="read-only" value={2} readOnly />
-          <Typography sx={{ marginTop: "4vh" }} variant="h4">
+          <Typography sx={{ marginTop: "4vh" }} variant="h5">
             And many more metrics!
           </Typography>
         </Card>
@@ -235,7 +242,7 @@ function LandingPage() {
             arrows: true,
             pagination: false,
             drag: "free",
-            gap: "5rem",
+            gap: "5vh",
             type: "loop",
           }}
         >
