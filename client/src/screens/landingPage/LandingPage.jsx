@@ -127,16 +127,25 @@ function LandingPage() {
       label: "Vancouver",
       url: Vancouver,
       id: 1,
+      lat: 49.26701,
+      lon: -123.2516,
+      radius: 5,
     },
     {
       label: "San Fransisco",
       url: SanFransisco,
       id: 2,
+      lat: 37.7749,
+      lon: -122.4194,
+      radius: 5,
     },
     {
       label: "Toronto",
       url: Toronto,
       id: 3,
+      lat: 43.6532,
+      lon: -79.3832,
+      radius: 5,
     },
   ];
 

@@ -9,8 +9,6 @@ import usePlacesAutocomplete, {
 
 const PlacesAutocomplete = ({ callBack, width }) => {
   const {
-    ready,
-    value,
     suggestions: { status, data },
     setValue,
     clearSuggestions,
@@ -54,7 +52,7 @@ const PlacesAutocomplete = ({ callBack, width }) => {
     <Autocomplete
       options={data}
       sx={{ width: width, background: "white" }}
-      renderInput={(params) => <TextField {...params} label="Enter City" />}
+      renderInput={(params) => <TextField {...params} label="Enter Address" />}
       onInputChange={handleInput}
       onChange={handleSelect}
       value={val}
