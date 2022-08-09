@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Stack,
   Box,
   Typography,
   Card,
@@ -18,14 +19,23 @@ import Toronto from "../../shared/images/toronto.jpg";
 import SearchBar from "../../shared/components/SearchBar";
 import ComputerIcon from "@mui/icons-material/Computer";
 import MarkUnreadChatAltIcon from "@mui/icons-material/MarkUnreadChatAlt";
+import MapIcon from "@mui/icons-material/Map";
 import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import TableRestaurantIcon from "@mui/icons-material/TableRestaurant";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import QueryButton from "../../shared/components/QueryButton";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import header_logo from "../../shared/images/header_logo.png";
+import laptopCoffee from "../../shared/images/laptop-coffee.jpg";
 import "@splidejs/react-splide/css";
 
 const useStyles = makeStyles({
+  logoContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "40vh",
+  },
   outerContainer: {
     minHeight: "100vh",
     display: "flex",
@@ -36,13 +46,12 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
   topContainer: {
-    height: "50%",
+    paddingBottom: "10vh",
     minWidth: "100%",
     width: "100%",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    minHeight: "50vh",
-    background: `linear-gradient(rgba(255,255,255,.25), rgba(255,255,255,.25)), url(${image})`,
+    background: `linear-gradient(rgba(255,255,255,.25), rgba(255,255,255,.25)), url(${laptopCoffee})`,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -50,16 +59,16 @@ const useStyles = makeStyles({
   bottomContainer: {
     height: "50%",
     minWidth: "100%",
-    minHeight: "50vh",
+    minHeight: "31vh",
     display: "flex",
     flexDirection: "row",
-    paddingTop: "5vh",
+    paddingTop: "2vh",
     backgroundColor: "rgba(249,250,251)",
     paddingBottom: "2vh",
   },
   lastContainer: {
     height: "50%",
-    width: "90%",
+    width: "88%",
     display: "flex",
     paddingTop: "5vh",
     flexDirection: "column",
@@ -85,7 +94,8 @@ const useStyles = makeStyles({
   },
   infoCard: {
     width: "30%",
-    marginLeft: "10vw",
+    marginLeft: "4vw",
+    marginRight: "4vw",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -93,7 +103,7 @@ const useStyles = makeStyles({
   textIconBox: {
     display: "flex",
     flexDirection: "row",
-    marginTop: "4vh",
+    marginTop: "2vh",
     justifyContent: "center",
   },
   icon: {
@@ -161,7 +171,10 @@ function LandingPage() {
 
   return (
     <Box className={classes.outerContainer}>
-      <Box className={classes.topContainer}>
+      <Stack className={classes.topContainer}>
+        <Box className={classes.logoContainer}>
+          <img src={header_logo} alt="" />
+        </Box>
         <Card className={classes.searchContainer}>
           <SearchBar
             options={cities}
@@ -183,7 +196,7 @@ function LandingPage() {
             Search
           </Button>
         </Card>
-      </Box>
+      </Stack>
       <Box className={classes.bottomContainer}>
         <Box className={classes.infoBox}>
           <Typography variant="h4" bold>
@@ -207,6 +220,12 @@ function LandingPage() {
               Leave reviews to help others find the perfect place to study/work!
             </Typography>
           </Box>
+          <Box className={classes.textIconBox}>
+            <MapIcon fontSize="large"></MapIcon>
+            <Typography variant="subtitle1" sx={{ marginLeft: "2vw" }}>
+              Find the perfect study location in our map view!
+            </Typography>
+          </Box>
         </Box>
         <Card className={classes.infoCard}>
           <Typography variant="h5" sx={{ marginTop: "2vh" }}>
@@ -227,23 +246,22 @@ function LandingPage() {
             <Typography variant="h6">Time limit</Typography>
           </Box>
           <Rating name="read-only" value={2} readOnly />
-          <Typography sx={{ marginTop: "4vh" }} variant="h5">
-            And many more metrics!
-          </Typography>
         </Card>
       </Box>
       <Box className={classes.lastContainer}>
         <Typography variant="h4">
           Search study locations in popular cities!
         </Typography>
+        <br />
         <Splide
           options={{
             perPage: 3,
             arrows: true,
             pagination: false,
             drag: "free",
-            gap: "5vh",
+            gap: "8vh",
             type: "loop",
+            width: "100%",
           }}
         >
           {buttonCityArray.map((city) => {
