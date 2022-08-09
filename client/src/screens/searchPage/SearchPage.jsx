@@ -19,11 +19,12 @@ const useStyles = makeStyles({
   },
   topContainer: {},
   bottomContainer: {
+    position: "relative",
     width: "90%",
+    top: "-6vh",
   },
   grid: {},
   mapContainer: {
-    marginTop: "3vh",
     marginBottom: "3vh",
   },
 });
@@ -66,9 +67,6 @@ function SearchPage() {
   return (
     <Box className={classes.outerContainer}>
       <Box className={classes.topContainer}>
-        <Typography variant={"h5"} component={"h2"}>
-          Filter Options
-        </Typography>
         <Filters
           stateChanger={setStudySpaces}
           location={{
@@ -79,9 +77,6 @@ function SearchPage() {
         />
       </Box>
       <Box className={classes.bottomContainer}>
-        <Typography variant={"h5"} component={"h2"}>
-          Search Results
-        </Typography>
         <Card className={classes.mapContainer}>
           <MapComponent
             markers={markers}
