@@ -2,13 +2,15 @@ import { Box, Stack, TextField, Typography } from "@mui/material";
 import React from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import { useNavigate } from "react-router-dom";
+import Filters from "./Filters";
 const center = {
   lat: -3.745,
   lng: -38.523,
 };
 const containerStyle = {
+  position: "relative",
   width: "100%",
-  height: "50vh",
+  height: "47vh",
 };
 
 const MapComponent = ({ markers, lat, lon }) => {
@@ -27,7 +29,11 @@ const MapComponent = ({ markers, lat, lon }) => {
     setMap(null);
   }, []);
   return isLoaded ? (
-    <Box>
+    <Box
+      sx={{
+        position: "relative",
+      }}
+    >
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={{ lat: lat, lng: lon }}

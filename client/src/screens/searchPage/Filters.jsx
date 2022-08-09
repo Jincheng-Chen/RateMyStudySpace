@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Card,
+  Box,
   FormControl,
   InputLabel,
   MenuItem,
@@ -14,7 +14,13 @@ import { useGetStudySpaceFilteredQuery } from "../../features/api/studySpaceApiS
 
 const useStyles = makeStyles({
   container: {
-    padding: "3vw",
+    padding: "10px",
+    position: "relative",
+    top: "3vh",
+    left: "3vh",
+    zIndex: "1",
+    backgroundColor: "white",
+    borderRadius: "9px",
   },
 });
 
@@ -58,7 +64,7 @@ function Filters({ stateChanger, location }) {
   };
 
   return (
-    <Card className={classes.container}>
+    <Box className={classes.container}>
       <Grid
         container
         spacing={3}
@@ -122,11 +128,11 @@ function Filters({ stateChanger, location }) {
             size={"large"}
             onClick={handleSubmit}
           >
-            Apply Filter
+            Apply
           </Button>
         </Grid>
       </Grid>
-    </Card>
+    </Box>
   );
 }
 
