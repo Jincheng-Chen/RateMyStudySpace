@@ -30,8 +30,6 @@ function Filters({ stateChanger, location }) {
   const lat = location.lat;
   const lon = location.lon;
   const radius = location.radius;
-  console.log(lat);
-  console.log(lon);
   const defaultValues = {
     location: location,
     filter: "none",

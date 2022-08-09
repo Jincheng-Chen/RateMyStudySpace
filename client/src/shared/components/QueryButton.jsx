@@ -14,7 +14,15 @@ function QueryButton({ cityData }) {
   return (
     <Card onClick={() => console.log("clicked")}>
       <CardActionArea
-        onClick={() => navigate("search", { state: cityData.label })}
+        onClick={() =>
+          navigate("search", {
+            state: {
+              lat: cityData.lat,
+              lon: cityData.lon,
+              radius: cityData.radius,
+            },
+          })
+        }
       >
         <Box
           sx={{ backgroundImage: `url(${cityData.url})` }}
