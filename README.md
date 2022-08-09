@@ -51,13 +51,13 @@ I made contributions to the front end by overseeing the implementation of the la
 I made contributions to the front end by designing and implementing the original new study search form, as well as the filter bar in the search page, and the display cards for study spaces in the search page. Most of my contributions involved the back end, I took charge of implementing the endpoints that sent the filtered study spaces using a MongoDB/Mongoose pipeline, as well as the endpoint that permitted users to add new images to a study space document. For the database, I added a trigger that recalculated the averages for the aggregated fields of a study space whenever a new review was added. I also took charge of handeling the deployment using Heroku.
 
 ### Jincheng Chen (Leeemon):
-Frontend:
-- Wizard form's design and implementation for posting a new review.
-- Wizard form's design and implementation for adding a new study space. Integrated Google Map API to autocomplete geo-location.
-- Redux RTK query(apiSlice) set up and implementation for review data fetching, updating, deleting and creating(CRUD functionalities).
-- Integrated React-final-form for form validation.
-- CSS and styling improvements for the landing page and search page.
-Backend:
-- The 'Review' data model(schema).
-- Express router and endpoints implementation for handing CRUD request and response of 'Review' data.
-- Database CRUD functionalities for 'Review' data.
+ ####Frontend:
+ - Wizard form's design and implementation for posting a new review.
+ - Wizard form's design and implementation for adding a new study space. Integrated Google Map API to autocomplete geo-location.
+ - Redux RTK query(apiSlice) set up and implementation for review data fetching, updating, deleting and creating(CRUD functionalities).
+ - Integrated React-final-form for form validation.
+ - CSS and styling improvements for the landing page and search page.
+ ####Backend:
+ - The 'Review' data model(schema).
+ - Express router and endpoints implementation for handing CRUD request and response of 'Review' data.
+ - Database CRUD functionalities for 'Review' data.
