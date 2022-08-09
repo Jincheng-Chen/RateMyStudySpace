@@ -14,7 +14,6 @@ const useStyles = makeStyles({
 //Component
 const StarRating = (props) => {
   const classes = useStyles();
-  // const [value, setValue] = useState(1);
 
   // funtions that convert a string to camel case and removes all spaces
   const camelCase = (str) => {

@@ -1,8 +1,7 @@
-import { Box, Stack, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import { useNavigate } from "react-router-dom";
-import Filters from "./Filters";
 const center = {
   lat: -3.745,
   lng: -38.523,

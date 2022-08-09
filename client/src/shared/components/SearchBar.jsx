@@ -1,7 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { isGetAccessor } from "typescript";
+import { useNavigate } from "react-router-dom";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,

@@ -31,12 +31,6 @@ function SubmitPictureModal({ setClosed, open, studySpace }) {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    // dispatch(
-    //   addNewImage({
-    //     id: studySpace.id,
-    //     url: picture,
-    //   })
-    // );
     console.log("picture", picture);
     addImage({ studySpaceId: studySpace._id, imageUrl: picture });
     setPicture("");

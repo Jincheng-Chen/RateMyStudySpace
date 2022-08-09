@@ -10,9 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-// import image from '../../shared/images/LandingPageBackground'
 import { useNavigate } from "react-router-dom";
-import image from "../../shared/images/LandingPageBackground.jpg";
 import SanFransisco from "../../shared/images/SanFransisco.jpg";
 import Vancouver from "../../shared/images/vancouver.jpg";
 import Toronto from "../../shared/images/toronto.jpg";

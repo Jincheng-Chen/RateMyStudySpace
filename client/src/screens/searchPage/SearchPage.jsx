@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, CardActionArea, Card } from "@mui/material";
+import { Box, CardActionArea, Card } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import StudySpaceReview from "./StudySpaceReview";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -31,7 +31,6 @@ const useStyles = makeStyles({
 
 function SearchPage() {
   const location = useLocation();
-  //const locToSearch = location.state.city;
 
   const navigate = useNavigate();
   const classes = useStyles();

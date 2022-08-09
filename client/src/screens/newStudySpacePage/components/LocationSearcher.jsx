@@ -9,8 +9,7 @@ import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import SearchBar from "../../../shared/components/SearchBar";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
-import { TextField, Autocomplete } from "mui-rff";
-import { Field } from "react-final-form";
+import { Autocomplete } from "mui-rff";
 
 const useStyles = makeStyles({
   searchBarPos: {

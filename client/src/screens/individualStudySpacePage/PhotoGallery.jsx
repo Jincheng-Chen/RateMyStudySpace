@@ -1,7 +1,6 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 
 export function PhotoGallery({ studySpace }) {
   const images = studySpace.images;
@@ -25,41 +24,6 @@ export function PhotoGallery({ studySpace }) {
           </SplideSlide>
         );
       })}
-      {/* <SplideSlide>
-        <ImageHolder>
-          <img src={require("../../shared/images/cafe7.jpeg")} alt="1" />
-        </ImageHolder>
-      </SplideSlide>
-      <SplideSlide>
-        <ImageHolder>
-          <img src={require("../../shared/images/cafe-study2.webp")} alt="2" />
-        </ImageHolder>
-      </SplideSlide>
-      <SplideSlide>
-        <ImageHolder>
-          <img src={require("../../shared/images/cafe-study3.jpeg")} alt="2" />
-        </ImageHolder>
-      </SplideSlide>
-      <SplideSlide>
-        <ImageHolder>
-          <img src={require("../../shared/images/cafe1.jpeg")} alt="2" />
-        </ImageHolder>
-      </SplideSlide>
-      <SplideSlide>
-        <ImageHolder>
-          <img src={require("../../shared/images/cafe2.jpeg")} alt="2" />
-        </ImageHolder>
-      </SplideSlide>
-      <SplideSlide>
-        <ImageHolder>
-          <img src={require("../../shared/images/cafe3.jpeg")} alt="2" />
-        </ImageHolder>
-      </SplideSlide>
-      <SplideSlide>
-        <ImageHolder>
-          <img src={require("../../shared/images/cafe-study1.jpeg")} alt="2" />
-        </ImageHolder>
-      </SplideSlide> */}
     </Splide>
   );
 }

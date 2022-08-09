@@ -1,17 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  //Study spaces should be object with
-  // {
-  //     spaceId: String,
-  //     details.....
-  // }
   studySpaces: [],
-  // Reviews should be object with
-  // {
-  //      reviewId: String
-  //      spaceId: String references a Study Space
-  // }
   reviews: [],
 };
 
@@ -39,10 +29,11 @@ const reviewSlice = createSlice({
     },
     setReviews: (state, action) => {
       state.studySpaces = action.payload;
-    }
+    },
   },
 });
 
-export const { addNewReview, addNewSpace, addNewImage, setReviews } = reviewSlice.actions;
+export const { addNewReview, addNewSpace, addNewImage, setReviews } =
+  reviewSlice.actions;
 
 export default reviewSlice.reducer;
