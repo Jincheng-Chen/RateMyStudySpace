@@ -47,6 +47,7 @@ Our next steps would be to add user authentication to our app. Ideally, each use
 ### Dennis Polyakov (Denpoly):
 I made contributions to the front end by overseeing the implementation of the landing page and of the individual study space page. For the backend, I did lots of initial setup to speed up future development for my teammates. I also was instrumental in the Google Maps integration described above by creating the suggestion search bar and creating the business logic for storing/filtering geo coordinates. More generally, I used my previous experience to dictate many decisions about structure/tools for the project, which made the development process smoother and more efficient.
 
-
+### Emerson Aguirre (emagui):
+I made contributions to the front end by designing and implementing the original new study search form, as well as the filter bar in the search page, and the display cards for study spaces in the search page. Most of my contributions involved the back end, I took charge of implementing the endpoints that sent the filtered study spaces using a MongoDB/Mongoose pipeline, as well as the endpoint that permitted users to add new images to a study space document. For the database, I added a trigger that recalculated the averages for the aggregated fields of a study space whenever a new review was added. I also took charge of handeling the deployment using Heroku.
 
 
