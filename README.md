@@ -25,20 +25,20 @@ Rate My Study Space is an intuitive rating platform for remote workers to rate c
   * ML model to extract key info from reviews. (For Future)
 
 ## Tech Usage
-# Unit 1: HTML/CSS/Javascript
+### Unit 1: HTML/CSS/Javascript
 
 We use Material UI components in our project, styling them with CSS classes. Furthermore, Javascript is the primary language used for both our front end and back end. We chose Material UI components to have quickly have an attractive functioning UI, without spending tons of time writing CSS.
 
-# Unit 2: ReactJS/Redux
+### Unit 2: ReactJS/Redux
 We use ReactJS for our front end functionality, and already mentioned, we use Material UI components. ReactJS was integral for us in making a high performance single page application. Furthermore, we use Redux through RTK queries to our backend. These queries are a seamless packaged solution for fetching data and caching them in state.
 
-# Unit 3: Node.JS/Express
+### Unit 3: Node.JS/Express
 We use Node.JS and Express for our Web Server. These technologies were important for creating endpoints and business logic in our app. This business logic handles all the aggregating of reviews, submitting our data to the DB, and sending data back to the user.
 
-# Unit 4: MongoDB/Mongoose
+### Unit 4: MongoDB/Mongoose
 We use MongoDB for storing all the applicaton data including Study Spaces and Reviews. Study Space and Review each has their own schema, with Review have a Foregin Key referencing a Study Space. In addition we also store geo coordinates created by Google Maps in our MongoDB storage. We also use MongoDB triggers to update aggregate values in a Study Space whenever a new review is posted. We use Mongoose for creating queries to query our data. This was particularly useful for our filter functionality and for the aggregation functionality.
 
-# Unit 5: Heroku Deployment
+### Unit 5: Heroku Deployment
 We use Heroku for deploying our application. Because our project is a monorepo, we set up the deployment scripts so that the backend is deployed on one process, and it feeds the front end to the browser. This way, we can also have our environment variables in one place.
 
 ## Above and beyond:
