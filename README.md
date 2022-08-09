@@ -60,5 +60,5 @@ I made contributions to the front end by designing and implementing the original
  
  Backend:
  - The 'Review' data model(schema).
- - Express router and endpoints implementation for handing CRUD request and response of 'Review' data.
+ - Express router and endpoints implementation for handling CRUD request and response of 'Review' data.
  - Database CRUD functionalities for 'Review' data.
