@@ -8,6 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
+import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
+
 export default function Header() {
   const navigate = useNavigate();
 
@@ -33,6 +35,7 @@ export default function Header() {
             Rate My Study Space
           </Typography>
           <Button onClick={() => navigate("/newStudySpace")} color="inherit">
+            <AddLocationAltIcon />
             New Study Space
           </Button>
         </Toolbar>
