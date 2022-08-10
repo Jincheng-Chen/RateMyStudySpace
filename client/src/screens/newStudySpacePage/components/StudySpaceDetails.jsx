@@ -1,8 +1,14 @@
-import { Box, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Typography,
+  TextField as MuiTextfield,
+} from "@mui/material";
 import React from "react";
 import { Radios, TextField } from "mui-rff";
 import ImagePreview from "./ImagePreview";
 import { useState } from "react";
+import { Field, OnChange } from "react-final-form";
 
 const StudySpaceDetails = () => {
   const [img1, setImg1] = useState(null);
@@ -28,22 +34,47 @@ const StudySpaceDetails = () => {
           margin="normal"
           required={true}
         />
-        <TextField
-          label="Study Space Image Link 1"
-          name="imgLink1"
-          margin="normal"
-          required={true}
-          onChange={(e) => setImg1(e.target.value)}
-          value={img1}
-        />
-        <TextField
-          label="Study Space Image Link 2"
-          name="imgLink2"
-          margin="normal"
-          required={true}
-          onChange={(e) => setImg2(e.target.value)}
-          value={img2}
-        />
+        <Field name="imgLink1">
+          {(props) => (
+            <div>
+              <MuiTextfield
+                label="Study Space Image Link 1"
+                name={props.input.name}
+                value={props.input.value}
+                margin="normal"
+                sx={{
+                  display: "flex",
+                }}
+                onChange={(e) => {
+                  props.input.onChange(e.target.value);
+                  setImg1(e.target.value);
+                }}
+                required={true}
+              />
+            </div>
+          )}
+        </Field>
+        <Field name="imgLink2">
+          {(props) => (
+            <div>
+              <MuiTextfield
+                label="Study Space Image Link 2"
+                name={props.input.name}
+                value={props.input.value}
+                margin="normal"
+                sx={{
+                  display: "flex",
+                }}
+                onChange={(e) => {
+                  props.input.onChange(e.target.value);
+                  setImg2(e.target.value);
+                }}
+                required={true}
+              />
+            </div>
+          )}
+        </Field>
+
         <Typography variant="h6">Sudy Space Type</Typography>
         <Radios
           label="Pick one..."
