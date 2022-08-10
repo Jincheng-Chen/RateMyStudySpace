@@ -5,8 +5,12 @@ const Review = require('../models/review');
 
 const getReviews = async (req, res) => {
   // get all reviews from DB
-  const reviews = await Review.find({}).sort({ createdAt: -1 });
-  res.status(200).json(reviews);
+  try {
+    const reviews = await Review.find({}).sort({ createdAt: -1 });
+    res.status(200).json(reviews);
+  } catch (e) {
+    res.status(500).json(e);
+  }
 };
 
 const getReviewsByReviewId = async (req, res) => {
@@ -16,12 +20,16 @@ const getReviewsByReviewId = async (req, res) => {
     return res.status(404).json({ error: 'Invalid ID and no such review' });
   }
 
-  const review = await Review.findById(reviewID);
+  try {
+    const review = await Review.findById(reviewID);
 
-  if (!review) {
-    return res.status(404).json({ error: 'Sorry, no such review exist.' });
+    if (!review) {
+      return res.status(404).json({ error: 'Sorry, no such review exist.' });
+    }
+    res.status(200).json(review);
+  } catch (e) {
+    res.status(500).json(e);
   }
-  res.status(200).json(review);
 };
 
 const getReviewsByStudySpaceId = async (req, res) => {
@@ -32,15 +40,18 @@ const getReviewsByStudySpaceId = async (req, res) => {
       error: 'Invalid spaceId',
     });
   }
+  try {
+    const review = await Review.find({
+      'spaceId': mongoose.Types.ObjectId(studySpaceId),
+    }).sort({ createdAt: -1 });
 
-  const review = await Review.find({
-    'spaceId': mongoose.Types.ObjectId(studySpaceId),
-  }).sort({ createdAt: -1 });
-
-  if (!review) {
-    return res.status(404).json({ error: 'Sorry, no such review exist.' });
+    if (!review) {
+      return res.status(404).json({ error: 'Sorry, no such review exist.' });
+    }
+    res.status(200).json(review);
+  } catch (e) {
+    res.status(500).json(e);
   }
-  res.status(200).json(review);
 };
 
 const addNewReview = async (req, res) => {
@@ -64,17 +75,21 @@ const updateReview = async (req, res) => {
       .json({ error: 'Invalid ID, no such document exist in DB' });
   }
 
-  const review = await Review.findOneAndUpdate(
-    { _id: reviewID },
-    {
-      ...req.body,
-    },
-  );
-  if (!review) {
-    return res.status(404).json({ error: 'No such review' });
+  try {
+    const review = await Review.findOneAndUpdate(
+      { _id: reviewID },
+      {
+        ...req.body,
+      },
+    );
+    if (!review) {
+      return res.status(404).json({ error: 'No such review' });
+    }
+    const reviews = await Review.find({}).sort({ createdAt: -1 });
+    res.status(200).json(reviews);
+  } catch (e) {
+    res.status(500).json(e);
   }
-  const reviews = await Review.find({}).sort({ createdAt: -1 });
-  res.status(200).json(reviews);
 };
 
 const deleteReview = async (req, res) => {
@@ -84,11 +99,15 @@ const deleteReview = async (req, res) => {
       .status(404)
       .json({ error: 'Invalid ID format' });
   }
-  const review = await Review.findOneAndDelete({ _id: reviewID });
-  if (!review) {
-    return res.status(404).json({ error: '404 No such review' });
+  try {
+    const review = await Review.findOneAndDelete({ _id: reviewID });
+    if (!review) {
+      return res.status(404).json({ error: '404 No such review' });
+    }
+    res.status(200).json(review);
+  } catch (e) {
+    res.status(500).json(e);
   }
-  res.status(200).json(review);
 };
 
 module.exports = {
