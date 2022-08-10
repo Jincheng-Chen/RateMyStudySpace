@@ -38,10 +38,10 @@ function SearchPage() {
   const [markers, setMarkers] = useState([]);
   const locToSearch = "Vancouver";
   useEffect(() => {
-    if (locToSearch === null) {
+    if (!location.state || !location.state.lon || !location.state.lat) {
       return navigate("/");
     }
-  }, [location]);
+  }, []);
 
   useEffect(() => {
     let markerArr = [];
@@ -62,58 +62,58 @@ function SearchPage() {
     }
     setMarkers(markerArr);
   }, [studySpaces]);
-
-  return (
-    <Box className={classes.outerContainer}>
-      <Box className={classes.topContainer}>
-        <Filters
-          stateChanger={setStudySpaces}
-          location={{
-            lat: location.state.lat,
-            lon: location.state.lon,
-            radius: location.state.radius,
-          }}
-        />
-      </Box>
-      <Box className={classes.bottomContainer}>
-        <Card className={classes.mapContainer}>
-          <MapComponent
-            markers={markers}
-            lat={location.state.lat}
-            lon={location.state.lon}
-          ></MapComponent>
-        </Card>
-        {studySpaces.length > 0 ? (
-          <Splide
-            options={{
-              perPage: 4,
-              arrows: true,
-              pagination: false,
-              drag: "free",
-              gap: "5rem",
-              type: "loop",
+  if (location.state)
+    return (
+      <Box className={classes.outerContainer}>
+        <Box className={classes.topContainer}>
+          <Filters
+            stateChanger={setStudySpaces}
+            location={{
+              lat: location.state.lat,
+              lon: location.state.lon,
+              radius: location.state.radius,
             }}
-          >
-            {studySpaces?.map((space) => {
-              return (
-                <SplideSlide key={space._id}>
-                  <CardActionArea
-                    onClick={() => navigate("/studySpace", { state: space })}
-                  >
-                    <StudySpaceReview studySpace={space}></StudySpaceReview>
-                  </CardActionArea>
-                  <br />
-                  <br />
-                </SplideSlide>
-              );
-            })}
-          </Splide>
-        ) : (
-          <Box>No Study Spaces in this area</Box>
-        )}
+          />
+        </Box>
+        <Box className={classes.bottomContainer}>
+          <Card className={classes.mapContainer}>
+            <MapComponent
+              markers={markers}
+              lat={location.state.lat}
+              lon={location.state.lon}
+            ></MapComponent>
+          </Card>
+          {studySpaces.length > 0 ? (
+            <Splide
+              options={{
+                perPage: 4,
+                arrows: true,
+                pagination: false,
+                drag: "free",
+                gap: "5rem",
+                type: "loop",
+              }}
+            >
+              {studySpaces?.map((space) => {
+                return (
+                  <SplideSlide key={space._id}>
+                    <CardActionArea
+                      onClick={() => navigate("/studySpace", { state: space })}
+                    >
+                      <StudySpaceReview studySpace={space}></StudySpaceReview>
+                    </CardActionArea>
+                    <br />
+                    <br />
+                  </SplideSlide>
+                );
+              })}
+            </Splide>
+          ) : (
+            <Box>No Study Spaces in this area</Box>
+          )}
+        </Box>
       </Box>
-    </Box>
-  );
+    );
 }
 
 export default SearchPage;

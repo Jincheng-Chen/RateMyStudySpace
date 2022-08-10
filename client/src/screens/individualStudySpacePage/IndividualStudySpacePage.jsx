@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import StudySpaceReview from "../searchPage/StudySpaceReview";
 import { PhotoGallery } from "./PhotoGallery";
 import { useGetReviewsBySpaceIdQuery } from "../../features/api/apiSlice";
+import { useGetStudySpaceByIdQuery } from "../../features/api/apiSlice";
 import SubmitPictureModal from "./SubmitPictureModal";
 const useStyles = makeStyles({
   outerContainer: {
@@ -51,25 +52,31 @@ function IndividualStudySpacePage(props) {
     }
   }, [location]);
 
+  const studySpaceQuery = useGetStudySpaceByIdQuery(
+    studySpace ? studySpace._id : "null"
+  );
+
   const [open, setOpen] = useState(false);
   const { data, isLoading } = useGetReviewsBySpaceIdQuery(
     studySpace ? studySpace._id : "null"
   );
 
   let reviews = data;
-  if (!isLoading) {
+  let studySpaceData = studySpaceQuery.data;
+  if (!isLoading && !studySpaceQuery.isLoading) {
+    studySpaceData = studySpaceQuery.data;
     reviews = data;
     return (
       <Box className={classes.outerContainer}>
         <Box className={classes.spaceContainer}>
-          <StudySpaceReview studySpace={studySpace}></StudySpaceReview>
+          <StudySpaceReview studySpace={studySpaceData}></StudySpaceReview>
           <Box className={classes.buttonContainer}>
             <Button variant="contained" onClick={() => setOpen(true)}>
               Submit Picture
             </Button>
             <Button
               variant="contained"
-              onClick={() => navigate("/newReview", { state: studySpace })}
+              onClick={() => navigate("/newReview", { state: studySpaceData })}
             >
               Submit a review
             </Button>
@@ -77,17 +84,21 @@ function IndividualStudySpacePage(props) {
         </Box>
         <Box className={classes.reviewsContainer}>
           <Box style={{ marginTop: "3vh" }}>
-            <PhotoGallery studySpace={studySpace} />
+            <PhotoGallery studySpace={studySpaceData} />
           </Box>
-          {data.map((review) => {
-            return <ReviewBox review={review} key={review.id}></ReviewBox>;
-          })}
+          {data.length < 1 ? (
+            <Box>No reviews for this studyspace</Box>
+          ) : (
+            data.map((review) => {
+              return <ReviewBox review={review} key={review.id}></ReviewBox>;
+            })
+          )}
         </Box>
 
         <SubmitPictureModal
           open={open}
           setClosed={() => setOpen(false)}
-          studySpace={studySpace}
+          studySpace={studySpaceData}
         ></SubmitPictureModal>
       </Box>
     );

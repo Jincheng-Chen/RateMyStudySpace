@@ -1,31 +1,37 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import styled from "styled-components";
-
+import { useGetStudySpaceByIdQuery } from "../../features/api/apiSlice";
 export function PhotoGallery({ studySpace }) {
-  const images = studySpace.images;
-  return (
-    <Splide
-      options={{
-        perPage: 3,
-        autoplay: true,
-        height: "25rem",
-        loop: true,
-        rewind: true,
-      }}
-      aria-label="React Splide Example"
-    >
-      {images?.map((photo, index) => {
-        return (
-          <SplideSlide key={index}>
-            <ImageHolder>
-              <img src={photo} alt="1" />
-            </ImageHolder>
-          </SplideSlide>
-        );
-      })}
-    </Splide>
+  const { data, isLoading } = useGetStudySpaceByIdQuery(
+    studySpace ? studySpace._id : "null"
   );
+
+  if (!isLoading) {
+    const images = data.images;
+    return (
+      <Splide
+        options={{
+          perPage: 3,
+          autoplay: true,
+          height: "25rem",
+          loop: true,
+          rewind: true,
+        }}
+        aria-label="React Splide Example"
+      >
+        {images?.map((photo, index) => {
+          return (
+            <SplideSlide key={index}>
+              <ImageHolder>
+                <img src={photo} alt="1" />
+              </ImageHolder>
+            </SplideSlide>
+          );
+        })}
+      </Splide>
+    );
+  }
 }
 
 const ImageHolder = styled.div`
