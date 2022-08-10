@@ -9,10 +9,11 @@ const useStyles = makeStyles({
   },
   modalCard: {
     width: "40vw",
-    height: "10vh",
+    height: "20vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: "1vw",
   },
   modal: {
     display: "flex",
@@ -34,6 +35,7 @@ function SubmitPictureModal({ setClosed, open, studySpace }) {
     console.log("picture", picture);
     addImage({ studySpaceId: studySpace._id, imageUrl: picture });
     setPicture("");
+    setClosed();
   };
   return (
     <Modal
