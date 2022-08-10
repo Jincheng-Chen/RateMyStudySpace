@@ -86,7 +86,6 @@ const addNewStudySpace = async (req, res) => {
   try {
     await StudySpace.create({ ...req.body });
     const AllstudySpace = await StudySpace.find({}).sort({ createdAt: -1 });
-    console.log(AllstudySpace[0]);
     res.status(200).json(AllstudySpace[0]);
   } catch (error) {
     res.status(400).json({ error: error.message });
