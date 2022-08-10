@@ -37,24 +37,24 @@ function StudySpaceReview({ studySpace }) {
           <Typography variant={"h6"} component={"h3"}>
             {data.name}
           </Typography>
-          <Rating value={data.overall} precision={0.5} readOnly />
+          <Rating value={data.overall || 0} precision={0.5} readOnly />
         </Box>
         <Box>
           <Box className={classes.textIconBox}>
             <VolumeDownIcon fontSize="medium"></VolumeDownIcon>
             <Typography component={"legend"}>Noise</Typography>
           </Box>
-          <Rating value={data.noise} precision={0.5} readOnly />
+          <Rating value={data.noise || 0} precision={0.5} readOnly />
           <Box className={classes.textIconBox}>
             <TableRestaurantIcon fontSize="medium"></TableRestaurantIcon>
             <Typography component={"legend"}>Table Space</Typography>
           </Box>
-          <Rating value={data.tableSpace} precision={0.5} readOnly />
+          <Rating value={data.tableSpace || 0} precision={0.5} readOnly />
           <Box className={classes.textIconBox}>
             <AccessTimeIcon fontSize="medium"></AccessTimeIcon>
             <Typography component={"legend"}>Time Limit</Typography>
           </Box>
-          <Rating value={data.timeLimit} precision={0.5} readOnly />
+          <Rating value={data.timeLimit || 0} precision={0.5} readOnly />
         </Box>
       </Card>
     );

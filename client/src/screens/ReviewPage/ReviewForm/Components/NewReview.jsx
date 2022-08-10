@@ -34,7 +34,6 @@ const NewReview = (props) => {
   const studySpace = location.state;
   const [addReview] = useAddReviewMutation();
   const [progress, setProgress] = useState(33);
-  console.log(studySpace);
   const id = studySpace ? studySpace._id : null;
   const name = studySpace ? studySpace.name : "StudySpace";
   const showResults = async (values) => {

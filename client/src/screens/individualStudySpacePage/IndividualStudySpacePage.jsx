@@ -45,7 +45,6 @@ function IndividualStudySpacePage(props) {
   const navigate = useNavigate();
   const location = useLocation();
   const studySpace = location.state;
-  console.log(studySpace);
 
   useEffect(() => {
     if (studySpace === null) {
