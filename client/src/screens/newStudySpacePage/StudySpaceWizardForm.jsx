@@ -1,20 +1,10 @@
 import React from "react";
-import { TextField } from "mui-rff";
-import {
-  Box,
-  Stack,
-  Typography,
-  Input,
-  Card,
-  LinearProgress,
-  Button,
-} from "@mui/material";
+import { Box, Typography, Card, LinearProgress, Button } from "@mui/material";
 import { useState } from "react";
 import LocationSearcher from "./components/LocationSearcher";
 import StudySpaceDetails from "./components/StudySpaceDetails";
-import ImagePreview from "./components/ImagePreview";
 import { makeStyles } from "@mui/styles";
-import { Form, Field } from "react-final-form";
+import { Form } from "react-final-form";
 import { useAddStudySpaceMutation } from "../../features/api/studySpaceApiSlice";
 import { useNavigate } from "react-router-dom";
 

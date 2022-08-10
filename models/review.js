@@ -2,12 +2,11 @@ const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema(
   {
-    user: { type: String, default: '', required: false },
-    // spaceId: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: 'StudySpace',
-    //   required: false,
-    // },
+    user: {
+      type: String,
+      default: '',
+      required: false,
+    },
     spaceId: {
       type: mongoose.Types.ObjectId,
       default: 'spaceID',

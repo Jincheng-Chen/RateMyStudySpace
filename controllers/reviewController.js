@@ -25,12 +25,7 @@ const getReviewsByReviewId = async (req, res) => {
 };
 
 const getReviewsByStudySpaceId = async (req, res) => {
-  console.log(req.params);
   const { studySpaceId } = req.params;
-
-  // if (!mongoose.Types.ObjectId.isValid(spaceId)) {
-  //   return res.status(404).json({ error: 'Invalid ID and no such review' });
-  // }
 
   if (!studySpaceId) {
     return res.status(404).json({

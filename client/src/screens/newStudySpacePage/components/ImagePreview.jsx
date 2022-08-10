@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Typography, Box } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 

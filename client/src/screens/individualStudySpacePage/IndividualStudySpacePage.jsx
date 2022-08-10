@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Input, InputLabel, Modal } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import ReviewBox from "./ReviewBox";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import StudySpaceReview from "../searchPage/StudySpaceReview";
 import { PhotoGallery } from "./PhotoGallery";
-import { addNewImage } from "../../features/reviewSlice";
 import { useGetReviewsBySpaceIdQuery } from "../../features/api/apiSlice";
-import { useAddImageMutation } from "../../features/api/studySpaceApiSlice";
 import SubmitPictureModal from "./SubmitPictureModal";
 const useStyles = makeStyles({
   outerContainer: {
@@ -53,35 +51,11 @@ function IndividualStudySpacePage(props) {
     }
   }, [location]);
 
-  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const { data, isLoading } = useGetReviewsBySpaceIdQuery(
     studySpace ? studySpace._id : "null"
   );
 
-  // const handleInputChange = (e) => {
-  //   const { value } = e.target;
-  //   setPicture(value);
-  // };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   // dispatch(
-  //   //   addNewImage({
-  //   //     id: studySpace.id,
-  //   //     url: picture,
-  //   //   })
-  //   // );
-  //   console.log("picture", picture);
-  //   addImage({ studySpaceId: studySpace._id, imageUrl: picture });
-  //   setPicture("");
-  // };
-
-  // const reviews = useSelector((state) => {
-  //   return state.reviews.reviews.filter((review) => {
-  //     return review.spaceId === studySpace.id;
-  //   });
-  // });
   let reviews = data;
   if (!isLoading) {
     reviews = data;
@@ -90,17 +64,6 @@ function IndividualStudySpacePage(props) {
         <Box className={classes.spaceContainer}>
           <StudySpaceReview studySpace={studySpace}></StudySpaceReview>
           <Box className={classes.buttonContainer}>
-            {/* <form onSubmit={handleSubmit}>
-              <InputLabel htmlFor="sp-image">Image URL</InputLabel>
-              <Input
-                id="sp-image"
-                aria-describedby="helper-image"
-                name={"url"}
-                value={picture}
-                onChange={handleInputChange}
-              />
-              
-            </form> */}
             <Button variant="contained" onClick={() => setOpen(true)}>
               Submit Picture
             </Button>

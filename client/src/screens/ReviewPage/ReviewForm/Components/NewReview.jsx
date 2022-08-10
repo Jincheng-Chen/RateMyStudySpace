@@ -1,11 +1,4 @@
-import {
-  Stack,
-  Typography,
-  Input,
-  Card,
-  LinearProgress,
-  Button,
-} from "@mui/material";
+import { Stack, Typography, Card, LinearProgress, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 
@@ -15,7 +8,7 @@ import StarRating from "./StarRatings";
 
 import { Form, Field } from "react-final-form";
 import { useDispatch } from "react-redux";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAddReviewMutation } from "../../../../features/api/apiSlice";
 import { useState } from "react";
 
@@ -37,7 +30,6 @@ const useStyles = makeStyles({
 const NewReview = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const location = useLocation();
   const studySpace = location.state;
   const [addReview] = useAddReviewMutation();
@@ -55,8 +47,6 @@ const NewReview = (props) => {
     newReview.timeLimit = Number(newReview.timeLimit);
     newReview.seatsComfort = Number(newReview.seatsComfort);
     newReview.duration = Number(newReview.duration);
-
-    // window.alert(JSON.stringify(newReview, undefined, 2));
 
     addReview(newReview);
 

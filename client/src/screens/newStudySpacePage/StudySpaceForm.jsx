@@ -57,14 +57,7 @@ function StudySpaceForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // setFormValues({
-    //   ...formValues,
-    //   id: newId,
-    // });
     addStudySpaceApiRequest({ ...formValues, images: [formValues.url] });
-
-    // dispatch(addNewSpace({ ...formValues, id: newId }));
-    // setFormValues(defaultValues);
   };
 
   const handleLocationChange = (city, address, lat, lng) => {
@@ -95,20 +88,6 @@ function StudySpaceForm() {
           </FormControl>
         </Box>
         <Box>
-          {/* <FormControl>
-            <InputLabel htmlFor="sp-location">Location</InputLabel>
-            <Input
-              id="sp-location"
-              aria-describedby="helper-location"
-              name={"location"}
-              value={formValues.location}
-              onChange={handleInputChange}
-            />
-            {/* <FormHelperText id="helper-location">
-              What is the address?
-            </FormHelperText> */}
-
-          {/* </FormControl> */}
           <SearchBar callBack={handleLocationChange}></SearchBar>
         </Box>
         <Box>

@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import React from "react";
-import { Rating, Typography, Stack } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import StarRating from "./StarRating";
 

@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Autocomplete,
-  Card,
-  Rating,
-  Grid,
-} from "@mui/material";
+import { Box, Typography, Card, Rating } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
