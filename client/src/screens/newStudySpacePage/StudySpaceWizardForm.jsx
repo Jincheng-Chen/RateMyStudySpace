@@ -5,7 +5,7 @@ import LocationSearcher from "./components/LocationSearcher";
 import StudySpaceDetails from "./components/StudySpaceDetails";
 import { makeStyles } from "@mui/styles";
 import { Form } from "react-final-form";
-import { useAddStudySpaceMutation } from "../../features/api/studySpaceApiSlice";
+import { useAddStudySpaceMutation } from "../../features/api/apiSlice";
 import { useNavigate } from "react-router-dom";
 
 //Styles

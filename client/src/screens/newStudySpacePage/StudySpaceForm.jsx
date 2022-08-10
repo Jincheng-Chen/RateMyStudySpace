@@ -15,7 +15,7 @@ import { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import { LOCATION_TYPES } from "../../shared/utils";
-import { useAddStudySpaceMutation } from "../../features/api/studySpaceApiSlice";
+import { useAddStudySpaceMutation } from "../../features/api/apiSlice";
 import SearchBar from "../../shared/components/SearchBar";
 
 const defaultValues = {

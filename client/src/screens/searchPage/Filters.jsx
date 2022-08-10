@@ -10,7 +10,7 @@ import {
   Grid,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useGetStudySpaceFilteredQuery } from "../../features/api/studySpaceApiSlice";
+import { useGetStudySpaceFilteredQuery } from "../../features/api/apiSlice";
 
 const useStyles = makeStyles({
   container: {

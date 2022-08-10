@@ -1,6 +1,6 @@
 import { Modal, Input, InputLabel, Button, Card } from "@mui/material";
 import React, { useState } from "react";
-import { useAddImageMutation } from "../../features/api/studySpaceApiSlice";
+import { useAddImageMutation } from "../../features/api/apiSlice";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
